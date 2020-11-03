@@ -16,7 +16,7 @@ export const rootReducer = (state = initialState, action) => {
       // debugger;
       return {
         ...state,
-        standings: [...state.standings, action.standings.standings],
+        standings: [...state.standings, action.standings.standings[0].table],
         competition: [...state.standings, action.standings.competition],
       };
     }
