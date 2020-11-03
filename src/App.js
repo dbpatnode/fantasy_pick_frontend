@@ -78,7 +78,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header"> */}
           <div>
             <Desktop>
               <table className="standings-D">
@@ -87,17 +87,17 @@ class App extends Component {
                     <th></th>
                     <th id="standings-club-D">Club</th>
                     <th>Matches</th>
-                    <th>Wins</th>
-                    <th>Draws</th>
-                    <th>Losses</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
                     <th>Points</th>
                     <th>Last 5</th>
                   </tr>
                   {this.props.standings[0]
                     ? this.props.standings[0].map((table) => (
                         <tr className="standings-row-D">
-                          <td>
-                            {table.position}
+                          <td id="standings-crest-td-D">
+                            <span className="standings-position-D">{table.position}</span>
                             <img
                               src={table.team.crestUrl}
                               alt="team crest"
@@ -133,11 +133,9 @@ class App extends Component {
             </Desktop>
             <Tablet>Tablet</Tablet>
             <Mobile>Mobile</Mobile>
-            <button onClick={(event) => this.handleOnClick2(event)}>
-              console Stendings
-            </button>
+          
           </div>
-        </header>
+        {/* </header> */}
       </div>
     );
   }
