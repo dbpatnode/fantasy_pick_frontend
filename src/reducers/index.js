@@ -4,6 +4,7 @@ const initialState = {
   fetch: false,
   standings: [],
   competition: [],
+  matches: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -32,8 +33,15 @@ export const rootReducer = (state = initialState, action) => {
       // debugger;
       return {
         ...state,
-        standings: [...state.standings, action.standings.standings[0].table],
-        competition: [...state.standings, action.standings.competition],
+        standings: action.standings.standings[0].table,
+        competition: action.standings.competition,
+      };
+    }
+    case "ADD_MATCHES": {
+      // debugger;
+      return {
+        ...state,
+        matches: action.matches,
       };
     }
 
