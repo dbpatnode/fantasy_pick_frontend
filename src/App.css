@@ -82,3 +82,17 @@ span {
   grid-column-start: 2;
   grid-column-end: 5;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 10vh;
+  width: 100vw;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  float: left;
+}
