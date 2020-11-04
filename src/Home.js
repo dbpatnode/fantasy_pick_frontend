@@ -1,14 +1,23 @@
 import React, { Component } from "react";
+import {Button, Collapse, Card} from 'reactstrap'
 
 class Home extends Component {
-  componentDidMount() {
-    fetch("http://localhost:3000/matches")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+  state = {
+    isOpen: false,
+    signUpOpen: false
   }
-
+  toggleLogin = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+      }
   render() {
-    return <div>Hello</div>;
+    return <div>
+       <Button onClick={this.toggleLogin}>Login</Button>
+    <Collapse isOpen={this.state.isOpen}>
+                <Card>HELLO</Card>
+    </Collapse> 
+    </div>;
   }
 }
 

@@ -9,6 +9,9 @@ import { setUser, fetchStandings, setLogout } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { loss, draw, won } from "./services/svg-icons";
 import api from "./services/api";
+import { Collapse, Card, Button, CardBody } from 'reactstrap'
+
+
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -24,6 +27,10 @@ const Mobile = ({ children }) => {
 };
 
 class App extends Component {
+  state = {
+    isOpen: false,
+    signUpOpen: false
+  }
   componentDidMount() {
     this.props.fetchStandings();
   }
@@ -63,20 +70,35 @@ class App extends Component {
     localStorage.removeItem("token");
     this.props.setLogout();
   };
+
+  toggleLogin = () => {
+this.setState({
+  isOpen: !this.state.isOpen
+})
+  }
   render() {
     console.log(this.props.standings);
-
+    console.log(this.state)
     return (
       <div className="App">
         {/* <header className="App-header"> */}
         <div>
           <Desktop>
             <div className="page-container">
-              <div class="wrapper">
-                <header class="header">My header</header>
-                <Login handleLogin={this.handleLogin} />
-                <Signup handleSignUp={this.handleSignUp} />
-                <Logout handleLogout={this.handleLogout} />
+             
+                <header class="header">My header
+       
+                {/* <Signup handleSignUp={this.handleSignUp} />
+                <Logout handleLogout={this.handleLogout} /> */}
+                </header>
+                <div>
+               
+                {/* <Button onClick={this.toggleLogin}>Login</Button>
+    <Collapse isOpen={this.state.isOpen}>
+                <Card>HELLO</Card>
+    </Collapse>  */}
+                </div>
+       
                 <article class="content">
                   <h1>2 column, header and footer</h1>
                   <p>
@@ -91,7 +113,7 @@ class App extends Component {
                     header and footer, stretching them across the grid.
                   </p>
                 </article>
-              </div>
+                <Home/>
               <div className="standings-table">
                 <table className="standings-D">
                   <thead>
