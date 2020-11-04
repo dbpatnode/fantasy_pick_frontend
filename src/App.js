@@ -9,9 +9,7 @@ import { setUser, fetchStandings, setLogout } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { loss, draw, won } from "./services/svg-icons";
 import api from "./services/api";
-import { Collapse, Card, Button, CardBody } from 'reactstrap'
-
-
+import { Collapse, Card, Button, CardBody } from "reactstrap";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -28,9 +26,9 @@ const Mobile = ({ children }) => {
 
 class App extends Component {
   state = {
-    isOpen: false,
-    signUpOpen: false
-  }
+    loginOpen: false,
+    signUpOpen: false,
+  };
   componentDidMount() {
     this.props.fetchStandings();
   }
@@ -64,6 +62,10 @@ class App extends Component {
     if (data.user) {
       localStorage.token = data.jwt;
       this.props.setUser(data);
+      this.setState({
+        loginOpen: false,
+        signUpOpen: false,
+      });
     }
   };
   handleLogout = () => {
@@ -72,48 +74,63 @@ class App extends Component {
   };
 
   toggleLogin = () => {
-this.setState({
-  isOpen: !this.state.isOpen
-})
-  }
+    this.setState({
+      loginOpen: !this.state.loginOpen,
+      signUpOpen: false,
+    });
+  };
+  toggleSignUp = () => {
+    this.setState({
+      signUpOpen: !this.state.signUpOpen,
+      loginOpen: false,
+    });
+  };
   render() {
-    console.log(this.props.standings);
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="App">
         {/* <header className="App-header"> */}
         <div>
           <Desktop>
             <div className="page-container">
-             
-                <header class="header">My header
-       
-                {/* <Signup handleSignUp={this.handleSignUp} />
-                <Logout handleLogout={this.handleLogout} /> */}
-                </header>
-                <div>
-               
-                {/* <Button onClick={this.toggleLogin}>Login</Button>
-    <Collapse isOpen={this.state.isOpen}>
-                <Card>HELLO</Card>
-    </Collapse>  */}
-                </div>
-       
-                <article class="content">
-                  <h1>2 column, header and footer</h1>
-                  <p>
-                    This example uses line-based positioning, to position the
-                    header and footer, stretching them across the grid.
-                  </p>
-                </article>
-                <article class="content">
-                  <h1>2 column, header and footer</h1>
-                  <p>
-                    This example uses line-based positioning, to position the
-                    header and footer, stretching them across the grid.
-                  </p>
-                </article>
-                <Home/>
+              <header class="header">My header</header>
+              <div className="wrapper">
+                {!this.props.token ? (
+                  <>
+                    <span>
+                      <Button onClick={this.toggleLogin}>Login</Button>
+                      <Collapse isOpen={this.state.loginOpen}>
+                        <Login handleLogin={this.handleLogin} />
+                      </Collapse>{" "}
+                    </span>
+
+                    <span>
+                      <Button onClick={this.toggleSignUp}>Signup</Button>
+                      <Collapse isOpen={this.state.signUpOpen}>
+                        <Signup handleSignUp={this.handleSignUp} />
+                      </Collapse>{" "}
+                    </span>
+                  </>
+                ) : (
+                  <Logout handleLogout={this.handleLogout} />
+                )}
+              </div>
+
+              {/* <article class="content">
+                <h1>2 column, header and footer</h1>
+                <p>
+                  This example uses line-based positioning, to position the
+                  header and footer, stretching them across the grid.
+                </p>
+              </article>
+              <article class="content">
+                <h1>2 column, header and footer</h1>
+                <p>
+                  This example uses line-based positioning, to position the
+                  header and footer, stretching them across the grid.
+                </p>
+              </article> */}
+
               <div className="standings-table">
                 <table className="standings-D">
                   <thead>
@@ -182,7 +199,7 @@ this.setState({
 
 function mapStateToProps(state) {
   // reducers
-  return { standings: state.standings };
+  return { standings: state.standings, token: state.token };
 }
 
 function mapDispatchToProps(dispatch) {
