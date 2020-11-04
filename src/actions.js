@@ -20,6 +20,20 @@ export function fetchStandings() {
       });
   };
 }
+export function fetchMatches() {
+  return (dispatch) => {
+    dispatch({ type: "START_ADDING_MATCHES_REQUEST" });
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://api.football-data.org/v2/competitions/PL/matches",
+      headers
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let matches = data.matches;
+        dispatch({ type: "ADD_MATCHES", matches });
+      });
+  };
+}
 
 export const setUser = (user) => {
   return {

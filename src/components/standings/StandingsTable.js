@@ -1,7 +1,6 @@
 import { loss, draw, won } from "../../services/svg-icons";
 
 const StandingsTable = (props) => {
-  console.log(props.standings);
   return (
     <div className="standings-table">
       <table className="standings-D">
@@ -18,8 +17,8 @@ const StandingsTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.standings[0]
-            ? props.standings[0].map((table) => (
+          {props.standings
+            ? props.standings.map((table) => (
                 <tr className="standings-row-D">
                   <td id="standings-crest-td-D">
                     <span className="standings-position-D">
