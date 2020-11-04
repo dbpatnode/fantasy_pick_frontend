@@ -10,6 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import api from "./services/api";
 import { Collapse, Button } from "reactstrap";
 import StandingsTable from "./components/standings/StandingsTable";
+import logo from './fantasy-pickem.png'
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -93,28 +94,36 @@ class App extends Component {
         <div>
           <Desktop>
             <div className="page-container">
-              <nav>
+              <div id="main-menu">
+                <div className="logo-area">
+                <a href=""><img className="logo" src={logo} alt="logo"></img></a>
+                </div>
+                <div className="inner-main-menu">
                 <ul className="nav-links">
                   {!this.props.token ? (
                     <>
-                      <li>
-                        <button className="nav-buttons" onClick={this.toggleLogin}>Login</button>
+                     <li><a href="#">Leagues</a></li>
+                      <li><a href="#">Picks</a></li>
+                      <li><a href="#">Matches</a></li>
+                      
+                        <li><a href="#" onClick={this.toggleLogin}>Login</a></li>
                         <Collapse isOpen={this.state.loginOpen}>
                           <Login handleLogin={this.handleLogin} />
                         </Collapse>{" "}
-                      </li>
-                      <li>
-                        <button className="nav-buttons" onClick={this.toggleSignUp}>Signup</button>
+                      
+                      
+                        <li><a href="#" onClick={this.toggleSignUp}>Signup</a></li>
                         <Collapse isOpen={this.state.signUpOpen}>
                           <Signup handleSignUp={this.handleSignUp} />
                         </Collapse>{" "}
-                      </li>
+                      <li><a href="#">Profile</a></li>
                     </>
                   ) : (
                     <Logout handleLogout={this.handleLogout} />
                   )}
                 </ul>
-              </nav>
+                </div>
+              </div>
 
               {/* <article class="content">
                 <h1>2 column, header and footer</h1>

@@ -89,22 +89,70 @@ span {
   grid-column-end: 5;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 10vh;
+ .inner-main-menu {
   width: 100vw;
+  margin: 0 auto;
+
 }
 
 .nav-links {
-  display: flex;
+  margin: 0;
   list-style: none;
+  text-align: right;
+  padding-top: 66px;
+  padding-left: 100px;
+  padding-right: 100px;
 
 }
 
 .nav-links li {
-padding: 20px;
+float: none;
+display: inline-block;
+color: white;
+font-size: 20px;
+
+}
+
+.nav-links li a {
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+  color: #2B004A;
+}
+.nav-links li a:hover {
+color: #00E9AB
+}
+.nav-links li:nth-child(1) {
+  float:left;
+  color: white;
+}
+.nav-links li:nth-child(2) {
+  float:left;
+  color: white;
+}
+.nav-links li:nth-child(3) {
+  float:left;
+  color: white;
+}
+#main-menu {
+  width: 100vw;
+  position: relative
+}
+.logo-area {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  content:"";
+  margin-left:-100px; 
+  padding-top: 25px;
+
+
+}
+.logo {
+  width: 200px
 }
 
 .nav-buttons {
