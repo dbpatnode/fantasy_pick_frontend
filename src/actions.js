@@ -14,11 +14,22 @@ export function fetchStandings() {
       headers
     )
       .then((response) => response.json())
-      // .then((data) => console.log(data.standings));
       .then((data) => {
         let standings = data;
-
         dispatch({ type: "ADD_STANDINGS", standings });
       });
   };
 }
+
+export const setUser = (user) => {
+  return {
+    type: "USER_LOGIN",
+    payload: user,
+  };
+};
+export const setLogout = () => {
+  return {
+    type: "USER_LOGOUT",
+    payload: {},
+  };
+};
