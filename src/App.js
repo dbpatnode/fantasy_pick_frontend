@@ -81,8 +81,23 @@ class App extends Component {
         {/* <header className="App-header"> */}
           <div>
             <Desktop>
+              <div className="page-container">
+              <div class="wrapper">
+  <header class="header">My header</header>
+ 
+  <article class="content">
+    <h1>2 column, header and footer</h1>
+    <p>This example uses line-based positioning, to position the header and footer, stretching them across the grid.</p>
+  </article>
+  <article class="content">
+    <h1>2 column, header and footer</h1>
+    <p>This example uses line-based positioning, to position the header and footer, stretching them across the grid.</p>
+  </article>
+  
+</div>
+                <div className="standings-table">
               <table className="standings-D">
-                <tbody>
+                <thead>
                   <tr>
                     <th></th>
                     <th id="standings-club-D">Club</th>
@@ -93,6 +108,8 @@ class App extends Component {
                     <th>Points</th>
                     <th>Last 5</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   {this.props.standings[0]
                     ? this.props.standings[0].map((table) => (
                         <tr className="standings-row-D">
@@ -130,6 +147,8 @@ class App extends Component {
                     : null}
                 </tbody>
               </table>
+              </div>
+              </div>
             </Desktop>
             <Tablet>Tablet</Tablet>
             <Mobile>Mobile</Mobile>

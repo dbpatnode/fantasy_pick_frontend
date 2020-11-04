@@ -1,9 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+/* DESKTOP VIEW  */
+.App {
 
+}
 * {
   font-family: "Montserrat", sans-serif;
 }
+.page-container {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+ grid-template-rows:20% 20% 20% 20% 20%;
+}
+
+.standings-table {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4;
+  height: 690px;
+  overflow: scroll;
+}
 .standings-row-D {
+  
   height: 70px;
   background-color: rgb(238, 238, 238);
   text-align: center;
@@ -30,6 +47,9 @@
 
 .standings-D {
   padding: 10px;
+ width: 100%
+ 
+ 
   /* border: 1px solid black; */
 }
 
@@ -64,3 +84,7 @@ span {
   font-size: calc(10px + 2vmin);
   /* color: white; */
 
+  .wrapper {
+grid-column-start: 2;
+grid-column-end: 5;
+  }
