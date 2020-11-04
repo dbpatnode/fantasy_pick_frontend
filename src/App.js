@@ -93,28 +93,29 @@ class App extends Component {
         <div>
           <Desktop>
             <div className="page-container">
-              <header class="header">My header</header>
-              <div className="wrapper">
+              
+              <nav> 
+                <ul className="nav-links">
                 {!this.props.token ? (
                   <>
-                    <span>
+                    <li>
                       <Button onClick={this.toggleLogin}>Login</Button>
                       <Collapse isOpen={this.state.loginOpen}>
                         <Login handleLogin={this.handleLogin} />
                       </Collapse>{" "}
-                    </span>
-
-                    <span>
+                    </li>
+                    <li>
                       <Button onClick={this.toggleSignUp}>Signup</Button>
                       <Collapse isOpen={this.state.signUpOpen}>
                         <Signup handleSignUp={this.handleSignUp} />
                       </Collapse>{" "}
-                    </span>
+                    </li>
                   </>
                 ) : (
                   <Logout handleLogout={this.handleLogout} />
                 )}
-              </div>
+                </ul>
+              </nav>
 
               {/* <article class="content">
                 <h1>2 column, header and footer</h1>
