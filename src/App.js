@@ -98,13 +98,13 @@ class App extends Component {
                   {!this.props.token ? (
                     <>
                       <li>
-                        <Button onClick={this.toggleLogin}>Login</Button>
+                        <button className="nav-buttons" onClick={this.toggleLogin}>Login</button>
                         <Collapse isOpen={this.state.loginOpen}>
                           <Login handleLogin={this.handleLogin} />
                         </Collapse>{" "}
                       </li>
                       <li>
-                        <Button onClick={this.toggleSignUp}>Signup</Button>
+                        <button className="nav-buttons" onClick={this.toggleSignUp}>Signup</button>
                         <Collapse isOpen={this.state.signUpOpen}>
                           <Signup handleSignUp={this.handleSignUp} />
                         </Collapse>{" "}

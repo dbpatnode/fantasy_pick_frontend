@@ -100,5 +100,31 @@ nav {
 .nav-links {
   display: flex;
   list-style: none;
-  float: left;
+
+}
+
+.nav-links li {
+padding: 20px;
+}
+
+.nav-buttons {
+  border-radius: 20px;
+  border: 1px solid #00E9AB;
+  color: #2B004A;
+  background:  #00E9AB;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+ 
+}
+.nav-buttons:focus {
+  outline: none;
+}
+.nav-buttons:active {
+  transform: scale(0.95);
+
+  
+
 }
