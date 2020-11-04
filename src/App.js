@@ -5,11 +5,12 @@ import Signup from "./components/login-signup/Signup";
 import Logout from "./components/login-signup/Logout";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setUser, fetchStandings, setLogout } from "./actions";
+import { setUser, fetchStandings, setLogout, fetchMatches } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import api from "./services/api";
 import { Collapse, Button } from "reactstrap";
 import StandingsTable from "./components/standings/StandingsTable";
+import MatchesTable from "./components/matches/MatchesTable";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -31,6 +32,7 @@ class App extends Component {
   };
   componentDidMount() {
     this.props.fetchStandings();
+    this.props.fetchMatches();
   }
 
   handleLogin = (e, user) => {
@@ -87,7 +89,7 @@ class App extends Component {
     });
   };
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div className="App">
         <div>
@@ -115,22 +117,7 @@ class App extends Component {
                   )}
                 </ul>
               </nav>
-
-              {/* <article class="content">
-                <h1>2 column, header and footer</h1>
-                <p>
-                  This example uses line-based positioning, to position the
-                  header and footer, stretching them across the grid.
-                </p>
-              </article>
-              <article class="content">
-                <h1>2 column, header and footer</h1>
-                <p>
-                  This example uses line-based positioning, to position the
-                  header and footer, stretching them across the grid.
-                </p>
-              </article> */}
-
+              <MatchesTable />
               <StandingsTable standings={this.props.standings} />
             </div>
           </Desktop>
@@ -145,7 +132,11 @@ class App extends Component {
 
 function mapStateToProps(state) {
   // reducers
-  return { standings: state.standings, token: state.token };
+  return {
+    standings: state.standings,
+    token: state.token,
+    matches: state.matches,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -154,6 +145,7 @@ function mapDispatchToProps(dispatch) {
     setUser: (user) => dispatch(setUser(user)),
     setLogout: () => dispatch(setLogout()),
     fetchStandings: () => dispatch(fetchStandings()),
+    fetchMatches: () => dispatch(fetchMatches()),
   };
 }
 
