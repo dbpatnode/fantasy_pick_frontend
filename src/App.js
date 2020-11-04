@@ -1,9 +1,14 @@
 import "./App.css";
 import Home from "./Home";
+import Login from "./components/login-signup/Login";
+import Signup from "./components/login-signup/Signup";
+import Logout from "./components/login-signup/Logout";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStandings } from "./actions";
+import { setUser, fetchStandings, setLogout } from "./actions";
 import { useMediaQuery } from "react-responsive";
+import { loss, draw, won } from "./services/svg-icons";
+import api from "./services/api";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -22,138 +27,131 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchStandings();
   }
-  handleOnClick2 = () => {
-    console.log(this.props.standings);
+  handleLogin = (e, user) => {
+    e.preventDefault();
+    api.auth
+      .login(user)
+      .then((data) => {
+        if (!data.error) {
+          this.handleAuthResponse(data);
+        } else {
+          alert("Wrong Username or Password");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  handleSignUp = (e, user) => {
+    e.preventDefault();
+    api.auth
+      .signup(user)
+      .then((data) => {
+        if (!data.error) {
+          this.handleAuthResponse(data);
+        } else {
+          alert("Wrong Username or Password");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  handleAuthResponse = (data) => {
+    if (data.user) {
+      localStorage.token = data.jwt;
+      this.props.setUser(data);
+    }
+  };
+  handleLogout = () => {
+    localStorage.removeItem("token");
+    this.props.setLogout();
   };
   render() {
     console.log(this.props.standings);
 
-    let won = (
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-check-circle-fill"
-        fill="green"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
-        />
-      </svg>
-    );
-
-    let draw = (
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-dash-circle-fill"
-        fill="lightgrey"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"
-        />
-      </svg>
-    );
-
-    let loss = (
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-x-circle-fill"
-        fill="#e60000"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
-        />
-      </svg>
-    );
-
     return (
       <div className="App">
         {/* <header className="App-header"> */}
-          <div>
-            <Desktop>
-              <div className="page-container">
+        <div>
+          <Desktop>
+            <div className="page-container">
               <div class="wrapper">
-  <header class="header">My header</header>
- 
-  <article class="content">
-    <h1>2 column, header and footer</h1>
-    <p>This example uses line-based positioning, to position the header and footer, stretching them across the grid.</p>
-  </article>
-  <article class="content">
-    <h1>2 column, header and footer</h1>
-    <p>This example uses line-based positioning, to position the header and footer, stretching them across the grid.</p>
-  </article>
-  
-</div>
-                <div className="standings-table">
-              <table className="standings-D">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th id="standings-club-D">Club</th>
-                    <th>Matches</th>
-                    <th>W</th>
-                    <th>D</th>
-                    <th>L</th>
-                    <th>Points</th>
-                    <th>Last 5</th>
-                  </tr>
+                <header class="header">My header</header>
+                <Login handleLogin={this.handleLogin} />
+                <Signup handleSignUp={this.handleSignUp} />
+                <Logout handleLogout={this.handleLogout} />
+                <article class="content">
+                  <h1>2 column, header and footer</h1>
+                  <p>
+                    This example uses line-based positioning, to position the
+                    header and footer, stretching them across the grid.
+                  </p>
+                </article>
+                <article class="content">
+                  <h1>2 column, header and footer</h1>
+                  <p>
+                    This example uses line-based positioning, to position the
+                    header and footer, stretching them across the grid.
+                  </p>
+                </article>
+              </div>
+              <div className="standings-table">
+                <table className="standings-D">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th id="standings-club-D">Club</th>
+                      <th>Matches</th>
+                      <th>W</th>
+                      <th>D</th>
+                      <th>L</th>
+                      <th>Points</th>
+                      <th>Last 5</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  {this.props.standings[0]
-                    ? this.props.standings[0].map((table) => (
-                        <tr className="standings-row-D">
-                          <td id="standings-crest-td-D">
-                            <span className="standings-position-D">{table.position}</span>
-                            <img
-                              src={table.team.crestUrl}
-                              alt="team crest"
-                              className="standings-crest-D"
-                            ></img>
-                          </td>
-                          <td id="standings-club-D">{table.team.name}</td>
-                          <td>{table.playedGames}</td>
-                          <td>{table.won}</td>
-                          <td>{table.draw}</td>
-                          <td>{table.lost}</td>
-                          <td>{table.points}</td>
-                          <td>
-                            {table.form.split(",").map((game) => (
-                              <span>
-                                {game == "W" ? (
-                                  <span className="Won">{won}</span>
-                                ) : null}
-                                {game == "L" ? (
-                                  <span className="Loss">{loss}</span>
-                                ) : null}
-                                {game == "D" ? (
-                                  <span className="Draw">{draw}</span>
-                                ) : null}
+                    {this.props.standings[0]
+                      ? this.props.standings[0].map((table) => (
+                          <tr className="standings-row-D">
+                            <td id="standings-crest-td-D">
+                              <span className="standings-position-D">
+                                {table.position}
                               </span>
-                            ))}
-                          </td>
-                        </tr>
-                      ))
-                    : null}
-                </tbody>
-              </table>
+                              <img
+                                src={table.team.crestUrl}
+                                alt="team crest"
+                                className="standings-crest-D"
+                              ></img>
+                            </td>
+                            <td id="standings-club-D">{table.team.name}</td>
+                            <td>{table.playedGames}</td>
+                            <td>{table.won}</td>
+                            <td>{table.draw}</td>
+                            <td>{table.lost}</td>
+                            <td>{table.points}</td>
+                            <td>
+                              {table.form.split(",").map((game) => (
+                                <span>
+                                  {game == "W" ? (
+                                    <span className="Won">{won}</span>
+                                  ) : null}
+                                  {game == "L" ? (
+                                    <span className="Loss">{loss}</span>
+                                  ) : null}
+                                  {game == "D" ? (
+                                    <span className="Draw">{draw}</span>
+                                  ) : null}
+                                </span>
+                              ))}
+                            </td>
+                          </tr>
+                        ))
+                      : null}
+                  </tbody>
+                </table>
               </div>
-              </div>
-            </Desktop>
-            <Tablet>Tablet</Tablet>
-            <Mobile>Mobile</Mobile>
-          
-          </div>
+            </div>
+          </Desktop>
+          <Tablet>Tablet</Tablet>
+          <Mobile>Mobile</Mobile>
+        </div>
         {/* </header> */}
       </div>
     );
@@ -167,7 +165,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   // actions.js
-  return { fetchStandings: () => dispatch(fetchStandings()) };
+  return {
+    fetchStandings: () => dispatch(fetchStandings()),
+    setUser: (user) => dispatch(setUser(user)),
+    setLogout: () => dispatch(setLogout()),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
