@@ -57,6 +57,12 @@
   text-align: left;
   padding: 5px;
 }
+th {
+  background: white;
+  text-align: center;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+}
 
 .bi {
   /* padding: 3px; */
