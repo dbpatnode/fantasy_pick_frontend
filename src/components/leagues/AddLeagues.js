@@ -17,6 +17,7 @@ class AddLeague extends React.Component {
 
     let league = {
       league_name: this.state.league,
+      user_id: this.props.user.id,
     };
     console.log(league);
     api.leagues.addLeague(league).then((data) => {
@@ -48,10 +49,16 @@ class AddLeague extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   // actions.js
   return {
     addLeague: (league) => dispatch(addLeague(league)),
   };
 }
-export default connect(null, mapDispatchToProps)(AddLeague);
+export default connect(mapStateToProps, mapDispatchToProps)(AddLeague);
