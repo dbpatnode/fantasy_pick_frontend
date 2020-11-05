@@ -124,8 +124,10 @@ class App extends Component {
                     <Logout handleLogout={this.handleLogout} />
                   )}
                 </ul>
-                </div>
               </div>
+
+              </div>
+
 
               {/* <article class="content">
                 <h1>2 column, header and footer</h1>
@@ -143,6 +145,7 @@ class App extends Component {
               </article> */}
 
               
+
               <MatchesTable />
               <StandingsTable standings={this.props.standings} />
             </div>
