@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import MatchRow from "./MatchRow";
 
 class MatchesTable extends React.Component {
   findCurrentMatchDay = () => {
@@ -36,9 +37,10 @@ class MatchesTable extends React.Component {
     );
     // this.props.matches.filter((match) => match.homeTeam.name === "Sheffield United FC" || match.awayTeam.name === "Sheffield United FC")
   };
+  handlePick = (match, user) => {};
 
   render() {
-    console.log(this.props.matches);
+    console.log(this.props);
     return (
       <div className="matches-table-container">
         {this.sortCurrentMatches("all") ? (
@@ -51,16 +53,16 @@ class MatchesTable extends React.Component {
                     <th>Home Team</th>
                     <th>Away Team</th>
                     <th>Date</th>
+                    <th></th>
                   </tr>
                 </thead>
-
-                {this.sortCurrentMatches("current").map((match) => (
-                  <tr key={match.id}>
-                    <td>{match.homeTeam.name} </td>
-                    <td>{match.awayTeam.name}</td>
-                    <td>{moment(match.utcDate).format("LLLL")}</td>
-                  </tr>
-                ))}
+                <tbody>
+                  {this.sortCurrentMatches("current").map((match) => (
+                    <tr key={match.id}>
+                      <MatchRow match={match} />
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
             <h1> Future Matches</h1>
@@ -73,14 +75,13 @@ class MatchesTable extends React.Component {
                     <th>Date</th>
                   </tr>
                 </thead>
-
-                {this.sortCurrentMatches("all").map((match) => (
-                  <tr key={match.id}>
-                    <td>{match.homeTeam.name} </td>
-                    <td>{match.awayTeam.name}</td>
-                    <td>{moment(match.utcDate).format("LLLL")}</td>
-                  </tr>
-                ))}
+                <tbody>
+                  {this.sortCurrentMatches("all").map((match) => (
+                    <tr key={match.id}>
+                      <MatchRow match={match} />
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </>
@@ -96,6 +97,8 @@ function mapStateToProps(state) {
   // reducers
   return {
     matches: state.matches,
+    user: state.user,
+    token: state.token,
   };
 }
 
