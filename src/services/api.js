@@ -24,6 +24,7 @@ const signup = (user) => {
     body: JSON.stringify({ user }),
   }).then((res) => res.json());
 };
+
 export default {
   auth: {
     login: login,

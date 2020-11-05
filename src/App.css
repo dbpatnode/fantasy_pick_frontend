@@ -10,6 +10,20 @@
   grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
+.matches-table-container {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4;
+  height: 690px;
+}
+.matches-table {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4;
+  height: 690px;
+  overflow: scroll;
+}
+
 .standings-table {
   grid-column-start: 2;
   grid-column-end: 5;
@@ -89,10 +103,9 @@ span {
   grid-column-end: 5;
 }
 
- .inner-main-menu {
+.inner-main-menu {
   width: 100vw;
   margin: 0 auto;
-
 }
 
 .nav-links {
@@ -102,15 +115,13 @@ span {
   padding-top: 66px;
   padding-left: 100px;
   padding-right: 100px;
-
 }
 
 .nav-links li {
-float: none;
-display: inline-block;
-color: white;
-font-size: 20px;
-
+  float: none;
+  display: inline-block;
+  color: white;
+  font-size: 20px;
 }
 
 .nav-links li a {
@@ -118,54 +129,51 @@ font-size: 20px;
   text-decoration: none;
   display: block;
   padding: 10px 20px;
-  color: #2B004A;
+  color: #2b004a;
 }
 .nav-links li a:hover {
-color: #00E9AB
+  color: #00e9ab;
 }
 .nav-links li:nth-child(1) {
-  float:left;
+  float: left;
   color: white;
 }
 .nav-links li:nth-child(2) {
-  float:left;
+  float: left;
   color: white;
 }
 .nav-links li:nth-child(3) {
-  float:left;
+  float: left;
   color: white;
 }
 #main-menu {
   width: 100vw;
-  position: relative
+  position: relative;
 }
 .logo-area {
-  width: 300px;
+  width: 250px;
   height: 300px;
   position: absolute;
   left: 50%;
   top: 0;
-  content:"";
-  margin-left:-100px; 
+  content: "";
+  margin-left: -100px;
   padding-top: 25px;
-
-
 }
 .logo {
-  width: 200px
+  width: 200px;
 }
 
 .nav-buttons {
   border-radius: 20px;
-  border: 1px solid #00E9AB;
-  color: #2B004A;
-  background:  #00E9AB;
+  border: 1px solid #00e9ab;
+  color: #2b004a;
+  background: #00e9ab;
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
   transition: transform 80ms ease-in;
- 
 }
 .nav-buttons:focus {
   outline: none;
@@ -177,44 +185,37 @@ color: #00E9AB
 .sign-in-form {
   /* 
   width: 400px;
- 
  opacity: 1;
  visibility: visible;
   transition: all .75 ease;
   background: blue; */
   opacity: 1;
-  height: 150px;
+  /* height: 150px; */
+  /* when height set it's size hide the Login button and can't toggle; */
   width: 500px;
   position: absolute;
   top: 70%;
-  right:5%;
-  transition: all .5s ease;
+  right: 5%;
+  transition: all 0.5s ease;
 }
-
-
 
 .login-hidden {
   /* width: 0px;
-  
-  
   opacity: 0;
   transition: all 0s linear 300ms, opacity 300ms; */
   /* height: 150px;
   width: 1px; */
   opacity: 0;
-  
   position: absolute;
   top: 70%;
-  right:0%;
-  transition: all .5s ease;
-
+  right: 0%;
+  transition: all 0.5s ease;
 }
 
 .signin-button {
   width: 30px;
   height: 30px;
-  float:right;
-  
+  float: right;
 
   margin-left: 10px;
   background: #fff;
@@ -225,18 +226,16 @@ color: #00E9AB
   cursor: pointer;
   box-shadow: 0px 0px 0px 7px #fff;
   transition: 0.2s ease-out;
-  
 }
 
 .signin-button:hover {
-  background: #00E9AB;
+  background: #00e9ab;
   color: #fff;
   outline: 0;
-  border: 1px solid#00E9AB;;
- 
+  border: 1px solid#00E9AB;
 }
 .signin-button:focus {
-  outline: none
+  outline: none;
 }
 .bi-arrow-right-circle {
   margin-left: -4px;
