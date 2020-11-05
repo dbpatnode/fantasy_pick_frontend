@@ -125,7 +125,27 @@ class App extends Component {
                   )}
                 </ul>
               </div>
+
               </div>
+
+
+              {/* <article class="content">
+                <h1>2 column, header and footer</h1>
+                <p>
+                  This example uses line-based positioning, to position the
+                  header and footer, stretching them across the grid.
+                </p>
+              </article>
+              <article class="content">
+                <h1>2 column, header and footer</h1>
+                <p>
+                  This example uses line-based positioning, to position the
+                  header and footer, stretching them across the grid.
+                </p>
+              </article> */}
+
+              
+
               <MatchesTable />
               <StandingsTable standings={this.props.standings} />
             </div>
