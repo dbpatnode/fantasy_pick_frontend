@@ -10,6 +10,20 @@
   grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
+.matches-table-container {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4;
+  height: 690px;
+}
+.matches-table {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4;
+  height: 690px;
+  overflow: scroll;
+}
+
 .standings-table {
   grid-column-start: 2;
   grid-column-end: 5;
@@ -171,7 +185,6 @@ span {
 .sign-in-form {
   /* 
   width: 400px;
- 
  opacity: 1;
  visibility: visible;
   transition: all .75 ease;
