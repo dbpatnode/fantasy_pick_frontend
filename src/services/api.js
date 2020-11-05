@@ -24,6 +24,12 @@ const signup = (user) => {
     body: JSON.stringify({ user }),
   }).then((res) => res.json());
 };
+const reauth = () => {
+  return fetch(`${API_ROOT}/reauth`, {
+    method: "GET",
+    headers: headers,
+  }).then((res) => res.json());
+};
 const addPick = (pick) => {
   return fetch(`${API_ROOT}/picks`, {
     method: "POST",
@@ -31,10 +37,23 @@ const addPick = (pick) => {
     body: JSON.stringify({ pick }),
   }).then((res) => res.json());
 };
-const reauth = () => {
-  return fetch(`${API_ROOT}/reauth`, {
-    method: "GET",
+const getLeagues = () => {
+  return fetch(`${API_ROOT}/leagues`, {
     headers: headers,
+  }).then((res) => res.json());
+};
+const addLeague = (league) => {
+  return fetch(`${API_ROOT}/leagues`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ league }),
+  }).then((res) => res.json());
+};
+const joinToLeague = (join) => {
+  return fetch(`${API_ROOT}/joins`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ join }),
   }).then((res) => res.json());
 };
 
@@ -46,5 +65,10 @@ export default {
   },
   pick: {
     addPick: addPick,
+  },
+  leagues: {
+    addLeague: addLeague,
+    getLeagues: getLeagues,
+    joinToLeague: joinToLeague,
   },
 };

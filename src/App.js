@@ -1,13 +1,15 @@
 import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStandings, fetchMatches } from "./actions";
+import { setLeagues, fetchStandings, fetchMatches } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 
 import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
 import Navbar from "./components/Navbar";
+import LeaguesContainer from "./components/leagues/LeaguesContainer";
+import api from "./services/api";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -26,12 +28,18 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchStandings();
     this.props.fetchMatches();
+    api.leagues.getLeagues().then((data) => {
+      if (!data.error) {
+        this.props.setLeagues(data);
+      }
+    });
   }
 
   renderMatchesTable = () => <MatchesTable />;
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
   );
+  renderLeaguesContainer = () => <LeaguesContainer />;
 
   render() {
     console.log(this.props);
@@ -45,6 +53,11 @@ class App extends Component {
 
             <div className="page-container">
               <Switch>
+                <Route
+                  exact
+                  path="/leagues"
+                  component={this.renderLeaguesContainer}
+                />
                 <Route
                   exact
                   path="/matches"
@@ -66,6 +79,7 @@ function mapStateToProps(state) {
   // reducers
   return {
     standings: state.standings,
+    leagues: state.leagues,
     // matches: state.matches,
   };
 }
@@ -75,6 +89,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchStandings: () => dispatch(fetchStandings()),
     fetchMatches: () => dispatch(fetchMatches()),
+    setLeagues: (leagues) => dispatch(setLeagues(leagues)),
   };
 }
 

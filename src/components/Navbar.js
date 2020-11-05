@@ -82,7 +82,7 @@ class Navbar extends Component {
           <div className="inner-main-menu">
             <ul className="nav-links">
               <li>
-                <Link to="#">Leagues</Link>
+                <Link to="/leagues">Leagues</Link>
               </li>
               <li>
                 <Link to="#">Picks</Link>
@@ -90,7 +90,7 @@ class Navbar extends Component {
               <li>
                 <Link to="/matches">Matches</Link>
               </li>
-              {!this.props.token ? (
+              {!this.props.isUser ? (
                 <>
                   <li>
                     <Link to="" onClick={this.toggleLogin}>
@@ -134,6 +134,7 @@ function mapStateToProps(state) {
   // reducers
   return {
     token: state.token,
+    isUser: state.isUser,
   };
 }
 
