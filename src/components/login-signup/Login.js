@@ -1,4 +1,5 @@
 import React from "react";
+import { send } from "../../services/svg-icons"
 
 class Login extends React.Component {
   state = {
@@ -32,8 +33,7 @@ class Login extends React.Component {
                 name="password"
                 placeholder="Password"
               ></input>
-              <br />
-              <button>Sign In</button>
+              <button className="signin-button">{send}</button>
             </form>
           </div>
         </div>
