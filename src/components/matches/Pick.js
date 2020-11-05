@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addPick } from "../../actions";
 import api from "../../services/api";
 
 class Pick extends React.Component {
@@ -16,6 +17,7 @@ class Pick extends React.Component {
     };
     api.pick.addPick(pick).then((data) => {
       if (!data.error) {
+        this.props.addPick(data);
         this.setState({
           winner: "",
           showSubmitButton: false,
@@ -76,6 +78,10 @@ function mapStateToProps(state) {
   };
 }
 
-//
-
-export default connect(mapStateToProps)(Pick);
+function mapDispatchToProps(dispatch) {
+  // actions.js
+  return {
+    addPick: (pick) => dispatch(addPick(pick)),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Pick);

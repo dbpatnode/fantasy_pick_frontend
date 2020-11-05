@@ -5,6 +5,7 @@ const initialState = {
   standings: [],
   competition: [],
   matches: [],
+  picks: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -40,6 +41,12 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         matches: action.matches,
+      };
+    }
+    case "ADD_PICK": {
+      return {
+        ...state,
+        picks: [...state.picks, action.payload],
       };
     }
 
