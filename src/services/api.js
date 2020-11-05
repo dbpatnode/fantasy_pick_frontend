@@ -1,6 +1,6 @@
 const API_ROOT = `http://localhost:3000/`;
 
-const token = localStorage.getItem("token");
+const token = localStorage.token;
 
 const headers = {
   "Content-Type": "application/json",
@@ -24,10 +24,27 @@ const signup = (user) => {
     body: JSON.stringify({ user }),
   }).then((res) => res.json());
 };
+const addPick = (pick) => {
+  return fetch(`${API_ROOT}/picks`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ pick }),
+  }).then((res) => res.json());
+};
+const reauth = () => {
+  return fetch(`${API_ROOT}/reauth`, {
+    method: "GET",
+    headers: headers,
+  }).then((res) => res.json());
+};
 
 export default {
   auth: {
     login: login,
     signup: signup,
+    reauth: reauth,
+  },
+  pick: {
+    addPick: addPick,
   },
 };

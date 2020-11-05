@@ -1,9 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import Pick from "./Pick";
 
 class MatchRow extends React.Component {
-  handlePick = (match, user) => {};
+  state = {
+    isPicked: false,
+  };
+  handlePick = () => {
+    this.setState({ isPicked: !this.state.isPicked });
+  };
 
   render() {
     const { match } = this.props;
@@ -14,9 +20,13 @@ class MatchRow extends React.Component {
         <td>{moment(match.utcDate).format("LLLL")}</td>
         {this.props.token ? (
           <td>
-            <button onClick={() => this.handlePick(match, this.props.user)}>
-              add pick
-            </button>
+            {this.state.isPicked ? (
+              <>
+                <Pick match={match} handlePick={this.handlePick} />
+              </>
+            ) : (
+              <button onClick={this.handlePick}>add pick</button>
+            )}
           </td>
         ) : null}
       </>

@@ -37,8 +37,6 @@ class MatchesTable extends React.Component {
     );
     // this.props.matches.filter((match) => match.homeTeam.name === "Sheffield United FC" || match.awayTeam.name === "Sheffield United FC")
   };
-  handlePick = (match, user) => {};
-
   render() {
     console.log(this.props);
     return (

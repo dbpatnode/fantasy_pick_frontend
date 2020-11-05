@@ -30,7 +30,6 @@ export const rootReducer = (state = initialState, action) => {
       };
     }
     case "ADD_STANDINGS": {
-      // debugger;
       return {
         ...state,
         standings: action.standings.standings[0].table,
@@ -38,7 +37,6 @@ export const rootReducer = (state = initialState, action) => {
       };
     }
     case "ADD_MATCHES": {
-      // debugger;
       return {
         ...state,
         matches: action.matches,
