@@ -47,3 +47,9 @@ export const setLogout = () => {
     payload: {},
   };
 };
+export const addPick = (pick) => {
+  return {
+    type: "ADD_PICK",
+    payload: pick,
+  };
+};
