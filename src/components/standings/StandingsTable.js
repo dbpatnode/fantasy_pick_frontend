@@ -39,13 +39,13 @@ const StandingsTable = (props) => {
                   <td>
                     {table.form.split(",").map((game) => (
                       <span>
-                        {game == "W" ? (
+                        {game === "W" ? (
                           <span className="Won">{won}</span>
                         ) : null}
-                        {game == "L" ? (
+                        {game === "L" ? (
                           <span className="Loss">{loss}</span>
                         ) : null}
-                        {game == "D" ? (
+                        {game === "D" ? (
                           <span className="Draw">{draw}</span>
                         ) : null}
                       </span>

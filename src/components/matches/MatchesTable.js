@@ -15,7 +15,7 @@ class MatchesTable extends React.Component {
     if (this.futureMatches()[0]) {
       let currentGameDay = this.futureMatches()[0].matchday;
       return this.props.matches
-        .filter((match) => match.matchday == currentGameDay)
+        .filter((match) => match.matchday === currentGameDay)
         .sort((a, b) => (a.matchday - b.matchday ? -1 : 1));
     }
   };
