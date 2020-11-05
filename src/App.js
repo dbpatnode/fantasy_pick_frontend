@@ -109,11 +109,8 @@ class App extends Component {
                       <li><a href="#">Matches</a></li>
                       
                         <li><a href="#" onClick={this.toggleLogin}>Login</a></li>
-                        <Collapse isOpen={this.state.loginOpen}>
-                          <Login handleLogin={this.handleLogin} />
-                        </Collapse>{" "}
-                      
-                      
+                        {this.state.loginOpen === true ? <div className="sign-in-form"> <Login  handleLogin={this.handleLogin}/></div>
+                        : <div className="login-hidden"><Login  handleLogin={this.handleLogin}/></div>}
                         <li><a href="#" onClick={this.toggleSignUp}>Signup</a></li>
                         <Collapse isOpen={this.state.signUpOpen}>
                           <Signup handleSignUp={this.handleSignUp} />
@@ -143,7 +140,7 @@ class App extends Component {
               </article> */}
 
               
-              <MatchesTable />
+              {/* <MatchesTable /> */}
               <StandingsTable standings={this.props.standings} />
             </div>
           </Desktop>
