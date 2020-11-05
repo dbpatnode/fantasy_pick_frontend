@@ -44,7 +44,7 @@ class Navbar extends Component {
   };
   handleAuthResponse = (data) => {
     if (data.user) {
-      localStorage.token = data.jwt;
+      localStorage.token = data.token;
       this.props.setUser(data);
       this.setState({
         loginOpen: false,
