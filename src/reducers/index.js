@@ -1,4 +1,5 @@
 const initialState = {
+  isUser: false,
   user: {},
   token: "",
   fetch: false,
@@ -6,6 +7,8 @@ const initialState = {
   competition: [],
   matches: [],
   picks: [],
+  leagues: [],
+  joins: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -15,6 +18,7 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        isUser: true,
       };
     }
     case "USER_LOGOUT": {
@@ -22,6 +26,7 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         user: {},
         token: "",
+        isUser: false,
       };
     }
     case "START_ADDING_STANDINGS_REQUEST": {
@@ -47,6 +52,24 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         picks: [...state.picks, action.payload],
+      };
+    }
+    case "ADD_LEAGUES": {
+      return {
+        ...state,
+        leagues: action.payload.leagues,
+      };
+    }
+    case "ADD_LEAGUE": {
+      return {
+        ...state,
+        leagues: [...state.leagues, action.payload],
+      };
+    }
+    case "ADD_JOIN": {
+      return {
+        ...state,
+        joins: [...state.joins, action.payload],
       };
     }
 

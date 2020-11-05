@@ -53,3 +53,21 @@ export const addPick = (pick) => {
     payload: pick,
   };
 };
+export const addLeague = (league) => {
+  return {
+    type: "ADD_LEAGUE",
+    payload: league,
+  };
+};
+export const setLeagues = (leagues) => {
+  return {
+    type: "ADD_LEAGUES",
+    payload: { leagues },
+  };
+};
+export const addJoinToLeague = (join) => {
+  return {
+    type: "ADD_JOIN",
+    payload: join,
+  };
+};
