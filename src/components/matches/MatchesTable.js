@@ -46,7 +46,7 @@ class MatchesTable extends React.Component {
             <div className="matches-table">
               <table>
                 <thead>
-                  <tr>
+                  <tr className="match-headers">
                     <th>Home Team</th>
                     <th></th>
                     <th>Away Team</th>
@@ -67,8 +67,9 @@ class MatchesTable extends React.Component {
             <div className="matches-table">
               <table>
                 <thead>
-                  <tr>
+                  <tr className="match-headers">
                     <th>Home Team</th>
+                    <th></th>
                     <th>Away Team</th>
                     <th>Date</th>
                   </tr>

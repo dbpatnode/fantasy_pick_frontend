@@ -1,16 +1,14 @@
 import { loss, draw, won } from "../../services/svg-icons";
-import pic from "../../pic.png"
+import pic from "../../pic.png";
 
 const StandingsTable = (props) => {
   return (
-    
-      
     <div className="standings-table">
       <img className="pic" width="600px" src={pic}></img>
       <div className="under-pic"></div>
       <table className="standings-D">
         <thead>
-          <tr>
+          <tr className="match-headers">
             <th></th>
             <th id="standings-club-D">Club</th>
             <th>Matches</th>
@@ -62,7 +60,6 @@ const StandingsTable = (props) => {
         </tbody>
       </table>
     </div>
-   
   );
 };
 export default StandingsTable;

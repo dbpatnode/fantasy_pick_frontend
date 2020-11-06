@@ -23,6 +23,29 @@
 .vs {
   font-weight: bold;
   font-size: 16px;
+  /* border: 1px solid black; */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.match-headers th {
+  background: #2b004a;
+  color: white;
+  height: 60px;
+  /* border-top: 15px solid #2b004a; */
+}
+
+.box-score {
+  color: rgb(9, 160, 9);
+  width: 50px;
+  background: rgb(226, 225, 225);
+  border-radius: 8px;
+}
+
+.final-box-score {
+  color: rgb(100, 99, 99);
+  background: rgb(226, 225, 225);
+  border-radius: 8px;
 }
 .matches-table td {
   text-align: center;

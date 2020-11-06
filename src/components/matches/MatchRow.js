@@ -14,10 +14,17 @@ class MatchRow extends React.Component {
 
   gameStatus = (status, match) => {
     if (status === "IN_PLAY" || status === "PAUSED") {
-      return `Game in Progress ${match.score.fullTime.homeTeam} -
-      ${match.score.fullTime.awayTeam}`;
+      return (
+        <div className="box-score">{`${match.score.fullTime.homeTeam} -
+      ${match.score.fullTime.awayTeam}`}</div>
+      );
     } else if (status === "FINISHED") {
-      return `Final Score ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}`;
+      return (
+        <div className="final-score">
+          FT
+          <div className="final-box-score">{`${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}`}</div>
+        </div>
+      );
     }
     return "vs";
   };
