@@ -19,3 +19,16 @@ export const sortBy = (list) => {
     return 0;
   });
 };
+export const sortByPick = (list) => {
+  return list.sort(function (a, b) {
+    let nameA = a.match.id;
+    let nameB = b.match.id;
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+};
