@@ -25,6 +25,7 @@ class LeaguesContainer extends React.Component {
     });
   };
   render() {
+    console.log(this.props.leagues);
     return (
       <div className="league-container">
         {this.props.isUser ? <AddLeague /> : null}
@@ -35,6 +36,7 @@ class LeaguesContainer extends React.Component {
                 <thead>
                   <tr>
                     <th>League Name</th>
+                    <th>Members</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -42,16 +44,30 @@ class LeaguesContainer extends React.Component {
                   {this.props.leagues.map((league) => (
                     <tr key={league.id}>
                       <td>{league.league_name}</td>
+                      <td>{league.joins.length + 1}</td>
                       {""}
                       {this.props.isUser ? (
                         <td>
-                          {" "}
-                          <button
-                            onClick={() => this.handelJoinLeague(league.id)}
-                          >
-                            {" "}
-                            Join {league.league_name}
-                          </button>
+                          {league.user_id === this.props.user.id ? (
+                            "Your League"
+                          ) : (
+                            <>
+                              {league.joins.find(
+                                (join) => join.user_id === this.props.user.id
+                              ) ? (
+                                "League Member"
+                              ) : (
+                                <button
+                                  onClick={() =>
+                                    this.handelJoinLeague(league.id)
+                                  }
+                                >
+                                  {" "}
+                                  Join {league.league_name}
+                                </button>
+                              )}
+                            </>
+                          )}
                         </td>
                       ) : null}
                     </tr>
