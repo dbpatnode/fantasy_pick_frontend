@@ -24,25 +24,26 @@ class MatchRow extends React.Component {
     console.log(getTime());
     return (
       <>
-        <td>
-          <img src={homeTeam} alt="team crest" width="100px" /> <br />
+        <td id="home-team-td">
+          <img src={homeTeam} alt="team crest" width="80px" /> <br />
           {match.homeTeam.name}{" "}
         </td>
-        <td>
+        <td className="vs">vs</td>
+        <td id="away-team-td">
           {" "}
-          <img src={awayTeam} alt="team crest" width="100px" /> <br />
+          <img src={awayTeam} alt="team crest" width="80px" /> <br />
           {match.awayTeam.name}
         </td>
         <td>{moment(match.utcDate).format("LLLL")}</td>
         {this.props.token &&
-        moment(match.utcDate).subtract(1, "days") > getTime() ? (
+        moment(match.utcDate).format("LLLL") > getTime() ? (
           <td>
             {this.state.isPicked ? (
               <>
                 <Pick match={match} handlePick={this.handlePick} />
               </>
             ) : (
-              <button onClick={this.handlePick}>add pick</button>
+              <button className="nav-buttons" onClick={this.handlePick}>add pick</button>
             )}
           </td>
         ) : null}

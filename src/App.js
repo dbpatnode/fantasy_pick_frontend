@@ -5,11 +5,13 @@ import { setLeagues, fetchStandings, fetchMatches } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 
+
 import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
 import Navbar from "./components/Navbar";
 import LeaguesContainer from "./components/leagues/LeaguesContainer";
 import api from "./services/api";
+import Profile from "./components/Profile"
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -39,12 +41,14 @@ class App extends Component {
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
   );
-  renderLeaguesContainer = () => <LeaguesContainer />;
+  renderLeaguesContainer = () => <LeaguesContainer leagues={this.props.leagues}/>;
+  renderProfile = () => <Profile />
 
   render() {
     console.log(this.props);
     return (
       <div className="App">
+        
         <div>
           <Desktop>
             <div>
@@ -63,7 +67,15 @@ class App extends Component {
                   path="/matches"
                   component={this.renderMatchesTable}
                 />
-                <Route path="/" component={this.renderStandingsTable} />
+                <Route 
+                path="/" 
+                component={this.renderStandingsTable} 
+                />
+                <Route
+                  exact
+                  path="/profile"
+                  component={this.renderProfile}
+                />
               </Switch>
             </div>
           </Desktop>

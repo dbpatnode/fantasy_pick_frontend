@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setUser, setLogout } from "../actions";
 import api from "../services/api";
 import { Collapse } from "reactstrap";
-import logo from "../fantasy-pickem.png";
+import logo from "../premier_league2.png";
 import { Link } from "react-router-dom";
 
 import Logout from "../components/login-signup/Logout";
@@ -115,12 +115,18 @@ class Navbar extends Component {
                   <Collapse isOpen={this.state.signUpOpen}>
                     <Signup handleSignUp={this.handleSignUp} />
                   </Collapse>{" "}
-                  <li>
-                    <a href="#">Profile</a>
-                  </li>
+                 
                 </>
               ) : (
-                <Logout handleLogout={this.handleLogout} />
+                <>
+                <li>
+                <Link to ="/profile">Profile</Link>
+              </li>
+                 <li>  
+                   <Link to="/" onClick={this.handleLogout}>Logout</Link>
+                 </li>
+                
+                </>
               )}
             </ul>
           </div>

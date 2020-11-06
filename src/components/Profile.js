@@ -1,7 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux"
 
-export default class Profile extends Component {
+
+class Profile extends React.Component {
   render() {
-    return <div>PICKS</div>;
+    return (
+      <>
+      DIV
+      </>
+    );
   }
 }
+function mapStateToProps(state) {
+  // reducers
+  return {
+    matches: state.matches,
+    user: state.user,
+    token: state.token,
+  };
+}
+
+export default connect(mapStateToProps)(Profile);

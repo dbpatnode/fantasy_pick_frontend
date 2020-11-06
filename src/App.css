@@ -9,12 +9,32 @@
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
 }
-
+#home-team-td {
+  padding-top: 20px;
+padding-left: 40px;
+padding-right: 40px;
+}
+#away-team-td {
+  padding-top: 20px;
+padding-left: 40px;
+padding-right: 40px;
+}
+.vs {
+  font-weight: bold;
+  font-size: 16px
+}
+.matches-table td {
+  text-align: center;
+}
+.matches-table tr:nth-child(1) {
+  margin-bottom: 20px;
+}
 .matches-table-container {
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-end: 4;
   height: 690px;
+  text-align: center;
 }
 .matches-table {
   grid-column-start: 2;
@@ -22,6 +42,9 @@
   grid-row-end: 4;
   height: 690px;
   overflow: scroll;
+  padding-top: 10px;
+
+
 }
 
 .standings-table {
@@ -30,12 +53,30 @@
   grid-row-end: 4;
   height: 690px;
   overflow: scroll;
+  border-top: 60px solid #2b004a ;
 }
 .standings-row-D {
   height: 70px;
   background-color: rgb(238, 238, 238);
   text-align: center;
   line-height: 45px;
+}
+.pic {
+  position: absolute;
+top: 15%;
+left: 15%
+
+}
+.under-pic {
+  /* width: 100vw;
+  height: 60px;
+  background: #2b004a;
+  z-index: 2;
+
+  
+  grid-column-start: 2;
+  grid-column-end: 5; */
+
 }
 
 .standings-crest-D {
@@ -129,7 +170,9 @@ span {
   text-decoration: none;
   display: block;
   padding: 10px 20px;
-  color: #2b004a;
+  color: #fdfcfd;
+  font-weight: bold;
+  letter-spacing: 1px
 }
 .nav-links li a:hover {
   color: #00e9ab;
@@ -149,6 +192,8 @@ span {
 #main-menu {
   width: 100vw;
   position: relative;
+  background: #2b004a;
+  height: 200px;
 }
 .logo-area {
   width: 250px;
@@ -167,11 +212,12 @@ span {
 .nav-buttons {
   border-radius: 20px;
   border: 1px solid #00e9ab;
-  color: #2b004a;
+  color: white;
+  margin: 20px;
   background: #00e9ab;
   font-size: 12px;
   font-weight: bold;
-  padding: 12px 45px;
+  padding: 10px 20px;
   letter-spacing: 1px;
   transition: transform 80ms ease-in;
 }
@@ -218,13 +264,13 @@ span {
   float: right;
 
   margin-left: 10px;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 100%;
   border: 1px solid#2f2482;
   color: #2f2482;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0px 0px 0px 7px #fff;
+ 
   transition: 0.2s ease-out;
 }
 

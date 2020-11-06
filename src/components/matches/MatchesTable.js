@@ -49,6 +49,7 @@ class MatchesTable extends React.Component {
                 <thead>
                   <tr>
                     <th>Home Team</th>
+                    <th></th>
                     <th>Away Team</th>
                     <th>Date</th>
                     <th></th>

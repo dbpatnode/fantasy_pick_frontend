@@ -1,7 +1,7 @@
 import React from "react";
 
 const Logout = (props) => {
-  return <button onClick={props.handleLogout}>Logout</button>;
+  return <li onClick={props.handleLogout}>Logout</li>;
 };
 
 export default Logout;

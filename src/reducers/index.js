@@ -57,7 +57,7 @@ export const rootReducer = (state = initialState, action) => {
     case "ADD_LEAGUES": {
       return {
         ...state,
-        leagues: action.payload.leagues,
+        leagues: [...state.leagues, action.payload.leagues],
       };
     }
     case "ADD_LEAGUE": {
