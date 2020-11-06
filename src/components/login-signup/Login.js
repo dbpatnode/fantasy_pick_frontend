@@ -1,5 +1,6 @@
 import React from "react";
-import { send } from "../../services/svg-icons"
+import { send } from "../../services/svg-icons";
+import { ModalBody } from "reactstrap";
 
 class Login extends React.Component {
   state = {
@@ -13,33 +14,85 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <br></br>
-        <div>
-          <div>
-            <form onSubmit={(e) => this.props.handleLogin(e, this.state)}>
-              <input
-                autoComplete="on"
-                onChange={this.handleChange}
-                type="text"
-                value={this.state.username}
-                name="username"
-                placeholder="username"
-              ></input>
-              <input
-                onChange={this.handleChange}
-                type="password"
-                value={this.state.password}
-                name="password"
-                placeholder="Password"
-              ></input>
-              <button className="signin-button">{send}</button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <>
+        <ModalBody>
+          <form onSubmit={(e) => this.props.handleLogin(e, this.state)}>
+            <input
+              autoComplete="on"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.username}
+              name="username"
+              placeholder="username"
+            ></input>
+            <input
+              onChange={this.handleChange}
+              type="password"
+              value={this.state.password}
+              name="password"
+              placeholder="Password"
+            ></input>
+            <button
+              className="signin-button"
+              onSubmit={(e) => this.props.handleLogin(e, this.state)}
+            >
+              {send}
+            </button>
+          </form>
+        </ModalBody>
+      </>
     );
   }
 }
 
 export default Login;
+// import React from "react";
+// import { send } from "../../services/svg-icons";
+
+// class Login extends React.Component {
+//   state = {
+//     username: "",
+//     password: "",
+//   };
+
+//   handleChange = (event) => {
+//     this.setState({ [event.target.name]: event.target.value });
+//   };
+
+//   render() {
+//     return (
+//       <div>
+//         <br></br>
+//         <div>
+//           <div>
+//             <form onSubmit={(e) => this.props.handleLogin(e, this.state)}>
+//               <input
+//                 autoComplete="on"
+//                 onChange={this.handleChange}
+//                 type="text"
+//                 value={this.state.username}
+//                 name="username"
+//                 placeholder="username"
+//               ></input>
+//               <input
+//                 onChange={this.handleChange}
+//                 type="password"
+//                 value={this.state.password}
+//                 name="password"
+//                 placeholder="Password"
+//               ></input>
+//               <button
+//                 className="signin-button"
+//                 onSubmit={(e) => this.props.handleLogin(e, this.state)}
+//               >
+//                 {send}
+//               </button>
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// export default Login;

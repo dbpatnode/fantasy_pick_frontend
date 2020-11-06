@@ -2,9 +2,16 @@ import React from "react";
 import AddLeague from "./AddLeagues";
 import { connect } from "react-redux";
 import api from "../../services/api";
-import { addJoinToLeague } from "../../actions";
+import { setLeagues, addJoinToLeague } from "../../actions";
 
 class LeaguesContainer extends React.Component {
+  componentDidMount() {
+    api.leagues.getLeagues().then((data) => {
+      if (!data.error) {
+        this.props.setLeagues(data);
+      }
+    });
+  }
   handelJoinLeague = (league) => {
     let join = {
       user_id: this.props.user.id,
@@ -12,30 +19,48 @@ class LeaguesContainer extends React.Component {
     };
 
     api.leagues.joinToLeague(join).then((data) => {
-      if (!data.error) {
+      if (!data.error || !data.message) {
         this.props.addJoinToLeague(data);
       }
     });
   };
   render() {
-    // need to change className after building the page
     return (
-      <div className="standings-table">
-        <AddLeague />
-        {this.props.leagues
-          ? this.props.leagues.map((league) => (
-              <li key={league.id}>
-                {league.league_name}
-                {""}
-                {this.props.isUser ? (
-                  <button onClick={() => this.handelJoinLeague(league.id)}>
-                    {" "}
-                    Join {league.league_name}
-                  </button>
-                ) : null}
-              </li>
-            ))
-          : null}
+      <div className="league-container">
+        {this.props.isUser ? <AddLeague /> : null}
+        <div className="leagues-table">
+          <table>
+            {this.props.leagues ? (
+              <>
+                <thead>
+                  <tr>
+                    <th>League Name</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.leagues.map((league) => (
+                    <tr key={league.id}>
+                      <td>{league.league_name}</td>
+                      {""}
+                      {this.props.isUser ? (
+                        <td>
+                          {" "}
+                          <button
+                            onClick={() => this.handelJoinLeague(league.id)}
+                          >
+                            {" "}
+                            Join {league.league_name}
+                          </button>
+                        </td>
+                      ) : null}
+                    </tr>
+                  ))}
+                </tbody>
+              </>
+            ) : null}
+          </table>
+        </div>
       </div>
     );
   }
@@ -54,6 +79,9 @@ function mapDispatchToProps(dispatch) {
   return {
     addJoinToLeague(join) {
       dispatch(addJoinToLeague(join));
+    },
+    setLeagues(leagues) {
+      dispatch(setLeagues(leagues));
     },
   };
 }

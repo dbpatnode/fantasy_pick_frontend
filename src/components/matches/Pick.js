@@ -10,12 +10,11 @@ class Pick extends React.Component {
     hidePick: false,
   };
   handleSubmitPick = (match) => {
-    console.log(match.matchday)
     let pick = {
       winner: this.state.winner,
       match_id: match.id,
       user_id: this.props.user.id,
-      match_day: match.matchday
+      match_day: match.matchday,
     };
     api.pick.addPick(pick).then((data) => {
       if (!data.error) {

@@ -5,8 +5,8 @@ import api from "../services/api";
 import { Collapse } from "reactstrap";
 import logo from "../premier_league2.png";
 import { Link } from "react-router-dom";
+import { Modal, ModalHeader } from "reactstrap";
 
-import Logout from "../components/login-signup/Logout";
 import Login from "../components/login-signup/Login";
 import Signup from "../components/login-signup/Signup";
 
@@ -14,6 +14,7 @@ class Navbar extends Component {
   state = {
     loginOpen: false,
     signUpOpen: false,
+    modal: false,
   };
 
   handleLogin = (e, user) => {
@@ -31,6 +32,14 @@ class Navbar extends Component {
   };
   handleSignUp = (e, user) => {
     e.preventDefault();
+
+    // const user = {
+    //   username: this.state.username,
+    //   email: this.state.email,
+    //   password: this.state.password,
+    //   password_confirm: this.state.password_confirm,
+    // };
+
     api.auth
       .signup(user)
       .then((data) => {
@@ -93,39 +102,74 @@ class Navbar extends Component {
               {!this.props.isUser ? (
                 <>
                   <li>
-                    <Link to="" onClick={this.toggleLogin}>
+                    {/* <button
+                      className="nav-links-button"
+                      onClick={this.toggleLogin}
+                    >
                       Login
-                    </Link>
+                    </button> */}
+                    <button
+                      className="nav-links-button"
+                      onClick={this.toggleLogin}
+                    >
+                      Login
+                    </button>
+                    <Modal
+                      isOpen={this.state.loginOpen}
+                      toggle={this.toggleLogin}
+                    >
+                      <ModalHeader toggle={this.toggleLogin}>Login</ModalHeader>
+                      <Login handleLogin={this.handleLogin} />
+                    </Modal>
                   </li>
-                  {this.state.loginOpen === true ? (
+                  {/* {this.state.loginOpen === true ? (
                     <div className="sign-in-form">
                       {" "}
                       <Login handleLogin={this.handleLogin} />
                     </div>
+                    
                   ) : (
                     <div className="login-hidden">
                       <Login handleLogin={this.handleLogin} />
                     </div>
-                  )}
+                  )} */}
                   <li>
-                    <a href="#" onClick={this.toggleSignUp}>
+                    {/* <button
+                      className="nav-links-button"
+                      onClick={this.toggleSignUp}
+                    >
                       Signup
-                    </a>
+                    </button> */}
+                    <button
+                      className="nav-links-button"
+                      onClick={this.toggleSignUp}
+                    >
+                      Signup
+                    </button>
+                    <Modal
+                      isOpen={this.state.signUpOpen}
+                      toggle={this.toggleSignUp}
+                    >
+                      <ModalHeader toggle={this.toggleSignUp}>
+                        Signup
+                      </ModalHeader>
+                      <Signup handleSignUp={this.handleSignUp} />
+                    </Modal>
                   </li>
-                  <Collapse isOpen={this.state.signUpOpen}>
+                  {/* <Collapse isOpen={this.state.signUpOpen}>
                     <Signup handleSignUp={this.handleSignUp} />
-                  </Collapse>{" "}
-                 
+                  </Collapse>{" "} */}
                 </>
               ) : (
                 <>
-                <li>
-                <Link to ="/profile">Profile</Link>
-              </li>
-                 <li>  
-                   <Link to="/" onClick={this.handleLogout}>Logout</Link>
-                 </li>
-                
+                  <li>
+                    <Link to="/profile">Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/" onClick={this.handleLogout}>
+                      Logout
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>

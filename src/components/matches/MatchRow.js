@@ -13,7 +13,6 @@ class MatchRow extends React.Component {
   };
 
   render() {
-    console.log(this.props.match);
     const { match } = this.props;
     const awayTeam = this.props.standings.find(
       (stand) => stand.team.id === match.awayTeam.id
@@ -21,7 +20,7 @@ class MatchRow extends React.Component {
     const homeTeam = this.props.standings.find(
       (stand) => stand.team.id === match.homeTeam.id
     ).team.crestUrl;
-    console.log(getTime());
+
     return (
       <>
         <td id="home-team-td">
@@ -43,7 +42,9 @@ class MatchRow extends React.Component {
                 <Pick match={match} handlePick={this.handlePick} />
               </>
             ) : (
-              <button className="nav-buttons" onClick={this.handlePick}>add pick</button>
+              <button className="nav-buttons" onClick={this.handlePick}>
+                add pick
+              </button>
             )}
           </td>
         ) : null}
