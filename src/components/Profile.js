@@ -34,33 +34,13 @@ class Profile extends React.Component {
   };
 
   findUserStats = () => {
-    // let sum = 0;
-    // let array = [];
-    // let userMatches = this.props.userPicks.map((p) => p.match.match_id);
-    // let realMatches = [];
-    // for (let i = 0; i < userMatches.length; i++) {
-    //   realMatches.push(this.props.matches.find((m) => m.id === userMatches[i]));
-    // }
-    // // find if its the away or home team
-    // for (let i = 0; i < this.props.userPicks.length; i++) {
-    //   for (let j = 0; j < realMatches.length; j++) {
-    //     debugger;
-    //     if (
-    //       this.props.userPicks[i].winner === realMatches[j].score.winner &&
-    //       this.props.userPicks[i].match.match_id === realMatches[j].id
-    //     ) {
-    //       array.push(realMatches[j]);
-    //       sum += 1;
-    //     }
-    //   }
-    // }
-    // for (let i = 0; i < userMatches.length; i++) {
-    //   if (this.props.matches.filter(m => m.id === userMatches[i])) {
-    //   }
-    // let picks = this.props.userPicks.filter((p) => p.winner === p.match.winner);
-    //array of user picks with winner as string and match id
-    // array of all matches with winner as string
-    // need to sum how many wins the user have
+    let userWines = this.props.userPicks.map((p) =>
+      this.props.matches.filter(
+        (m) => m.score.winner === p.winner && m.id === p.match.match_id
+      )
+    );
+    //fetch to update win in backend and points
+    return userWines.flat();
   };
 
   render() {
@@ -69,8 +49,8 @@ class Profile extends React.Component {
     console.log(userPicks);
     return (
       <div className="league-container">
-        {this.props.token ? this.findUserStats() : null}
         <h1>Hello {username}</h1>
+        you have {this.findUserStats().length} points.
         <table>
           <thead>Your Leagues:</thead>
           {sortBy(userLeagues).map((l) => (
