@@ -49,10 +49,10 @@ class Pick extends React.Component {
                   Please Choose Winner From List{" "}
                 </option>
               )}
-              <option name={match.homeTeam.name} value={match.homeTeam.name}>
+              <option name={match.homeTeam.name} value={"HOME_TEAM"}>
                 {match.homeTeam.name}
               </option>
-              <option name={match.awayTeam.name} value={match.awayTeam.name}>
+              <option name={match.awayTeam.name} value={"AWAY_TEAM"}>
                 {match.awayTeam.name}
               </option>
             </select>

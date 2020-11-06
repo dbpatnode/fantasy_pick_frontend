@@ -47,6 +47,7 @@ class Navbar extends Component {
     if (data.user) {
       localStorage.token = data.token;
       this.props.setUser(data);
+
       this.setState({
         loginOpen: false,
         signUpOpen: false,
