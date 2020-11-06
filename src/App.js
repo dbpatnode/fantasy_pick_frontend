@@ -60,7 +60,7 @@ class App extends Component {
                 component={this.renderMatchesTable}
               />
               <Route exact path="/profile" component={this.renderProfile} />
-              <Route path="/" component={this.renderStandingsTable} />
+              <Route exact path="/" component={this.renderStandingsTable} />
             </Switch>
           </div>
           {/* </Desktop>
