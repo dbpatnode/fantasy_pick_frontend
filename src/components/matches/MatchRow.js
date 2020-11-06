@@ -12,6 +12,16 @@ class MatchRow extends React.Component {
     this.setState({ isPicked: !this.state.isPicked });
   };
 
+  gameStatus = (status, match) => {
+    if (status === "IN_PLAY" || status === "PAUSED") {
+      return `Game in Progress ${match.score.fullTime.homeTeam} -
+      ${match.score.fullTime.awayTeam}`;
+    } else if (status === "FINISHED") {
+      return `Final Score ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}`;
+    }
+    return "vs";
+  };
+
   render() {
     const { match } = this.props;
     const awayTeam = this.props.standings.find(
@@ -21,13 +31,16 @@ class MatchRow extends React.Component {
       (stand) => stand.team.id === match.homeTeam.id
     ).team.crestUrl;
 
+    console.log(match);
     return (
       <>
         <td id="home-team-td">
           <img src={homeTeam} alt="team crest" width="80px" /> <br />
           {match.homeTeam.name}{" "}
         </td>
-        <td className="vs">vs</td>
+
+        <td className="vs">{this.gameStatus(match.status, match)}</td>
+
         <td id="away-team-td">
           {" "}
           <img src={awayTeam} alt="team crest" width="80px" /> <br />
@@ -43,7 +56,9 @@ class MatchRow extends React.Component {
               </>
             ) : (
               <>
+                {" "}
                 {match.status === "IN_PLAY" ||
+                match.status === "PAUSED" ||
                 match.status === "FINISHED" ? null : (
                   <button className="nav-buttons" onClick={this.handlePick}>
                     add pick
