@@ -42,9 +42,14 @@ class MatchRow extends React.Component {
                 <Pick match={match} handlePick={this.handlePick} />
               </>
             ) : (
-              <button className="nav-buttons" onClick={this.handlePick}>
-                add pick
-              </button>
+              <>
+                {match.status === "IN_PLAY" ||
+                match.status === "FINISHED" ? null : (
+                  <button className="nav-buttons" onClick={this.handlePick}>
+                    add pick
+                  </button>
+                )}
+              </>
             )}
           </td>
         ) : null}

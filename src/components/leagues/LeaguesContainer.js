@@ -2,6 +2,7 @@ import React from "react";
 import AddLeague from "./AddLeagues";
 import { connect } from "react-redux";
 import api from "../../services/api";
+import { sortBy } from "../../services/helpers";
 import { setLeagues, addJoinToLeague } from "../../actions";
 
 class LeaguesContainer extends React.Component {
@@ -24,14 +25,16 @@ class LeaguesContainer extends React.Component {
       }
     });
   };
+
   render() {
-    console.log(this.props.leagues);
+    const { leagues, isUser, user } = this.props;
+    console.log(leagues);
     return (
       <div className="league-container">
-        {this.props.isUser ? <AddLeague /> : null}
+        {isUser ? <AddLeague /> : null}
         <div className="leagues-table">
           <table>
-            {this.props.leagues ? (
+            {leagues ? (
               <>
                 <thead>
                   <tr>
@@ -41,19 +44,19 @@ class LeaguesContainer extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.leagues.map((league) => (
+                  {sortBy(leagues).map((league) => (
                     <tr key={league.id}>
                       <td>{league.league_name}</td>
                       <td>{league.joins.length + 1}</td>
                       {""}
-                      {this.props.isUser ? (
+                      {isUser ? (
                         <td>
-                          {league.user_id === this.props.user.id ? (
+                          {league.user_id === user.id ? (
                             "Your League"
                           ) : (
                             <>
                               {league.joins.find(
-                                (join) => join.user_id === this.props.user.id
+                                (join) => join.user_id === user.id
                               ) ? (
                                 "League Member"
                               ) : (

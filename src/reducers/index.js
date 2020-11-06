@@ -8,7 +8,8 @@ const initialState = {
   matches: [],
   picks: [],
   leagues: [],
-  joins: [],
+  userLeagues: [],
+  userPicks: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -19,6 +20,8 @@ export const rootReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
         isUser: true,
+        userLeagues: action.payload.user.joined_leagues,
+        userPicks: action.payload.user.picks,
       };
     }
     case "USER_LOGOUT": {
@@ -52,6 +55,7 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         picks: [...state.picks, action.payload],
+        userPicks: [...state.userPicks, action.payload],
       };
     }
     case "ADD_LEAGUES": {
@@ -64,12 +68,20 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         leagues: [...state.leagues, action.payload],
+        userLeagues: [...state.leagues, action.payload],
       };
     }
     case "ADD_JOIN": {
+      let updatedList = [
+        ...state.leagues.filter(
+          (league) => league.id !== action.payload.league.id
+        ),
+        action.payload.league,
+      ];
       return {
         ...state,
-        joins: [...state.joins, action.payload],
+        userLeagues: [...state.userLeagues, action.payload.leagues],
+        leagues: updatedList,
       };
     }
 

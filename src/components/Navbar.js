@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setUser, setLogout } from "../actions";
 import api from "../services/api";
-import { Collapse } from "reactstrap";
 import logo from "../premier_league2.png";
 import { Link } from "react-router-dom";
 import { Modal, ModalHeader } from "reactstrap";
@@ -32,13 +31,6 @@ class Navbar extends Component {
   };
   handleSignUp = (e, user) => {
     e.preventDefault();
-
-    // const user = {
-    //   username: this.state.username,
-    //   email: this.state.email,
-    //   password: this.state.password,
-    //   password_confirm: this.state.password_confirm,
-    // };
 
     api.auth
       .signup(user)
@@ -102,12 +94,6 @@ class Navbar extends Component {
               {!this.props.isUser ? (
                 <>
                   <li>
-                    {/* <button
-                      className="nav-links-button"
-                      onClick={this.toggleLogin}
-                    >
-                      Login
-                    </button> */}
                     <button
                       className="nav-links-button"
                       onClick={this.toggleLogin}
@@ -122,24 +108,7 @@ class Navbar extends Component {
                       <Login handleLogin={this.handleLogin} />
                     </Modal>
                   </li>
-                  {/* {this.state.loginOpen === true ? (
-                    <div className="sign-in-form">
-                      {" "}
-                      <Login handleLogin={this.handleLogin} />
-                    </div>
-                    
-                  ) : (
-                    <div className="login-hidden">
-                      <Login handleLogin={this.handleLogin} />
-                    </div>
-                  )} */}
                   <li>
-                    {/* <button
-                      className="nav-links-button"
-                      onClick={this.toggleSignUp}
-                    >
-                      Signup
-                    </button> */}
                     <button
                       className="nav-links-button"
                       onClick={this.toggleSignUp}
@@ -156,9 +125,6 @@ class Navbar extends Component {
                       <Signup handleSignUp={this.handleSignUp} />
                     </Modal>
                   </li>
-                  {/* <Collapse isOpen={this.state.signUpOpen}>
-                    <Signup handleSignUp={this.handleSignUp} />
-                  </Collapse>{" "} */}
                 </>
               ) : (
                 <>

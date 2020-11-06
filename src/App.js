@@ -12,18 +12,18 @@ import LeaguesContainer from "./components/leagues/LeaguesContainer";
 
 import Profile from "./components/Profile";
 
-const Desktop = ({ children }) => {
-  const isDesktop = useMediaQuery({ minWidth: 992 });
-  return isDesktop ? children : null;
-};
-const Tablet = ({ children }) => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
-  return isTablet ? children : null;
-};
-const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  return isMobile ? children : null;
-};
+// const Desktop = ({ children }) => {
+//   const isDesktop = useMediaQuery({ minWidth: 992 });
+//   return isDesktop ? children : null;
+// };
+// const Tablet = ({ children }) => {
+//   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+//   return isTablet ? children : null;
+// };
+// const Mobile = ({ children }) => {
+//   const isMobile = useMediaQuery({ maxWidth: 767 });
+//   return isMobile ? children : null;
+// };
 
 class App extends Component {
   componentDidMount() {
@@ -42,30 +42,30 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Desktop>
-            <div>
-              <Navbar />
-            </div>
+          {/* <Desktop> */}
+          <div>
+            <Navbar />
+          </div>
 
-            <div className="page-container">
-              <Switch>
-                <Route
-                  exact
-                  path="/leagues"
-                  component={this.renderLeaguesContainer}
-                />
-                <Route
-                  exact
-                  path="/matches"
-                  component={this.renderMatchesTable}
-                />
-                <Route exact path="/profile" component={this.renderProfile} />
-                <Route path="/" component={this.renderStandingsTable} />
-              </Switch>
-            </div>
-          </Desktop>
+          <div className="page-container">
+            <Switch>
+              <Route
+                exact
+                path="/leagues"
+                component={this.renderLeaguesContainer}
+              />
+              <Route
+                exact
+                path="/matches"
+                component={this.renderMatchesTable}
+              />
+              <Route exact path="/profile" component={this.renderProfile} />
+              <Route path="/" component={this.renderStandingsTable} />
+            </Switch>
+          </div>
+          {/* </Desktop>
           <Tablet>Tablet</Tablet>
-          <Mobile>Mobile</Mobile>
+          <Mobile>Mobile</Mobile> */}
         </div>
       </div>
     );

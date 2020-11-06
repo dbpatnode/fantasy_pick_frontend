@@ -18,6 +18,7 @@ class Pick extends React.Component {
     };
     api.pick.addPick(pick).then((data) => {
       if (!data.error) {
+        console.log(data);
         this.props.addPick(data);
         this.setState({
           winner: "",
