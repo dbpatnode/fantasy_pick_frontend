@@ -16,15 +16,19 @@ class Pick extends React.Component {
       user_id: this.props.user.id,
       match_day: match.matchday,
     };
+
     api.pick.addPick(pick).then((data) => {
       if (!data.error) {
-        console.log(data);
         this.props.addPick(data);
         this.setState({
           winner: "",
           showSubmitButton: false,
           hidePick: true,
         });
+      } else {
+        console.log(data.error);
+        let error = data.error[0].split(" ").slice(1).join(" ");
+        alert(error);
       }
     });
   };
@@ -35,6 +39,11 @@ class Pick extends React.Component {
         showSubmitButton: true,
       });
     }
+  };
+  findWinnerName = (match) => {
+    return this.state.winner === "HOME_TEAM"
+      ? match.homeTeam.name
+      : match.awayTeam.name;
   };
 
   render() {
@@ -49,7 +58,11 @@ class Pick extends React.Component {
                   Please Choose Winner From List{" "}
                 </option>
               )}
-              <option name={match.homeTeam.name} value={"HOME_TEAM"}>
+              <option
+                name={match.homeTeam.name}
+                value={"HOME_TEAM"}
+                id={match.homeTeam.name}
+              >
                 {match.homeTeam.name}
               </option>
               <option name={match.awayTeam.name} value={"AWAY_TEAM"}>
@@ -57,15 +70,20 @@ class Pick extends React.Component {
               </option>
             </select>
             {this.state.showSubmitButton ? (
-              <button onClick={() => this.handleSubmitPick(match)}>
+              <button
+                className="pick-button"
+                onClick={() => this.handleSubmitPick(match)}
+              >
                 submit
               </button>
             ) : null}
-            <br />
-            <button onClick={this.props.handlePick}>Back</button>
+            <button className="back-button" onClick={this.props.handlePick}>
+              Back
+            </button>
           </>
         ) : (
-          "Already picked"
+          `Your pick:
+          ${this.findWinnerName(match)}`
         )}
       </>
     );
@@ -76,7 +94,6 @@ function mapStateToProps(state) {
   // reducers
   return {
     user: state.user,
-    token: state.token,
   };
 }
 

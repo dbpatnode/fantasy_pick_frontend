@@ -57,7 +57,8 @@
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-end: 4;
-  height: 690px;
+  height: 200px;
+  width: 100%;
   text-align: center;
 }
 .matches-table {
@@ -265,6 +266,31 @@ span {
   width: 200px;
 }
 
+.pick-button {
+  border-radius: 10px;
+  border: 1px solid #00e9ab;
+  color: white;
+  background: #00e9ab;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 5px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+}
+.back-button {
+  border-radius: 10px;
+  border: 1px solid grey;
+  color: white;
+  background: grey;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 5px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+}
+
 .nav-buttons {
   border-radius: 20px;
   border: 1px solid #00e9ab;
@@ -342,4 +368,16 @@ span {
 .bi-arrow-right-circle {
   margin-left: -4px;
   margin-top: -14px;
+}
+
+.profile-picks-table {
+  border-collapse: separate;
+  border-spacing: 6px;
+}
+.profile-picks-table tr:last-child td {
+  font-weight: bold;
+  text-align: center;
+}
+.profile-table-points {
+  text-align: center;
 }

@@ -28,6 +28,21 @@ class MatchRow extends React.Component {
     }
     return "vs";
   };
+  filterUserPicks = (match) => {
+    let isPicked = this.props.userPicks.find(
+      (m) => m.match.match_id === match.id
+    );
+    return isPicked !== undefined ? true : false;
+  };
+
+  findWinnerName = (match) => {
+    let winner = this.props.userPicks.find((m) => m.match.match_id === match.id)
+      .winner;
+    if (winner === "HOME_TEAM") {
+      return match.homeTeam.name;
+    }
+    return match.awayTeam.name;
+  };
 
   render() {
     const { match } = this.props;
@@ -38,7 +53,6 @@ class MatchRow extends React.Component {
       (stand) => stand.team.id === match.homeTeam.id
     ).team.crestUrl;
 
-    console.log(match);
     return (
       <>
         <td id="home-team-td">
@@ -54,7 +68,7 @@ class MatchRow extends React.Component {
           {match.awayTeam.name}
         </td>
         <td>{moment(match.utcDate).format("LLLL")}</td>
-        {this.props.token &&
+        {this.props.user.id &&
         moment(match.utcDate).format("LLLL") > getTime() ? (
           <td>
             {this.state.isPicked ? (
@@ -67,9 +81,16 @@ class MatchRow extends React.Component {
                 {match.status === "IN_PLAY" ||
                 match.status === "PAUSED" ||
                 match.status === "FINISHED" ? null : (
-                  <button className="nav-buttons" onClick={this.handlePick}>
-                    add pick
-                  </button>
+                  <>
+                    {" "}
+                    {this.filterUserPicks(match) ? (
+                      `Your pick: ${this.findWinnerName(match)}`
+                    ) : (
+                      <button className="nav-buttons" onClick={this.handlePick}>
+                        add pick
+                      </button>
+                    )}{" "}
+                  </>
                 )}
               </>
             )}
@@ -84,8 +105,8 @@ function mapStateToProps(state) {
   // reducers
   return {
     user: state.user,
-    token: state.token,
     standings: state.standings,
+    userPicks: state.userPicks,
   };
 }
 

@@ -24,6 +24,14 @@ const signup = (user) => {
     body: JSON.stringify({ user }),
   }).then((res) => res.json());
 };
+const updateStats = (id, user) => {
+  return fetch(`${API_ROOT}/users/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ user }),
+  }).then((res) => res.json());
+};
+
 const reauth = () => {
   return fetch(`${API_ROOT}/reauth`, {
     method: "GET",
@@ -70,5 +78,8 @@ export default {
     addLeague: addLeague,
     getLeagues: getLeagues,
     joinToLeague: joinToLeague,
+  },
+  user: {
+    updateStats: updateStats,
   },
 };

@@ -35,10 +35,11 @@ class Navbar extends Component {
     api.auth
       .signup(user)
       .then((data) => {
+        console.log(data);
         if (!data.error) {
           this.handleAuthResponse(data);
         } else {
-          alert("Wrong Username or Password");
+          alert(data.error);
         }
       })
       .catch((err) => console.log(err));
