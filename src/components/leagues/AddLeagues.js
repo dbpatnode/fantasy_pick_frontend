@@ -25,6 +25,8 @@ class AddLeague extends React.Component {
       if (!data.error) {
         this.props.addLeague(data);
         this.setState({ league: "" });
+      } else {
+        alert(data.error);
       }
     });
   };
@@ -42,9 +44,7 @@ class AddLeague extends React.Component {
             required
           />
           <InputGroupAddon addonType="append">
-            <InputGroupText onClick={this.handleSubmit}>
-              Add New League
-            </InputGroupText>
+            <button onClick={this.handleSubmit}>Add New League</button>
           </InputGroupAddon>
         </InputGroup>
       </>

@@ -6,22 +6,23 @@ import { setUser } from "../actions";
 import api from "../services/api";
 
 class Profile extends React.Component {
-  componentDidMount() {
-    if (!localStorage.token) {
-      this.props.history.push("/");
-    } else {
-      api.auth.reauth().then((data) => {
-        if (!data.error) {
-          this.props.setUser(data);
-        } else {
-          alert("Please Login");
-        }
-      });
-    }
-  }
+  // componentDidMount() {
+  //   if (!localStorage.token) {
+  //     this.props.history.push("/");
+  //   } else {
+  //     api.auth.reauth().then((data) => {
+  //       if (!data.error) {
+  //         this.props.setUser(data);
+  //       } else {
+  //         alert("Please Login");
+  //       }
+  //     });
+  //   }
+  // }
 
   findMatch = (p, data) => {
     let match = this.props.matches.filter((m) => m.id === p.match.match_id);
+
     switch (data) {
       case "away": {
         return match.map((m) => m.awayTeam.name);
@@ -38,10 +39,15 @@ class Profile extends React.Component {
 
   findWinner = (p) => {
     let match = this.props.matches.filter((m) => m.id === p.match.match_id);
-    let realWinner = match.map((m) => m.score.winner);
-    let pickWinner = p.winner;
-    return realWinner[0] === pickWinner;
+    let status = match.map((m) => m.status)[0];
+    if (status === "FINISHED") {
+      let realWinner = match.map((m) => m.score.winner);
+
+      let pickWinner = p.winner;
+      return realWinner[0] === pickWinner;
+    }
   };
+
   findClub = (p) => {
     if (p.winner === "HOME_TEAM") {
       return p.match.home_team_name;
@@ -51,19 +57,27 @@ class Profile extends React.Component {
   };
 
   findUserStats = () => {
-    let userWines = this.props.userPicks.map((p) =>
+    let userWins = this.props.userPicks.map((p) =>
       this.props.matches.filter(
         (m) => m.score.winner === p.winner && m.id === p.match.match_id
       )
     );
-    //fetch to update win in backend and points
-    return userWines.flat();
+    let body = {
+      wins: userWins.flat().length,
+      losses: userWins.filter((w) => w.length === 0).length,
+    };
+    if (userWins.length > 0) {
+      api.user
+        .updateStats(this.props.user.id, body)
+        .then((data) => console.log(data));
+    }
+    return userWins.flat();
   };
 
   render() {
     const { username } = this.props.user;
     const { userLeagues, userPicks } = this.props;
-    console.log(userPicks);
+
     return (
       <div className="league-container">
         <h1>Hello {username}</h1>

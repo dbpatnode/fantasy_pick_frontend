@@ -15,6 +15,7 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_LOGIN": {
+      console.log(action.payload.user.joined_leagues);
       return {
         ...state,
         user: action.payload.user,
@@ -27,9 +28,15 @@ export const rootReducer = (state = initialState, action) => {
     case "USER_LOGOUT": {
       return {
         ...state,
+        isUser: false,
         user: {},
         token: "",
-        isUser: false,
+        fetch: false,
+        competition: [],
+        picks: [],
+        leagues: [],
+        userLeagues: [],
+        userPicks: [],
       };
     }
     case "START_ADDING_STANDINGS_REQUEST": {
@@ -68,7 +75,7 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         leagues: [...state.leagues, action.payload],
-        userLeagues: [...state.leagues, action.payload],
+        userLeagues: [...state.userLeagues, action.payload],
       };
     }
     case "ADD_JOIN": {
@@ -78,9 +85,14 @@ export const rootReducer = (state = initialState, action) => {
         ),
         action.payload.league,
       ];
+      let join = {
+        id: action.payload.id,
+        league_name: action.payload.league.league_name,
+        user_id: action.payload.user.id,
+      };
       return {
         ...state,
-        userLeagues: [...state.userLeagues, action.payload.leagues],
+        userLeagues: [...state.userLeagues, join],
         leagues: updatedList,
       };
     }

@@ -20,7 +20,7 @@ class LeaguesContainer extends React.Component {
     };
 
     api.leagues.joinToLeague(join).then((data) => {
-      if (!data.error || !data.message) {
+      if (!data.error) {
         this.props.addJoinToLeague(data);
       }
     });
@@ -28,7 +28,7 @@ class LeaguesContainer extends React.Component {
 
   render() {
     const { leagues, isUser, user } = this.props;
-    console.log(leagues);
+    console.log(this.props.userLeagues);
     return (
       <div className="league-container">
         {isUser ? <AddLeague /> : null}
@@ -47,7 +47,7 @@ class LeaguesContainer extends React.Component {
                   {sortBy(leagues).map((league) => (
                     <tr key={league.id}>
                       <td>{league.league_name}</td>
-                      <td>{league.joins.length + 1}</td>
+                      <td>{league.joins.length}</td>
                       {""}
                       {isUser ? (
                         <td>
@@ -90,6 +90,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     leagues: state.leagues,
+    userLeagues: state.userLeagues,
     isUser: state.isUser,
   };
 }
