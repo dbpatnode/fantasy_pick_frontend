@@ -266,6 +266,31 @@ span {
   width: 200px;
 }
 
+.pick-button {
+  border-radius: 10px;
+  border: 1px solid #00e9ab;
+  color: white;
+  background: #00e9ab;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 5px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+}
+.back-button {
+  border-radius: 10px;
+  border: 1px solid grey;
+  color: white;
+  background: grey;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 5px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+}
+
 .nav-buttons {
   border-radius: 20px;
   border: 1px solid #00e9ab;

@@ -70,12 +70,16 @@ class Pick extends React.Component {
               </option>
             </select>
             {this.state.showSubmitButton ? (
-              <button onClick={() => this.handleSubmitPick(match)}>
+              <button
+                className="pick-button"
+                onClick={() => this.handleSubmitPick(match)}
+              >
                 submit
               </button>
             ) : null}
-            <br />
-            <button onClick={this.props.handlePick}>Back</button>
+            <button className="back-button" onClick={this.props.handlePick}>
+              Back
+            </button>
           </>
         ) : (
           `Your pick:
