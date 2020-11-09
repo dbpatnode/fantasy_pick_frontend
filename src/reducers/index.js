@@ -58,6 +58,12 @@ export const rootReducer = (state = initialState, action) => {
         matches: action.matches,
       };
     }
+    case "SET_PICKS": {
+      return {
+        ...state,
+        picks: action.payload.picks,
+      };
+    }
     case "ADD_PICK": {
       return {
         ...state,
@@ -65,7 +71,7 @@ export const rootReducer = (state = initialState, action) => {
         userPicks: [...state.userPicks, action.payload],
       };
     }
-    case "ADD_LEAGUES": {
+    case "SET_LEAGUES": {
       return {
         ...state,
         leagues: action.payload.leagues,
