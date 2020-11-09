@@ -1,9 +1,10 @@
 import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStandings, fetchMatches } from "./actions";
+import { fetchStandings, fetchMatches, setPicks } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
+import api from "./services/api";
 
 import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
@@ -11,6 +12,7 @@ import Navbar from "./components/Navbar";
 import LeaguesContainer from "./components/leagues/LeaguesContainer";
 
 import Profile from "./components/Profile";
+import PicksContainer from "./components/picks/PicksContainer";
 
 // const Desktop = ({ children }) => {
 //   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -29,9 +31,15 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchStandings();
     this.props.fetchMatches();
+    api.picks.getPicks().then((data) => {
+      if (!data.error) {
+        this.props.setPicks(data);
+      }
+    });
   }
 
   renderMatchesTable = () => <MatchesTable />;
+  renderPicksContainer = () => <PicksContainer />;
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
   );
@@ -53,6 +61,11 @@ class App extends Component {
                 exact
                 path="/leagues"
                 component={this.renderLeaguesContainer}
+              />
+              <Route
+                exact
+                path="/picks"
+                component={this.renderPicksContainer}
               />
               <Route
                 exact
@@ -84,6 +97,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchStandings: () => dispatch(fetchStandings()),
     fetchMatches: () => dispatch(fetchMatches()),
+    setPicks: (picks) => dispatch(setPicks(picks)),
   };
 }
 

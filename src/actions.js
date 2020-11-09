@@ -61,8 +61,14 @@ export const addLeague = (league) => {
 };
 export const setLeagues = (leagues) => {
   return {
-    type: "ADD_LEAGUES",
+    type: "SET_LEAGUES",
     payload: { leagues },
+  };
+};
+export const setPicks = (picks) => {
+  return {
+    type: "SET_PICKS",
+    payload: { picks },
   };
 };
 export const addJoinToLeague = (join) => {

@@ -28,7 +28,6 @@ class LeaguesContainer extends React.Component {
 
   render() {
     const { leagues, isUser, user } = this.props;
-    console.log(this.props.userLeagues);
     return (
       <div className="league-container">
         {isUser ? <AddLeague /> : null}
@@ -48,7 +47,6 @@ class LeaguesContainer extends React.Component {
                     <tr key={league.id}>
                       <td>{league.league_name}</td>
                       <td>{league.joins.length}</td>
-                      {""}
                       {isUser ? (
                         <td>
                           {league.user_id === user.id ? (
@@ -65,7 +63,6 @@ class LeaguesContainer extends React.Component {
                                     this.handelJoinLeague(league.id)
                                   }
                                 >
-                                  {" "}
                                   Join {league.league_name}
                                 </button>
                               )}

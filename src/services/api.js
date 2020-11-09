@@ -50,6 +50,11 @@ const getLeagues = () => {
     headers: headers,
   }).then((res) => res.json());
 };
+const getPicks = () => {
+  return fetch(`${API_ROOT}/picks`, {
+    headers: headers,
+  }).then((res) => res.json());
+};
 const addLeague = (league) => {
   return fetch(`${API_ROOT}/leagues`, {
     method: "POST",
@@ -81,5 +86,8 @@ export default {
   },
   user: {
     updateStats: updateStats,
+  },
+  picks: {
+    getPicks: getPicks,
   },
 };

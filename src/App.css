@@ -381,3 +381,8 @@ span {
 .profile-table-points {
   text-align: center;
 }
+.picks-table {
+  border-collapse: separate;
+  border-spacing: 6px;
+  text-align: center;
+}

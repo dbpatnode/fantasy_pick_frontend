@@ -32,3 +32,39 @@ export const sortByPick = (list) => {
     return 0;
   });
 };
+
+export const findWinner = (p, matches) => {
+  let match = matches.filter((m) => m.id === p.match.match_id);
+  let status = match.map((m) => m.status)[0];
+  if (status === "FINISHED") {
+    let realWinner = match.map((m) => m.score.winner);
+
+    let pickWinner = p.winner;
+    return realWinner[0] === pickWinner;
+  }
+};
+
+export const findClub = (p) => {
+  if (p.winner === "HOME_TEAM") {
+    return p.match.home_team_name;
+  } else {
+    return p.match.away_team_name;
+  }
+};
+
+export const findMatch = (p, data, matches) => {
+  let match = matches.filter((m) => m.id === p.match.match_id);
+
+  switch (data) {
+    case "away": {
+      return match.map((m) => m.awayTeam.name);
+    }
+    case "home": {
+      return match.map((m) => m.homeTeam.name);
+    }
+    case "status": {
+      return match.map((m) => m.status);
+    }
+  }
+  return data;
+};

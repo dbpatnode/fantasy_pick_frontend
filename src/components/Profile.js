@@ -1,61 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sortBy, sortByPick } from "../services/helpers";
 import { withRouter } from "react-router-dom";
 import { setUser } from "../actions";
 import api from "../services/api";
+import { sortBy, sortByPick, findWinner } from "../services/helpers";
+
+import PickRow from "./picks/PickRow";
 
 class Profile extends React.Component {
-  // componentDidMount() {
-  //   if (!localStorage.token) {
-  //     this.props.history.push("/");
-  //   } else {
-  //     api.auth.reauth().then((data) => {
-  //       if (!data.error) {
-  //         this.props.setUser(data);
-  //       } else {
-  //         alert("Please Login");
-  //       }
-  //     });
-  //   }
-  // }
-
-  findMatch = (p, data) => {
-    let match = this.props.matches.filter((m) => m.id === p.match.match_id);
-
-    switch (data) {
-      case "away": {
-        return match.map((m) => m.awayTeam.name);
-      }
-      case "home": {
-        return match.map((m) => m.homeTeam.name);
-      }
-      case "status": {
-        return match.map((m) => m.status);
-      }
-    }
-    return data;
-  };
-
-  findWinner = (p) => {
-    let match = this.props.matches.filter((m) => m.id === p.match.match_id);
-    let status = match.map((m) => m.status)[0];
-    if (status === "FINISHED") {
-      let realWinner = match.map((m) => m.score.winner);
-
-      let pickWinner = p.winner;
-      return realWinner[0] === pickWinner;
-    }
-  };
-
-  findClub = (p) => {
-    if (p.winner === "HOME_TEAM") {
-      return p.match.home_team_name;
-    } else {
-      return p.match.away_team_name;
-    }
-  };
-
   findUserStats = () => {
     let userWins = this.props.userPicks.map((p) =>
       this.props.matches.filter(
@@ -76,15 +28,17 @@ class Profile extends React.Component {
 
   render() {
     const { username } = this.props.user;
-    const { userLeagues, userPicks } = this.props;
+    const { userLeagues, userPicks, matches } = this.props;
 
     return (
       <div className="league-container">
         <h1>Hello {username}</h1>
-        {/* you have {this.findUserStats().length} points. */}
+
         <table className="profile-league-table">
           <thead>
-            <th>Your Leagues</th>
+            <tr>
+              <th>Your Leagues</th>
+            </tr>
           </thead>
           <tbody>
             {sortBy(userLeagues).map((l) => (
@@ -94,10 +48,10 @@ class Profile extends React.Component {
             ))}
           </tbody>
         </table>
+
         <table className="profile-picks-table">
           <thead>
-            <th> Your Picks</th>
-
+            <th>Your Picks</th>
             <tr>
               <th>Match</th>
               <th>Your Pick</th>
@@ -108,18 +62,9 @@ class Profile extends React.Component {
           <tbody>
             {sortByPick(userPicks).map((p) => (
               <tr key={p.id}>
-                <td>
-                  {" "}
-                  {this.findMatch(p, "home")} vs. {this.findMatch(p, "away")}
-                </td>
-                <td>{this.findClub(p)}</td>
-                {this.findMatch(p, "status") == "FINISHED" ? (
-                  <td>{this.findWinner(p, p.winner) ? "Win" : "Lost"}</td>
-                ) : (
-                  <td> No final Score yet </td>
-                )}
+                <PickRow p={p} matches={matches} />
                 <td className="profile-table-points">
-                  {this.findWinner(p, p.winner) ? 1 : null}
+                  {findWinner(p, matches) ? 1 : null}
                 </td>
               </tr>
             ))}
