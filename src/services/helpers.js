@@ -19,6 +19,11 @@ export const sortBy = (list) => {
     return 0;
   });
 };
+export const sortByPoints = (list) => {
+  return list.sort(function (a, b) {
+    return b.user.wins - a.user.wins;
+  });
+};
 export const sortByPick = (list) => {
   return list.sort(function (a, b) {
     let nameA = a.match.id;

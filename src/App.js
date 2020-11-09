@@ -10,6 +10,8 @@ import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
 import Navbar from "./components/Navbar";
 import LeaguesContainer from "./components/leagues/LeaguesContainer";
+import LeagueShowPage from "./components/leagues/LeagueShowPage";
+import PageNotFound from "./components/PageNotFound";
 
 import Profile from "./components/Profile";
 import PicksContainer from "./components/picks/PicksContainer";
@@ -45,6 +47,13 @@ class App extends Component {
   );
   renderLeaguesContainer = () => <LeaguesContainer />;
   renderProfile = () => <Profile />;
+  renderLeagueShowPage = (routerProps) => {
+    let leagueID = routerProps.match.params.id;
+    let league = this.props.leagues.find(
+      (league) => league.id === parseInt(leagueID)
+    );
+    return league ? <LeagueShowPage league={league} /> : <PageNotFound />;
+  };
 
   render() {
     return (
@@ -57,6 +66,11 @@ class App extends Component {
 
           <div className="page-container">
             <Switch>
+              <Route
+                exact
+                path="/leagues/:id"
+                render={(routerProps) => this.renderLeagueShowPage(routerProps)}
+              />
               <Route
                 exact
                 path="/leagues"
@@ -89,6 +103,7 @@ function mapStateToProps(state) {
   // reducers
   return {
     standings: state.standings,
+    leagues: state.leagues,
   };
 }
 
