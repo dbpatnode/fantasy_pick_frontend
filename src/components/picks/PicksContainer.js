@@ -18,6 +18,7 @@ class PicksContainer extends Component {
                 <th>Match</th>
                 <th>Pick</th>
                 <th>Status</th>
+                <th>User Points</th>
               </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@ class PicksContainer extends Component {
                 <tr key={p.id}>
                   <td>{p.user.username} </td>
                   <PickRow p={p} matches={matches} />
+                  <td>{p.user.wins} </td>
                 </tr>
               ))}
             </tbody>

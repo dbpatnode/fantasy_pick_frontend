@@ -1,33 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AddLeague from "./AddLeagues";
 import { connect } from "react-redux";
 import api from "../../services/api";
-import { sortBy } from "../../services/helpers";
-import { setLeagues, addJoinToLeague } from "../../actions";
+import { sortByJoins } from "../../services/helpers";
+import { setLeagues } from "../../actions";
+
+import JoinLeague from "./JoinLeague";
 
 class LeaguesContainer extends React.Component {
   componentDidMount() {
-    api.leagues.getLeagues().then((data) => {
-      if (!data.error) {
-        this.props.setLeagues(data);
-      }
-    });
+    // api.leagues.getLeagues().then((data) => {
+    //   if (!data.error) {
+    //     this.props.setLeagues(data);
+    //   }
+    // });
   }
-  handelJoinLeague = (league) => {
-    let join = {
-      user_id: this.props.user.id,
-      league_id: league,
-    };
-
-    api.leagues.joinToLeague(join).then((data) => {
-      if (!data.error) {
-        this.props.addJoinToLeague(data);
+  findIfOwnerOrMember = (league, id) => {
+    if (league.user.id === id) {
+      return "Your League";
+    } else {
+      let joined = league.join.find((user) => user.user.id === id);
+      if (joined) {
+        return "you're already a league member";
       }
-    });
+    }
+    return this.renderJoin(league);
   };
+
+  renderJoin = (league) => <JoinLeague league={league} />;
 
   render() {
     const { leagues, isUser, user } = this.props;
+
     return (
       <div className="league-container">
         {isUser ? <AddLeague /> : null}
@@ -43,33 +48,17 @@ class LeaguesContainer extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortBy(leagues).map((league) => (
+                  {sortByJoins(leagues).map((league) => (
                     <tr key={league.id}>
-                      <td>{league.league_name}</td>
-                      <td>{league.joins.length}</td>
-                      {isUser ? (
-                        <td>
-                          {league.user_id === user.id ? (
-                            "Your League"
-                          ) : (
-                            <>
-                              {league.joins.find(
-                                (join) => join.user_id === user.id
-                              ) ? (
-                                "League Member"
-                              ) : (
-                                <button
-                                  onClick={() =>
-                                    this.handelJoinLeague(league.id)
-                                  }
-                                >
-                                  Join {league.league_name}
-                                </button>
-                              )}
-                            </>
-                          )}
-                        </td>
-                      ) : null}
+                      <td>
+                        <Link to={`/leagues/${league.id}`}>
+                          {league.league_name}
+                        </Link>
+                      </td>
+                      <td>{league.join.length}</td>
+                      {isUser
+                        ? this.findIfOwnerOrMember(league, user.id)
+                        : null}
                     </tr>
                   ))}
                 </tbody>
@@ -94,9 +83,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addJoinToLeague(join) {
-      dispatch(addJoinToLeague(join));
-    },
     setLeagues(leagues) {
       dispatch(setLeagues(leagues));
     },
