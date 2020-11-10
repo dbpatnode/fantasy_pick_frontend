@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setUser } from "../actions";
 import api from "../services/api";
-import { sortBy, sortByPick, findWinner } from "../services/helpers";
+import { sortByName, sortByPick, findWinner } from "../services/helpers";
 
 import PickRow from "./picks/PickRow";
 
@@ -41,7 +41,7 @@ class Profile extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {sortBy(userLeagues).map((l) => (
+            {sortByName(userLeagues).map((l) => (
               <tr key={l.id}>
                 <td> {l.league_name}</td>
               </tr>
@@ -88,7 +88,6 @@ function mapStateToProps(state) {
     token: state.token,
     userLeagues: state.userLeagues,
     userPicks: state.userPicks,
-    matches: state.matches,
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -1,14 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import { sortByPoints } from "../../services/helpers";
+import JoinLeague from "./JoinLeague";
 
 class LeagueShowPage extends React.Component {
+  checkUserJoin = (league) => {
+    let userJoin = this.props.user.joined_leagues.find(
+      (l) => l.id === league.id
+    );
+    if (!userJoin) {
+      return this.renderJoinLeague(league);
+    }
+  };
+  renderJoinLeague = (league) => <JoinLeague league={league} />;
+
   render() {
-    const { league_name, join } = this.props.league;
-    console.log(join);
+    const league = this.props.leagues.find(
+      (league) => league.id === this.props.id
+    );
+
+    console.log(league.join);
     return (
       <div>
-        <h1>{league_name}</h1>
+        <h1>{league.league_name}</h1>
+        {this.props.isUser ? this.checkUserJoin(league) : null}
         <h3>Leagues Members </h3>
         <table>
           <thead>
@@ -18,8 +33,7 @@ class LeagueShowPage extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {/* {join.map((user) => ( */}
-            {sortByPoints(join).map((user) => (
+            {sortByPoints(league.join).map((user) => (
               <tr key={user.user.id}>
                 <td>{user.user.username}</td>
                 <td>{user.user.wins ? user.user.wins : 0}</td>
@@ -32,15 +46,13 @@ class LeagueShowPage extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   // reducers
-//   return {
-//     user: state.user,
-//     leagues: state.leagues,
-//     userLeagues: state.userLeagues,
-//     isUser: state.isUser,
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    isUser: state.isUser,
+    leagues: state.leagues,
+  };
+}
 
 // function mapDispatchToProps(dispatch) {
 //   return {
@@ -53,5 +65,4 @@ class LeagueShowPage extends React.Component {
 //   };
 // }
 
-export default LeagueShowPage;
-// export default connect(mapStateToProps, mapDispatchToProps)(LeagueShowPage);
+export default connect(mapStateToProps)(LeagueShowPage);

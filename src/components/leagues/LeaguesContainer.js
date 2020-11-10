@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AddLeague from "./AddLeagues";
 import { connect } from "react-redux";
 import api from "../../services/api";
-import { sortBy } from "../../services/helpers";
+import { sortByJoins } from "../../services/helpers";
 import { setLeagues } from "../../actions";
 
 import JoinLeague from "./JoinLeague";
@@ -16,11 +16,23 @@ class LeaguesContainer extends React.Component {
       }
     });
   }
+  findIfOwnerOrMember = (league, id) => {
+    if (league.user.id === id) {
+      return "Your League";
+    } else {
+      let joined = league.join.find((user) => user.user.id === id);
+      if (joined) {
+        return "you're already a league member";
+      }
+    }
+    return this.renderJoin(league);
+  };
+
+  renderJoin = (league) => <JoinLeague league={league} />;
 
   render() {
     const { leagues, isUser, user } = this.props;
-    console.log(leagues);
-    console.log(user.id);
+
     return (
       <div className="league-container">
         {isUser ? <AddLeague /> : null}
@@ -36,7 +48,7 @@ class LeaguesContainer extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortBy(leagues).map((league) => (
+                  {sortByJoins(leagues).map((league) => (
                     <tr key={league.id}>
                       <td>
                         <Link to={`/leagues/${league.id}`}>
@@ -44,23 +56,9 @@ class LeaguesContainer extends React.Component {
                         </Link>
                       </td>
                       <td>{league.join.length}</td>
-                      {isUser ? (
-                        <td>
-                          {league.user_id === user.id ? (
-                            "Your League"
-                          ) : (
-                            <>
-                              {league.join.find(
-                                (join) => join.user_id === user.id
-                              ) ? (
-                                "League Member"
-                              ) : (
-                                <JoinLeague league={league} />
-                              )}
-                            </>
-                          )}
-                        </td>
-                      ) : null}
+                      {isUser
+                        ? this.findIfOwnerOrMember(league, user.id)
+                        : null}
                     </tr>
                   ))}
                 </tbody>

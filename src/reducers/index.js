@@ -15,7 +15,6 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "USER_LOGIN": {
-      console.log(action.payload.user.joined_leagues);
       return {
         ...state,
         user: action.payload.user,
@@ -85,20 +84,19 @@ export const rootReducer = (state = initialState, action) => {
       };
     }
     case "ADD_JOIN": {
+      let leagueToUpdate = state.leagues.find(
+        (league) => league.id === action.payload.league_id
+      );
+
       let updatedList = [
         ...state.leagues.filter(
           (league) => league.id !== action.payload.league_id
         ),
-        action.payload.league,
+        leagueToUpdate,
       ];
-      let join = {
-        id: action.payload.id,
-        league_name: action.payload.league.league_name,
-        user_id: action.payload.user.id,
-      };
       return {
         ...state,
-        userLeagues: [...state.userLeagues, join],
+        userLeagues: action.payload.user.joined_leagues,
         leagues: updatedList,
       };
     }

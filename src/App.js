@@ -52,7 +52,7 @@ class App extends Component {
     let league = this.props.leagues.find(
       (league) => league.id === parseInt(leagueID)
     );
-    return league ? <LeagueShowPage league={league} /> : <PageNotFound />;
+    return league ? <LeagueShowPage id={league.id} /> : <PageNotFound />;
   };
 
   render() {

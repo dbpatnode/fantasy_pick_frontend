@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addLeague } from "../../actions";
 import api from "../../services/api";
-import { InputGroup, InputGroupText, InputGroupAddon, Input } from "reactstrap";
+import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 
 class AddLeague extends React.Component {
   state = {
@@ -34,19 +34,21 @@ class AddLeague extends React.Component {
   render() {
     return (
       <>
-        <InputGroup>
-          <Input
-            onChange={this.handleChange}
-            name="league"
-            value={this.state.league}
-            type="text"
-            placeholder="League Name"
-            required
-          />
-          <InputGroupAddon addonType="append">
-            <button onClick={this.handleSubmit}>Add New League</button>
-          </InputGroupAddon>
-        </InputGroup>
+        <form onSubmit={this.handleSubmit}>
+          <InputGroup>
+            <Input
+              onChange={this.handleChange}
+              name="league"
+              value={this.state.league}
+              type="text"
+              placeholder="League Name"
+              required
+            />
+            <InputGroupAddon addonType="append">
+              <button onClick={this.handleSubmit}>Add New League</button>
+            </InputGroupAddon>
+          </InputGroup>
+        </form>
       </>
     );
   }

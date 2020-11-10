@@ -6,7 +6,7 @@ export const getTime = () => {
 
   return isoDate;
 };
-export const sortBy = (list) => {
+export const sortByName = (list) => {
   return list.sort(function (a, b) {
     let nameA = a.league_name.toUpperCase();
     let nameB = b.league_name.toUpperCase();
@@ -17,6 +17,12 @@ export const sortBy = (list) => {
       return 1;
     }
     return 0;
+  });
+};
+
+export const sortByJoins = (list) => {
+  return list.sort(function (a, b) {
+    return b.join.length - a.join.length;
   });
 };
 export const sortByPoints = (list) => {

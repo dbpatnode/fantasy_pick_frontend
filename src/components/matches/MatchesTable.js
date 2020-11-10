@@ -1,22 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import moment from "moment";
 import MatchRow from "./MatchRow";
-// import api from "../../services/api";
-// import { setUser } from "../../actions";
 
 class MatchesTable extends React.Component {
-  // componentDidMount() {
-  //   if (localStorage.token) {
-  //     api.auth.reauth().then((data) => {
-  //       if (!data.error) {
-  //         this.props.setUser(data);
-  //       } else {
-  //         alert("Please Login");
-  //       }
-  //     });
-  //   }
-  // }
   findCurrentMatchDay = () => {
     var now = new Date();
     var isoDate = new Date(
