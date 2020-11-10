@@ -84,18 +84,18 @@ export const rootReducer = (state = initialState, action) => {
       };
     }
     case "ADD_JOIN": {
-      let leagueToUpdate = state.leagues
-        .filter((league) => league.id === action.payload.league_id)
-        .map((l) => l.join);
+      
       let updatedList = [
         ...state.leagues.filter(
-          (league) => league.id !== action.payload.league_id
+          (league) => league.id !== action.payload.id
         ),
-        leagueToUpdate,
+        action.payload,
       ];
+      var join = action.payload.join.filter(join => join.user_id === state.user.id)
+      var joinToUpdate = {id: join[0].id, league_name: action.payload.league_name, user_id: join[0].user_id}
       return {
         ...state,
-        userLeagues: action.payload.user.joined_leagues,
+        userLeagues: [...state.userLeagues, joinToUpdate],
         leagues: updatedList,
       };
     }

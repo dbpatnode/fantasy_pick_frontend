@@ -17,6 +17,7 @@ class LeaguesContainer extends React.Component {
     // });
   }
   findIfOwnerOrMember = (league, id) => {
+    // debugger
     if (league.user.id === id) {
       return "Your League";
     } else {
@@ -47,6 +48,7 @@ class LeaguesContainer extends React.Component {
                     <th></th>
                   </tr>
                 </thead>
+                {leagues ? 
                 <tbody>
                   {sortByJoins(leagues).map((league) => (
                     <tr key={league.id}>
@@ -60,8 +62,9 @@ class LeaguesContainer extends React.Component {
                         ? this.findIfOwnerOrMember(league, user.id)
                         : null}
                     </tr>
-                  ))}
-                </tbody>
+                  ))})
+                </tbody> : null}
+                    
               </>
             ) : null}
           </table>
