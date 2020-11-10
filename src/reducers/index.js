@@ -84,10 +84,9 @@ export const rootReducer = (state = initialState, action) => {
       };
     }
     case "ADD_JOIN": {
-      let leagueToUpdate = state.leagues.find(
-        (league) => league.id === action.payload.league_id
-      );
-
+      let leagueToUpdate = state.leagues
+        .filter((league) => league.id === action.payload.league_id)
+        .map((l) => l.join);
       let updatedList = [
         ...state.leagues.filter(
           (league) => league.id !== action.payload.league_id
