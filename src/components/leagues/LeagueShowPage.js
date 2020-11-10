@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
 
@@ -65,4 +66,4 @@ function mapStateToProps(state) {
 //   };
 // }
 
-export default connect(mapStateToProps)(LeagueShowPage);
+export default connect(mapStateToProps)(withRouter(LeagueShowPage));

@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStandings, fetchMatches, setPicks } from "./actions";
+import { setLeagues, fetchStandings, fetchMatches, setPicks } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 import api from "./services/api";
@@ -33,6 +33,11 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchStandings();
     this.props.fetchMatches();
+    api.leagues.getLeagues().then((data) => {
+      if (!data.error) {
+        this.props.setLeagues(data);
+      }
+    });
     api.picks.getPicks().then((data) => {
       if (!data.error) {
         this.props.setPicks(data);
@@ -113,6 +118,7 @@ function mapDispatchToProps(dispatch) {
     fetchStandings: () => dispatch(fetchStandings()),
     fetchMatches: () => dispatch(fetchMatches()),
     setPicks: (picks) => dispatch(setPicks(picks)),
+    setLeagues: (leagues) => dispatch(setLeagues(leagues)),
   };
 }
 

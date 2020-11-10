@@ -10,11 +10,11 @@ import JoinLeague from "./JoinLeague";
 
 class LeaguesContainer extends React.Component {
   componentDidMount() {
-    api.leagues.getLeagues().then((data) => {
-      if (!data.error) {
-        this.props.setLeagues(data);
-      }
-    });
+    // api.leagues.getLeagues().then((data) => {
+    //   if (!data.error) {
+    //     this.props.setLeagues(data);
+    //   }
+    // });
   }
   findIfOwnerOrMember = (league, id) => {
     if (league.user.id === id) {

@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import api from "../../services/api";
 import { addJoinToLeague } from "../../actions";
 
 class JoinLeague extends React.Component {
+  state = {
+    isJoined: false,
+  };
   handelJoinLeague = (league) => {
     let join = {
       user_id: this.props.user.id,
@@ -14,6 +16,7 @@ class JoinLeague extends React.Component {
     api.leagues.joinToLeague(join).then((data) => {
       if (!data.error) {
         this.props.addJoinToLeague(data);
+        this.setState({ isJoined: true });
       } else {
         alert(data.error);
       }
@@ -22,9 +25,13 @@ class JoinLeague extends React.Component {
 
   render() {
     return (
-      <button onClick={() => this.handelJoinLeague(this.props.league.id)}>
-        Join {this.props.league.league_name}
-      </button>
+      <>
+        {this.state.isJoined ? null : (
+          <button onClick={() => this.handelJoinLeague(this.props.league.id)}>
+            Join {this.props.league.league_name}
+          </button>
+        )}
+      </>
     );
   }
 }
