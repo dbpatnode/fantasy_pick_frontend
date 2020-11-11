@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setLeagues, fetchStandings, fetchMatches, setPicks } from "./actions";
+import { setLeagues, fetchStandings, fetchMatches, setPicks, setUser } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 import api from "./services/api";
@@ -31,6 +31,15 @@ import PicksContainer from "./components/picks/PicksContainer";
 
 class App extends Component {
   componentDidMount() {
+    if (localStorage.token) {
+      api.auth.reauth().then(data => {
+        if (!data.error) {
+          this.props.setUser(data);
+        } else {
+          alert(data.error);
+        }
+      })}
+
     this.props.fetchStandings();
     this.props.fetchMatches();
     api.leagues.getLeagues().then((data) => {
@@ -44,6 +53,13 @@ class App extends Component {
       }
     });
   }
+
+  handleAuthResponse = (data) => {
+    if (data.user) {
+      localStorage.token = data.token;
+      this.props.setUser(data);
+    }
+  };
 
   renderMatchesTable = () => <MatchesTable />;
   renderPicksContainer = () => <PicksContainer />;
@@ -115,6 +131,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   // actions.js
   return {
+    setUser: (user) => dispatch(setUser(user)),
     fetchStandings: () => dispatch(fetchStandings()),
     fetchMatches: () => dispatch(fetchMatches()),
     setPicks: (picks) => dispatch(setPicks(picks)),

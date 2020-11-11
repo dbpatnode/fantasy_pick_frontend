@@ -22,6 +22,7 @@ class Navbar extends Component {
     api.auth
       .login(user)
       .then((data) => {
+        console.log(data)
         if (!data.error) {
           this.handleAuthResponse(data);
         } else {
