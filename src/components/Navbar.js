@@ -18,6 +18,7 @@ class Navbar extends Component {
 
   handleLogin = (e, user) => {
     e.preventDefault();
+    console.log(user);
     api.auth
       .login(user)
       .then((data) => {
@@ -31,7 +32,7 @@ class Navbar extends Component {
   };
   handleSignUp = (e, user) => {
     e.preventDefault();
-
+    console.log(user);
     api.auth
       .signup(user)
       .then((data) => {

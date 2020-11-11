@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { addLeague } from "../../actions";
 import api from "../../services/api";
 import { InputGroup, InputGroupAddon, Input } from "reactstrap";
+import { capitalize } from "../../services/helpers";
 
 class AddLeague extends React.Component {
   state = {
@@ -10,7 +11,10 @@ class AddLeague extends React.Component {
   };
 
   handleChange = (e) => {
-    this.setState({ league: e.target.value });
+    let value = e.target.value;
+    value = capitalize(value);
+
+    this.setState({ league: value });
   };
 
   handleSubmit = (e) => {
