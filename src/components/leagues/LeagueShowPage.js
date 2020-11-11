@@ -14,7 +14,13 @@ class LeagueShowPage extends React.Component {
     }
   };
   renderJoinLeague = (league) => <JoinLeague league={league} />;
-
+  rankings = (league) => {
+   league.forEach(join => {
+    return <p>{league.indexOf(join) + 1}</p>
+    // console.log(league.indexOf(join) + 1)
+   })
+   
+  }
   render() {
     const league = this.props.leagues.find(
       (league) => league.id === this.props.id
@@ -22,26 +28,28 @@ class LeagueShowPage extends React.Component {
 
     console.log(league.join);
     return (
-      <div>
-        <h1>{league.league_name}</h1>
+      <div className="league-table-container">
+        <h1 id="league-name">{league.league_name}</h1>
         {this.props.isUser ? this.checkUserJoin(league) : null}
-        <h3>Leagues Members </h3>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Points</th>
+              <th id="player-name">Name</th>
+              <th id="player-points">Points</th>
+              <th>Rank</th>
             </tr>
           </thead>
           <tbody>
             {sortByPoints(league.join).map((user) => (
               <tr key={user.user.id}>
+                {this.rankings(league.join)}
                 <td>{user.user.username}</td>
                 <td>{user.user.wins ? user.user.wins : 0}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      {this.rankings(league.join)}
       </div>
     );
   }

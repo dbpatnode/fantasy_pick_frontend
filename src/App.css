@@ -386,3 +386,30 @@ span {
   border-spacing: 6px;
   text-align: center;
 }
+
+.league-table-container {
+width: 100vw;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+}
+
+.league-table-container table {
+  grid-column-start: 2;
+}
+
+#player-name {
+float: left
+}
+
+#player-points {
+  float: right
+}
+#league-name {
+  grid-column-start: 2;
+  text-align: center;
+  margin-top: 100px;
+  font-weight: bold;
+}
+.league-table-container table tr:nth-child(even) {
+background-color: #f2f2f2;
+}
