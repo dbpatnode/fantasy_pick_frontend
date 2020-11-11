@@ -1,5 +1,6 @@
 import React from "react";
 import { send } from "../../services/svg-icons";
+import { capitalize } from "../../services/helpers";
 import { ModalBody } from "reactstrap";
 
 class Login extends React.Component {
@@ -9,7 +10,11 @@ class Login extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    let value = event.target.value;
+    if (event.target.name === "username") {
+      value = capitalize(value);
+    }
+    this.setState({ [event.target.name]: value });
   };
 
   render() {
