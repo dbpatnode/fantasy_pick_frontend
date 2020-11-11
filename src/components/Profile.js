@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setUser } from "../actions";
 import api from "../services/api";
+import { Link } from "react-router-dom";
+
 import { sortByName, sortByPick, findWinner } from "../services/helpers";
 
 import PickRow from "./picks/PickRow";
@@ -43,7 +45,9 @@ class Profile extends React.Component {
           <tbody>
             {sortByName(userLeagues).map((l) => (
               <tr key={l.id}>
-                <td> {l.league_name}</td>
+                <td>
+                  <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
+                </td>
               </tr>
             ))}
           </tbody>
