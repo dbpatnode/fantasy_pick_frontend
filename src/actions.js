@@ -10,7 +10,8 @@ export function fetchStandings() {
   return (dispatch) => {
     dispatch({ type: "START_ADDING_STANDINGS_REQUEST" });
     fetch(
-      "https://cors-anywhere.herokuapp.com/http://api.football-data.org/v2/competitions/PL/standings",
+      "https://thingproxy.freeboard.io/fetch/http://api.football-data.org/v2/competitions/PL/standings",
+      // "https://cors-anywhere.herokuapp.com/http://api.football-data.org/v2/competitions/PL/standings",
       headers
     )
       .then((response) => response.json())
@@ -24,7 +25,8 @@ export function fetchMatches() {
   return (dispatch) => {
     dispatch({ type: "START_ADDING_MATCHES_REQUEST" });
     fetch(
-      "https://cors-anywhere.herokuapp.com/http://api.football-data.org/v2/competitions/PL/matches",
+      "https://thingproxy.freeboard.io/fetch/http://api.football-data.org/v2/competitions/PL/matches",
+      // "https://cors-anywhere.herokuapp.com/http://api.football-data.org/v2/competitions/PL/matches",
       headers
     )
       .then((response) => response.json())
