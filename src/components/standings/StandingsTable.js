@@ -1,11 +1,26 @@
 import { loss, draw, won } from "../../services/svg-icons";
 import pic from "../../pic.png";
+import {Collapse} from 'reactstrap'
 
 const StandingsTable = (props) => {
   return (
+    <div className="page-container">
+      <h1 id="welcome-message">Premier League Pickem'<br></br><p className="under-message">Pick Matches. Compete. Win Leagues.</p></h1>
+      <iframe src='https://www.youtube.com/embed/pS6AHsNRW5A'
+      className="youtube"
+        frameBorder='0'
+        allow='autoplay; encrypted-media'
+        allowFullScreen
+        title='video'
+/>
+
+
+    <img className="pic" width="600px" src={pic} alt="club-crest"></img>
     <div className="standings-table">
-      <img className="pic" width="600px" src={pic} alt="club-crest"></img>
-      <div className="under-pic"></div>
+       
+      
+     
+      
       <table className="standings-D">
         <thead>
           <tr className="match-headers">
@@ -59,6 +74,7 @@ const StandingsTable = (props) => {
             : null}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

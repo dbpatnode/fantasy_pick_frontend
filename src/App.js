@@ -85,7 +85,8 @@ class App extends Component {
             <Navbar />
           </div>
 
-          <div className="page-container">
+       
+           
             <Switch>
               <Route
                 exact
@@ -115,7 +116,6 @@ class App extends Component {
           <Tablet>Tablet</Tablet>
           <Mobile>Mobile</Mobile> */}
         </div>
-      </div>
     );
   }
 }

@@ -97,6 +97,13 @@
   overflow: scroll;
   border-top: 60px solid #2b004a;
 }
+.standings-table1 {
+  /* grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-end: 4; */
+
+  
+}
 .standings-row-D {
   height: 70px;
   background-color: rgb(238, 238, 238);
@@ -104,19 +111,15 @@
   line-height: 45px;
 }
 .pic {
-  position: absolute;
-  top: 15%;
-  left: 15%;
+grid-column-start: 2;
+grid-row-start: 2;
 }
-.under-pic {
-  /* width: 100vw;
-  height: 60px;
-  background: #2b004a;
-  z-index: 2;
 
-  
-  grid-column-start: 2;
-  grid-column-end: 5; */
+.youtube {
+  grid-column-start: 3;
+  width: 120%;
+  height: 90%;
+  margin-left: 170px;
 }
 
 .standings-crest-D {
@@ -126,6 +129,9 @@
 }
 #standings-crest-td-D {
   padding-left: px;
+}
+.under-message {
+font-size: 40px;
 }
 
 .standings-position-D {
@@ -142,6 +148,48 @@
 
   /* border: 1px solid black; */
 }
+#welcome-message {
+  grid-column-start: 2;
+  grid-column-end: 5;
+ 
+  padding-top: 50px;
+ text-align: center;
+  font-weight: bold;
+  font-size: 60px;
+  /* color:#2b004a ;
+	background-image: -webkit-linear-gradient(180deg, #2b004a, #00e9ab);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  -webkit-animation: hue 10s infinite linear; */
+  animation: flow 15s ease-in-out infinite;
+  background: linear-gradient(-60deg,#2b004a, #00e9ab, #826c92);
+  background-size: 300%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0 50%
+  }
+}
+
+ /* @-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(180deg);
+  }
+} */
 
 .standings-D td {
   padding: 0px 20px;
