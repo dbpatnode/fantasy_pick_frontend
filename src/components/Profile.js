@@ -33,53 +33,55 @@ class Profile extends React.Component {
     const { userLeagues, userPicks, matches } = this.props;
 
     return (
-      <div className="league-container">
-        <h1>Hello {username}</h1>
+      <div className="page-container">
+        <div className="league-container">
+          <h1>Hello {username}</h1>
 
-        <table className="profile-league-table">
-          <thead>
-            <tr>
-              <th>Your Leagues</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortByName(userLeagues).map((l) => (
-              <tr key={l.id}>
-                <td>
-                  <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
-                </td>
+          <table className="profile-league-table">
+            <thead>
+              <tr>
+                <th>Your Leagues</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {sortByName(userLeagues).map((l) => (
+                <tr key={l.id}>
+                  <td>
+                    <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-        <table className="profile-picks-table">
-          <thead>
-            <th>Your Picks</th>
-            <tr>
-              <th>Match</th>
-              <th>Your Pick</th>
-              <th>Status</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortByPick(userPicks).map((p) => (
-              <tr key={p.id}>
-                <PickRow p={p} matches={matches} />
-                <td className="profile-table-points">
-                  {findWinner(p, matches) ? 1 : null}
-                </td>
+          <table className="profile-picks-table">
+            <thead>
+              <th>Your Picks</th>
+              <tr>
+                <th>Match</th>
+                <th>Your Pick</th>
+                <th>Status</th>
+                <th>Points</th>
               </tr>
-            ))}
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Total Points {this.findUserStats().length}</td>{" "}
-            </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {sortByPick(userPicks).map((p) => (
+                <tr key={p.id}>
+                  <PickRow p={p} matches={matches} />
+                  <td className="profile-table-points">
+                    {findWinner(p, matches) ? 1 : null}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total Points {this.findUserStats().length}</td>{" "}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

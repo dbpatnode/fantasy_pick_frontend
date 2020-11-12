@@ -34,39 +34,41 @@ class LeaguesContainer extends React.Component {
     const { leagues, isUser, user } = this.props;
 
     return (
-      <div className="league-container">
-        {isUser ? <AddLeague /> : null}
-        <div className="leagues-table">
-          <table>
-            {leagues ? (
-              <>
-                <thead>
-                  <tr>
-                    <th>League Name</th>
-                    <th>Members</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                {leagues ? (
-                  <tbody>
-                    {sortByJoins(leagues).map((league) => (
-                      <tr key={league.id}>
-                        <td>
-                          <Link to={`/leagues/${league.id}`}>
-                            {league.league_name}
-                          </Link>
-                        </td>
-                        <td>{league.join.length}</td>
-                        {isUser
-                          ? this.findIfOwnerOrMember(league, user.id)
-                          : null}
-                      </tr>
-                    ))}
-                  </tbody>
-                ) : null}
-              </>
-            ) : null}
-          </table>
+      <div className="page-container">
+        <div className="league-container">
+          {isUser ? <AddLeague /> : null}
+          <div className="leagues-table">
+            <table>
+              {leagues ? (
+                <>
+                  <thead>
+                    <tr>
+                      <th>League Name</th>
+                      <th>Members</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  {leagues ? (
+                    <tbody>
+                      {sortByJoins(leagues).map((league) => (
+                        <tr key={league.id}>
+                          <td>
+                            <Link to={`/leagues/${league.id}`}>
+                              {league.league_name}
+                            </Link>
+                          </td>
+                          <td>{league.join.length}</td>
+                          {isUser
+                            ? this.findIfOwnerOrMember(league, user.id)
+                            : null}
+                        </tr>
+                      ))}
+                    </tbody>
+                  ) : null}
+                </>
+              ) : null}
+            </table>
+          </div>
         </div>
       </div>
     );

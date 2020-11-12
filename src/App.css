@@ -101,8 +101,6 @@
   /* grid-column-start: 2;
   grid-column-end: 5;
   grid-row-end: 4; */
-
-  
 }
 .standings-row-D {
   height: 70px;
@@ -111,14 +109,16 @@
   line-height: 45px;
 }
 .pic {
-grid-column-start: 2;
-grid-row-start: 2;
+  grid-column-start: 2;
+  grid-row-start: 2;
 }
 
 .youtube {
+  margin-bottom: 0;
   grid-column-start: 3;
+  grid-row-start: 2;
   width: 120%;
-  height: 90%;
+  height: 100.5%;
   margin-left: 170px;
 }
 
@@ -131,7 +131,7 @@ grid-row-start: 2;
   padding-left: px;
 }
 .under-message {
-font-size: 40px;
+  font-size: 40px;
 }
 
 .standings-position-D {
@@ -151,9 +151,9 @@ font-size: 40px;
 #welcome-message {
   grid-column-start: 2;
   grid-column-end: 5;
- 
+
   padding-top: 50px;
- text-align: center;
+  text-align: center;
   font-weight: bold;
   font-size: 60px;
   /* color:#2b004a ;
@@ -162,7 +162,7 @@ font-size: 40px;
 	-webkit-text-fill-color: transparent;
   -webkit-animation: hue 10s infinite linear; */
   animation: flow 15s ease-in-out infinite;
-  background: linear-gradient(-60deg,#2b004a, #00e9ab, #826c92);
+  background: linear-gradient(-60deg, #2b004a, #00e9ab, #826c92);
   background-size: 300%;
 
   -webkit-background-clip: text;
@@ -175,14 +175,14 @@ font-size: 40px;
     background-position: 0 50%;
   }
   50% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0 50%
+    background-position: 0 50%;
   }
 }
 
- /* @-webkit-keyframes hue {
+/* @-webkit-keyframes hue {
   from {
     -webkit-filter: hue-rotate(0deg);
   }
@@ -436,9 +436,9 @@ span {
 }
 
 .league-table-container {
-width: 100vw;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .league-table-container table {
@@ -446,11 +446,11 @@ grid-template-columns: 1fr 1fr 1fr;
 }
 
 #player-name {
-float: left
+  float: left;
 }
 
 #player-points {
-  float: right
+  float: right;
 }
 #league-name {
   grid-column-start: 2;
@@ -459,5 +459,5 @@ float: left
   font-weight: bold;
 }
 .league-table-container table tr:nth-child(even) {
-background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }

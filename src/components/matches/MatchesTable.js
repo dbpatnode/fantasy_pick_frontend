@@ -38,54 +38,56 @@ class MatchesTable extends React.Component {
   };
   render() {
     return (
-      <div className="matches-table-container">
-        {this.sortCurrentMatches("all") ? (
-          <>
-            <h1>Current Week Matches</h1>
-            <div className="matches-table">
-              <table>
-                <thead>
-                  <tr className="match-headers">
-                    <th>Home Team</th>
-                    <th></th>
-                    <th>Away Team</th>
-                    <th>Date</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.sortCurrentMatches("current").map((match) => (
-                    <tr key={match.id}>
-                      <MatchRow match={match} />
+      <div className="page-container">
+        <div className="matches-table-container">
+          {this.sortCurrentMatches("all") ? (
+            <>
+              <h1>Current Week Matches</h1>
+              <div className="matches-table">
+                <table>
+                  <thead>
+                    <tr className="match-headers">
+                      <th>Home Team</th>
+                      <th></th>
+                      <th>Away Team</th>
+                      <th>Date</th>
+                      <th></th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <h1> Future Matches</h1>
-            <div className="matches-table">
-              <table>
-                <thead>
-                  <tr className="match-headers">
-                    <th>Home Team</th>
-                    <th></th>
-                    <th>Away Team</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.sortCurrentMatches("all").map((match) => (
-                    <tr key={match.id}>
-                      <MatchRow match={match} />
+                  </thead>
+                  <tbody>
+                    {this.sortCurrentMatches("current").map((match) => (
+                      <tr key={match.id}>
+                        <MatchRow match={match} />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <h1> Future Matches</h1>
+              <div className="matches-table">
+                <table>
+                  <thead>
+                    <tr className="match-headers">
+                      <th>Home Team</th>
+                      <th></th>
+                      <th>Away Team</th>
+                      <th>Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        ) : (
-          "Loading..."
-        )}
+                  </thead>
+                  <tbody>
+                    {this.sortCurrentMatches("all").map((match) => (
+                      <tr key={match.id}>
+                        <MatchRow match={match} />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : (
+            "Loading..."
+          )}
+        </div>
       </div>
     );
   }
