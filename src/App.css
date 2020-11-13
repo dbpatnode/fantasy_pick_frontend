@@ -182,6 +182,16 @@
   }
 }
 
+/* profile drop down */
+.dropdown {
+  /* height: 1.8em;
+  width: 290px;
+  overflow: auto;
+  max-height: 20px;
+  size: 4; */
+  box-sizing: border-box;
+}
+
 /* @-webkit-keyframes hue {
   from {
     -webkit-filter: hue-rotate(0deg);
