@@ -1,21 +1,22 @@
 import React from "react";
 import { findWinner, findClub, findMatch } from "../../services/helpers";
-
+import { loss, draw, won } from "../../services/svg-icons";
 const PickRow = ({ p, matches, matchWeek }) => {
   console.log(p);
   return (
-    <div>
+    <div className="ui-cards">
       {p.match.matchday == matchWeek ? (
-        <div>
-          <td>
-            {findMatch(p, "home", matches)} vs. {findMatch(p, "away", matches)}
-          </td>
-          <td>{findClub(p)}</td>
+        <div className="card">
+          <div className="content">
+           <b><span> {findMatch(p, "home", matches)} vs. {findMatch(p, "away", matches)}</span></b><br />
+         
+          <span>Pick: </span>{findClub(p)}
           {findMatch(p, "status", matches) == "FINISHED" ? (
-            <td>{findWinner(p, matches) ? "Win" : "Lost"}</td>
+            <div>{findWinner(p, matches) ? ({won}) : ({loss}) }</div>
           ) : (
-            <td> No final Score yet </td>
+            <div> No final Score yet </div>
           )}
+          </div>
         </div>
       ) : null}
     </div>
