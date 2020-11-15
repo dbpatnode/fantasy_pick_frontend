@@ -62,6 +62,13 @@ const addLeague = (league) => {
     body: JSON.stringify({ league }),
   }).then((res) => res.json());
 };
+const updateLeague = (id, league) => {
+  return fetch(`${API_ROOT}/leagues/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ league }),
+  }).then((res) => res.json());
+};
 const joinToLeague = (join) => {
   return fetch(`${API_ROOT}/joins`, {
     method: "POST",
@@ -83,6 +90,7 @@ export default {
     addLeague: addLeague,
     getLeagues: getLeagues,
     joinToLeague: joinToLeague,
+    updateLeague: updateLeague,
   },
   user: {
     updateStats: updateStats,

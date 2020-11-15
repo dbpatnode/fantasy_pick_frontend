@@ -3,25 +3,24 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
+import EditLeague from "./EditLeague";
 
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
-    let userJoin = this.props.user.joined_leagues.find(
-      (l) => l.id === league.id
-    );
-    if (!userJoin) {
-      return this.renderJoinLeague(league);
+    if (this.props.user.id === league.user.id) {
+      return this.renderEditLeague(league);
+    } else {
+      let userJoin = this.props.userLeagues.filter(
+        (l) => l.league_name === league.league_name
+      );
+      if (!userJoin) {
+        return this.renderJoinLeague(league);
+      }
     }
   };
   renderJoinLeague = (league) => <JoinLeague league={league} />;
+  renderEditLeague = (league) => <EditLeague league={league} />;
 
-  // rankings = (league, user) => {
-  //   debugger;
-  //   league.map((join) => {
-  //     // console.log(join.user === user ? return league.indexOf(join) + 1 : "");
-  //     return <td>{league.indexOf(join) + 1}</td>;
-  //   });
-  // };
   render() {
     const league = this.props.leagues.find(
       (league) => league.id === this.props.id
@@ -62,6 +61,7 @@ function mapStateToProps(state) {
     user: state.user,
     isUser: state.isUser,
     leagues: state.leagues,
+    userLeagues: state.userLeagues,
   };
 }
 

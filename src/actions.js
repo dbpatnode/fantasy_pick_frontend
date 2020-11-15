@@ -79,3 +79,9 @@ export const addJoinToLeague = (join) => {
     payload: join,
   };
 };
+export const updateLeagueName = (league) => {
+  return {
+    type: "UPDATE_LEAGUE",
+    payload: league,
+  };
+};
