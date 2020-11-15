@@ -3,18 +3,23 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
+import EditLeague from "./EditLeague";
 
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
-    let userJoin = this.props.userLeagues.filter(
-      (l) => l.league_name === league.league_name
-    );
-
-    if (!userJoin) {
-      return this.renderJoinLeague(league);
+    if (this.props.user.id === league.user.id) {
+      return this.renderEditLeague(league);
+    } else {
+      let userJoin = this.props.userLeagues.filter(
+        (l) => l.league_name === league.league_name
+      );
+      if (!userJoin) {
+        return this.renderJoinLeague(league);
+      }
     }
   };
   renderJoinLeague = (league) => <JoinLeague league={league} />;
+  renderEditLeague = (league) => <EditLeague league={league} />;
 
   render() {
     const league = this.props.leagues.find(
