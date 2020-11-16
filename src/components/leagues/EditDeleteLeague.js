@@ -5,7 +5,7 @@ import api from "../../services/api";
 import { deleteLeague, updateLeagueName } from "../../actions";
 import { InputGroup, InputGroupAddon, Input, ModalBody } from "reactstrap";
 
-class EditLeague extends React.Component {
+class EditDeleteLeague extends React.Component {
   state = {
     isEdit: false,
     league_name: "",
@@ -40,50 +40,33 @@ class EditLeague extends React.Component {
 
   render() {
     return (
-      <>
-        {!this.state.isEdit ? (
-          <button
-            onClick={() => this.handelEditLeague(this.props.league.id)}
-            className="edit-delete-league-button"
-          >
-            Edit/Delete League
-          </button>
-        ) : (
-          <div className="edit-delete-league">
-            <ModalBody>
-              <form
-                onSubmit={(e) => this.handleSubmit(e, this.props.league.id)}
-              >
-                <InputGroup>
-                  <Input
-                    type="text"
-                    name="league_name"
-                    value={this.state.league_name}
-                    onChange={this.handleChange}
-                  />
-                  <InputGroupAddon addonType="append">
-                    <button
-                      className="edit-league-button"
-                      onClick={(e) =>
-                        this.handleSubmit(e, this.props.league.id)
-                      }
-                    >
-                      Change Name
-                    </button>
-                  </InputGroupAddon>
-                </InputGroup>
-              </form>
+      <ModalBody>
+        <form onSubmit={(e) => this.handleSubmit(e, this.props.league.id)}>
+          <InputGroup>
+            <Input
+              type="text"
+              name="league_name"
+              value={this.state.league_name}
+              onChange={this.handleChange}
+            />
+            <InputGroupAddon addonType="append">
               <button
-                onClick={() => this.handleDelete(this.props.league.id)}
-                className="delete-league-button"
+                className="edit-league-button"
+                onClick={(e) => this.handleSubmit(e, this.props.league.id)}
               >
-                {" "}
-                Delete
+                Change Name
               </button>
-            </ModalBody>
-          </div>
-        )}{" "}
-      </>
+            </InputGroupAddon>
+          </InputGroup>
+        </form>
+        <button
+          onClick={() => this.handleDelete(this.props.league.id)}
+          className="delete-league-button"
+        >
+          {" "}
+          Delete
+        </button>
+      </ModalBody>
     );
   }
 }
@@ -108,4 +91,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(EditLeague));
+)(withRouter(EditDeleteLeague));

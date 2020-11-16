@@ -69,6 +69,12 @@ const updateLeague = (id, league) => {
     body: JSON.stringify({ league }),
   }).then((res) => res.json());
 };
+const deleteLeague = (id) => {
+  return fetch(`${API_ROOT}/leagues/${id}`, {
+    method: "DELETE",
+    headers: headers,
+  }).then((res) => res.json());
+};
 const joinToLeague = (join) => {
   return fetch(`${API_ROOT}/joins`, {
     method: "POST",
@@ -91,6 +97,7 @@ export default {
     getLeagues: getLeagues,
     joinToLeague: joinToLeague,
     updateLeague: updateLeague,
+    deleteLeague: deleteLeague,
   },
   user: {
     updateStats: updateStats,
