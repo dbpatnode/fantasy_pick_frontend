@@ -85,3 +85,9 @@ export const updateLeagueName = (league) => {
     payload: league,
   };
 };
+export const deleteLeague = (leagueId) => {
+  return {
+    type: "DELETE_LEAGUE",
+    payload: leagueId,
+  };
+};

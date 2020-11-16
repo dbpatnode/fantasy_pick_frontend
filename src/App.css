@@ -304,6 +304,54 @@ span {
   letter-spacing: 1px;
   outline: none;
 }
+
+.edit-league-button:focus,
+.edit-league-button {
+  text-align: right;
+  color: gray;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.delete-league-button:focus,
+.delete-league-button {
+  text-align: center;
+  color: gray;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  margin: auto;
+  width: 70%;
+}
+
+.edit-delete-league-button:focus,
+.edit-delete-league-button {
+  text-align: center;
+  margin: auto;
+  border: none;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  background: grey;
+  border-radius: 20px;
+  width: 50%;
+  height: 50%;
+  letter-spacing: 1px;
+  outline: none;
+}
+.edit-delete-league {
+  margin: auto;
+}
 #main-menu {
   width: 100vw;
   position: relative;
