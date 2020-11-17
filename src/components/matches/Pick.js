@@ -2,12 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { addPick } from "../../actions";
 import api from "../../services/api";
+// import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 
 class Pick extends React.Component {
   state = {
     winner: "",
     showSubmitButton: false,
     hidePick: false,
+    awayTeam: 0,
+    homeTeam: 0,
   };
   handleSubmitPick = (match) => {
     let pick = {
@@ -15,6 +18,8 @@ class Pick extends React.Component {
       match_id: match.id,
       user_id: this.props.user.id,
       match_day: match.matchday,
+      homeTeam: this.state.homeTeam,
+      awayTeam: this.state.awayTeam,
     };
 
     api.pick.addPick(pick).then((data) => {
@@ -33,6 +38,11 @@ class Pick extends React.Component {
     });
   };
   handleChange = (e) => {
+    if (e.target.name !== "winner") {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    }
     if (e.target.value !== 0) {
       this.setState({
         winner: e.target.value,
@@ -52,7 +62,11 @@ class Pick extends React.Component {
       <>
         {!this.state.hidePick ? (
           <>
-            <select name="winner" onChange={this.handleChange}>
+            <select
+              className="label-winner"
+              name="winner"
+              onChange={this.handleChange}
+            >
               {this.state.showSubmitButton ? null : (
                 <option name="winner" value="0">
                   Please Choose Winner From List{" "}
@@ -69,6 +83,26 @@ class Pick extends React.Component {
                 {match.awayTeam.name}
               </option>
             </select>
+            <br />
+            <label className="score-input">{match.homeTeam.name}</label>{" "}
+            <input
+              name="homeTeam"
+              min={0}
+              value={this.state.homeTeam}
+              type="number"
+              onChange={this.handleChange}
+            />
+            <br />
+            <label className="score-input">{match.awayTeam.name}</label>{" "}
+            <input
+              name="awayTeam"
+              min={0}
+              value={this.state.awayTeam}
+              type="number"
+              onChange={this.handleChange}
+              className="score-input"
+            />
+            <br />
             {this.state.showSubmitButton ? (
               <button
                 className="pick-button"

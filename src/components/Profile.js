@@ -33,12 +33,13 @@ class Profile extends React.Component {
   handleDropdownChange = (e) => {
     // debugger;
     let selected = e.target.textContent;
-    this.setState({ inputValue: selected})
+    this.setState({ inputValue: selected });
   };
 
   render() {
     const { username } = this.props.user;
     const { userLeagues, userPicks, matches } = this.props;
+    console.log(userPicks);
     const weekOptions = [
       { key: "1", value: "1", flag: "1", text: "1" },
       { key: "2", value: "2", flag: "2", text: "2" },
@@ -119,7 +120,7 @@ class Profile extends React.Component {
               <th>Your Picks</th>
               <tr>
                 <th>Match</th>
-                <th>Your Pick</th>
+                <th>Your Winner</th>
                 <th>Status</th>
                 <th>Points</th>
               </tr>
@@ -127,7 +128,11 @@ class Profile extends React.Component {
             <tbody>
               {sortByPick(userPicks).map((p) => (
                 <tr key={p.id}>
-                  <PickRow p={p} matches={matches} matchWeek={this.state.inputValue} />
+                  <PickRow
+                    p={p}
+                    matches={matches}
+                    // matchWeek={this.state.inputValue}
+                  />
                   <td className="profile-table-points">
                     {findWinner(p, matches) ? 1 : null}
                   </td>
