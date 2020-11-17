@@ -44,14 +44,15 @@ export const rootReducer = (state = initialState, action) => {
     case "ADD_STANDINGS": {
       return {
         ...state,
-        standings: action.standings.standings[0].table,
-        competition: action.standings.competition,
+        standings: action.payload.standings[0].table,
+        competition: action.payload.competition,
       };
     }
+
     case "ADD_MATCHES": {
       return {
         ...state,
-        matches: action.matches,
+        matches: action.payload.matches,
       };
     }
     case "SET_PICKS": {
@@ -80,15 +81,47 @@ export const rootReducer = (state = initialState, action) => {
         userLeagues: [...state.userLeagues, action.payload],
       };
     }
+    case "UPDATE_LEAGUE": {
+      let updatedList = [
+        ...state.leagues.filter((league) => league.id !== action.payload.id),
+        action.payload,
+      ];
+      let updatedUserList = [
+        ...state.userLeagues.filter(
+          (league) => league.id !== action.payload.id
+        ),
+        action.payload,
+      ];
+
+      return {
+        ...state,
+        leagues: updatedList,
+        userLeagues: updatedUserList,
+      };
+    }
+    case "DELETE_LEAGUE": {
+      let updatedList = [
+        ...state.leagues.filter((league) => league.id !== action.payload),
+      ];
+      let updatedUserList = [
+        ...state.userLeagues.filter((league) => league.id !== action.payload),
+      ];
+
+      return {
+        ...state,
+        leagues: updatedList,
+        userLeagues: updatedUserList,
+      };
+    }
     case "ADD_JOIN": {
       let updatedList = [
         ...state.leagues.filter((league) => league.id !== action.payload.id),
         action.payload,
       ];
-      var join = action.payload.join.filter(
+      let join = action.payload.join.filter(
         (join) => join.user_id === state.user.id
       );
-      var joinToUpdate = {
+      let joinToUpdate = {
         id: join[0].id,
         league_name: action.payload.league_name,
         user_id: join[0].user_id,

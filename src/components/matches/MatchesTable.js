@@ -41,7 +41,7 @@ class MatchesTable extends React.Component {
     // this.props.matches.filter((match) => match.homeTeam.name === "Sheffield United FC" || match.awayTeam.name === "Sheffield United FC")
   };
   render() {
-    
+
     return (
       <div className="page-container">
         <div className="matches-table-container">
@@ -77,6 +77,7 @@ class MatchesTable extends React.Component {
                       <th></th>
                       <th>Away Team</th>
                       <th>Date</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>

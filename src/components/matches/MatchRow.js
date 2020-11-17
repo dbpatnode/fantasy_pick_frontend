@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import Pick from "./Pick";
-import { getTime } from "../../services/helpers";
+import { getTime, removeFC } from "../../services/helpers";
 
 class MatchRow extends React.Component {
   state = {
@@ -32,6 +32,7 @@ class MatchRow extends React.Component {
     let isPicked = this.props.userPicks.find(
       (m) => m.match.match_id === match.id
     );
+
     return isPicked !== undefined ? true : false;
   };
 
@@ -39,9 +40,16 @@ class MatchRow extends React.Component {
     let winner = this.props.userPicks.find((m) => m.match.match_id === match.id)
       .winner;
     if (winner === "HOME_TEAM") {
-      return match.homeTeam.name;
+      return removeFC(match.homeTeam.name);
     }
-    return match.awayTeam.name;
+    return removeFC(match.awayTeam.name);
+  };
+  findPickScore = (match) => {
+    let score = this.props.userPicks.find((m) => m.match.match_id === match.id)
+      .winner;
+    if (score.homeTeam && score.awayTeam) {
+      return `${score.homeTeam} - ${score.awayTeam}`;
+    } else return "No score added to pick";
   };
 
   render() {
@@ -57,7 +65,7 @@ class MatchRow extends React.Component {
       <>
         <td id="home-team-td">
           <img src={homeTeam} alt="team crest" width="80px" /> <br />
-          {match.homeTeam.name}{" "}
+          {removeFC(match.homeTeam.name)}{" "}
         </td>
 
         <td className="vs">{this.gameStatus(match.status, match)}</td>
@@ -65,7 +73,7 @@ class MatchRow extends React.Component {
         <td id="away-team-td">
           {" "}
           <img src={awayTeam} alt="team crest" width="80px" /> <br />
-          {match.awayTeam.name}
+          {removeFC(match.awayTeam.name)}
         </td>
         <td>{moment(match.utcDate).format("LLLL")}</td>
         {this.props.user.id &&
@@ -84,7 +92,9 @@ class MatchRow extends React.Component {
                   <>
                     {" "}
                     {this.filterUserPicks(match) ? (
-                      `Your pick: ${this.findWinnerName(match)}`
+                      `Your pick: ${this.findWinnerName(
+                        match
+                      )}, score: ${this.findPickScore(match)}`
                     ) : (
                       <button className="nav-buttons" onClick={this.handlePick}>
                         add pick

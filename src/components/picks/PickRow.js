@@ -2,8 +2,10 @@ import React from "react";
 import { findWinner, findClub, findMatch } from "../../services/helpers";
 import { loss, draw, won } from "../../services/svg-icons";
 const PickRow = ({ p, matches, matchWeek }) => {
-  console.log(p);
+  // debugger;
+  console.log(matches);
   return (
+ 
     <div className="ui-cards">
       {p.match.matchday == matchWeek ? (
         <div className="card">
@@ -20,6 +22,7 @@ const PickRow = ({ p, matches, matchWeek }) => {
         </div>
       ) : null}
     </div>
+
   );
 };
 

@@ -12,9 +12,6 @@ class Signup extends React.Component {
 
   handleChange = (event) => {
     let value = event.target.value;
-    if (event.target.name === "username") {
-      value = capitalize(value);
-    }
     this.setState({ [event.target.name]: value });
   };
 
