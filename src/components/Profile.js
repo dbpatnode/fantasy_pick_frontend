@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import { sortByName, sortByPick, findWinner } from "../services/helpers";
 import PickRow from "./picks/PickRow";
-
+import { loss, draw, won } from "../services/svg-icons";
 class Profile extends React.Component {
   state = {
     inputValue: "",
@@ -49,7 +49,7 @@ class Profile extends React.Component {
       { key: "6", value: "6", flag: "6", text: "6" },
       { key: "7", value: "7", flag: "7", text: "7" },
       { key: "8", value: "8", flag: "8", text: "8" },
-      { key: "9", value: "9", flag: "9", text: "9" },
+      { key: "9", value: "9", selected : true, flag: "9", text: "9"},
       { key: "10", value: "10", flag: "10", text: "10" },
       { key: "11", value: "11", flag: "11", text: "11" },
       { key: "12", value: "12", flag: "12", text: "12" },
@@ -87,33 +87,50 @@ class Profile extends React.Component {
 
         <select className="ui-dropdown">{}</select> */}
 
-        <Dropdown
+        
+        <div className="league-container">
+          
+
+        
+          
+              <h1>Hello {username}</h1>
+                <h1>Your Leagues</h1>
+                
+              
+           
+            
+              {sortByName(userLeagues).map((l) => (
+                <div key={l.id}>
+                  <div>
+                    <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
+                  </div>
+                </div>
+              ))}
+           </div>
+          
+
+
+          
+       
+              
+                <div className="picks-container"><h1>Your Picks</h1>
+                <h3>Matchweek:</h3>
+                <Dropdown
           placeholder="Week"
-          placeholder="Select Country"
-          fluid
+          
           selection
           options={weekOptions}
           onChange={(e) => this.handleDropdownChange(e)}
         />
-        <div className="league-container">
-          <h1>Hello {username}</h1>
-
-          <table className="profile-league-table">
-            <thead>
-              <tr>
-                <th>Your Leagues</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortByName(userLeagues).map((l) => (
-                <tr key={l.id}>
-                  <td>
-                    <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </div>  
+             
+            
+            <div className="matches-outcome">
+              
+              {sortByPick(userPicks).map((p) => (
+                <div key={p.id}>
+                  <PickRow p={p} matches={matches} matchWeek={this.state.inputValue} />
+                  <div className="profile-table-points">
 
           <table className="profile-picks-table">
             <thead>
@@ -134,19 +151,20 @@ class Profile extends React.Component {
                     // matchWeek={this.state.inputValue}
                   />
                   <td className="profile-table-points">
+
                     {findWinner(p, matches) ? 1 : null}
-                  </td>
-                </tr>
+                  </div>
+                  </div>
+              
               ))}
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total Points {this.findUserStats().length}</td>{" "}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              
+              
+                <div>Total Points {this.findUserStats().length}</div>{" "}
+                
+            </div>
+          
+        
+        
       </div>
     );
   }

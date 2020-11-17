@@ -57,7 +57,8 @@ class LeaguesContainer extends React.Component {
                               {league.league_name}
                             </Link>
                           </td>
-                          <td>{league.join.length}</td>
+                          
+                          <td className="statistic"> {league.join.length} Members</td>
                           {isUser
                             ? this.findIfOwnerOrMember(league, user.id)
                             : null}

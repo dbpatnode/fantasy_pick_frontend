@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import MatchRow from "./MatchRow";
 
 class MatchesTable extends React.Component {
+
+  matchday = () => {
+    return this.props.picks[0].match.current_matchday + 1
+  }
   findCurrentMatchDay = () => {
     var now = new Date();
     var isoDate = new Date(
@@ -37,13 +41,13 @@ class MatchesTable extends React.Component {
     // this.props.matches.filter((match) => match.homeTeam.name === "Sheffield United FC" || match.awayTeam.name === "Sheffield United FC")
   };
   render() {
-    console.log(this.props.matches);
+
     return (
       <div className="page-container">
         <div className="matches-table-container">
           {this.sortCurrentMatches("all") ? (
             <>
-              <h1>Current Week Matches</h1>
+              <h1>Matchweek {this.matchday()} </h1>
               <div className="matches-table">
                 <table>
                   <thead>
@@ -100,6 +104,7 @@ function mapStateToProps(state) {
   return {
     matches: state.matches,
     user: state.user,
+   picks: state.picks
     // token: state.token,
   };
 }

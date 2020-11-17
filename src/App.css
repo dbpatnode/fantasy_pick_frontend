@@ -81,13 +81,36 @@
 .league-container {
   margin-top: 100px;
 
-  grid-column-start: 2;
-  grid-column-end: 5;
+  grid-column-start: 3;
+  grid-row-start: 1;
 }
-
+.card {
+  width: 450px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.picks-container {
+  grid-column-start: 3;
+  grid-row-start: 5;
+ 
+}
+.profile-header {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+.matches-outcome {
+  grid-column-start: 4;
+}
 .input-group {
   margin-bottom: 20px;
 }
+
+.user-picks {
+  background: #f2f2f2;
+  margin-bottom: 10px;
+
+
 input[type="number"] {
   width: 20%;
 }
@@ -98,6 +121,7 @@ select.label-winner {
   width: 100%;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 5px;
+
 }
 
 .standings-table {
