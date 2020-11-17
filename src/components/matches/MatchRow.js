@@ -32,6 +32,7 @@ class MatchRow extends React.Component {
     let isPicked = this.props.userPicks.find(
       (m) => m.match.match_id === match.id
     );
+
     return isPicked !== undefined ? true : false;
   };
 
@@ -42,6 +43,13 @@ class MatchRow extends React.Component {
       return removeFC(match.homeTeam.name);
     }
     return removeFC(match.awayTeam.name);
+  };
+  findPickScore = (match) => {
+    let score = this.props.userPicks.find((m) => m.match.match_id === match.id)
+      .winner;
+    if (score.homeTeam && score.awayTeam) {
+      return `${score.homeTeam} - ${score.awayTeam}`;
+    } else return "No score added to pick";
   };
 
   render() {
@@ -84,7 +92,9 @@ class MatchRow extends React.Component {
                   <>
                     {" "}
                     {this.filterUserPicks(match) ? (
-                      `Your pick: ${this.findWinnerName(match)}`
+                      `Your pick: ${this.findWinnerName(
+                        match
+                      )}, score: ${this.findPickScore(match)}`
                     ) : (
                       <button className="nav-buttons" onClick={this.handlePick}>
                         add pick
