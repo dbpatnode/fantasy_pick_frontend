@@ -57,10 +57,17 @@ export const findWinner = (p, matches) => {
 
 export const findClub = (p) => {
   if (p.winner === "HOME_TEAM") {
-    return p.match.home_team_name;
+    return removeFC(p.match.home_team_name);
   } else {
-    return p.match.away_team_name;
+    return removeFC(p.match.away_team_name);
   }
+};
+export const removeFC = (name) => {
+  return name
+    .toString()
+    .split(" ")
+    .filter((a) => a !== "FC")
+    .join(" ");
 };
 
 export const findMatch = (p, data, matches) => {
@@ -68,13 +75,18 @@ export const findMatch = (p, data, matches) => {
 
   switch (data) {
     case "away": {
-      return match.map((m) => m.awayTeam.name);
+      let name = match.map((m) => m.awayTeam.name);
+
+      return removeFC(name);
     }
     case "home": {
-      return match.map((m) => m.homeTeam.name);
+      let name = match.map((m) => m.homeTeam.name);
+
+      return removeFC(name);
     }
     case "status": {
-      return match.map((m) => m.status);
+      let status = match.map((m) => m.status);
+      return status;
     }
   }
   return data;

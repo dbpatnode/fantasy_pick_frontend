@@ -88,6 +88,17 @@
 .input-group {
   margin-bottom: 20px;
 }
+input[type="number"] {
+  width: 20%;
+}
+.score-input {
+  font-size: 90%;
+}
+select.label-winner {
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 5px;
+}
 
 .standings-table {
   grid-column-start: 2;

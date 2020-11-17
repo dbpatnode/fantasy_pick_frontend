@@ -39,6 +39,7 @@ class Profile extends React.Component {
   render() {
     const { username } = this.props.user;
     const { userLeagues, userPicks, matches } = this.props;
+    console.log(userPicks);
     const weekOptions = [
       { key: "1", value: "1", flag: "1", text: "1" },
       { key: "2", value: "2", flag: "2", text: "2" },
@@ -119,7 +120,7 @@ class Profile extends React.Component {
               <th>Your Picks</th>
               <tr>
                 <th>Match</th>
-                <th>Your Pick</th>
+                <th>Your Winner</th>
                 <th>Status</th>
                 <th>Points</th>
               </tr>

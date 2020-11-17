@@ -3,7 +3,7 @@ import { findWinner, findClub, findMatch } from "../../services/helpers";
 
 const PickRow = ({ p, matches, matchWeek }) => {
   // debugger;
-  // console.log(p);
+  console.log(matches);
   return (
     <>
       {/* {p.match.matchday == matchWeek ? ( */}
