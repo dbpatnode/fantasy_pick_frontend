@@ -83,3 +83,12 @@ export const findMatch = (p, data, matches) => {
 export const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const findUsersStats = (picks) => {
+  let passedPicks = picks.filter((pick) => pick.match.status === "FINISHED");
+  let usersPassedPicks = passedPicks.map((pick) => pick.user.id);
+  let userToUpdate = usersPassedPicks.filter(
+    (value, index) => usersPassedPicks.indexOf(value) === index
+  );
+  return userToUpdate;
+};

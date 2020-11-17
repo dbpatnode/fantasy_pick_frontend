@@ -33,7 +33,7 @@ class Profile extends React.Component {
   handleDropdownChange = (e) => {
     // debugger;
     let selected = e.target.textContent;
-    this.setState({ inputValue: selected})
+    this.setState({ inputValue: selected });
   };
 
   render() {
@@ -127,7 +127,11 @@ class Profile extends React.Component {
             <tbody>
               {sortByPick(userPicks).map((p) => (
                 <tr key={p.id}>
-                  <PickRow p={p} matches={matches} matchWeek={this.state.inputValue} />
+                  <PickRow
+                    p={p}
+                    matches={matches}
+                    // matchWeek={this.state.inputValue}
+                  />
                   <td className="profile-table-points">
                     {findWinner(p, matches) ? 1 : null}
                   </td>

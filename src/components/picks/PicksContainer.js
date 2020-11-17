@@ -7,7 +7,7 @@ import PickRow from "./PickRow";
 class PicksContainer extends Component {
   render() {
     const { matches, picks } = this.props;
-    console.log(this.props.picks);
+    // console.log(this.props.picks);
     return (
       <div className="league-container">
         <div className="leagues-table">

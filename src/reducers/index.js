@@ -44,14 +44,15 @@ export const rootReducer = (state = initialState, action) => {
     case "ADD_STANDINGS": {
       return {
         ...state,
-        standings: action.standings.standings[0].table,
-        competition: action.standings.competition,
+        standings: action.payload.standings[0].table,
+        competition: action.payload.competition,
       };
     }
+
     case "ADD_MATCHES": {
       return {
         ...state,
-        matches: action.matches,
+        matches: action.payload.matches,
       };
     }
     case "SET_PICKS": {
