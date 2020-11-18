@@ -38,7 +38,7 @@ class LeaguesContainer extends React.Component {
         <div className="league-container">
           {isUser ? <AddLeague /> : null}
           <div className="leagues-table">
-            <table>
+            <table className="ui selectable celled table">
               {leagues ? (
                 <>
                   <thead>

@@ -31,7 +31,7 @@ class LeagueShowPage extends React.Component {
       <div className="league-table-container">
         <h1 id="league-name">{league.league_name}</h1>
         {this.props.isUser ? this.checkUserJoin(league) : null}
-        <table>
+        <table className="ui selectable celled table">
           <thead>
             <tr>
               <th id="player-name">Name</th>

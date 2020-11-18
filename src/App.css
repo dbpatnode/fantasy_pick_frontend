@@ -2,7 +2,7 @@
 /* DESKTOP VIEW  */
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif!important;
 }
 
 .page-container {
@@ -33,6 +33,9 @@
   color: white;
   height: 60px;
   /* border-top: 15px solid #2b004a; */
+}
+.modal-title {
+  font-size: 25px;
 }
 
 .box-score {
@@ -81,7 +84,9 @@
 .league-container {
   margin-top: 100px;
 
-  grid-column-start: 3;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  
   grid-row-start: 1;
 }
 .card {
@@ -91,16 +96,20 @@
   text-align: center;
 }
 .picks-container {
-  grid-column-start: 3;
-  grid-row-start: 5;
+  grid-column-start: 2;
+  grid-row-start: 3;
  
 }
 .profile-header {
-  grid-column-start: 3;
-  grid-row-start: 1;
+ text-align: center
 }
 .matches-outcome {
-  grid-column-start: 4;
+  grid-column-start: 3;
+  height: 500px;
+  
+  grid-row-start: 1;
+ 
+
 }
 .input-group {
   margin-bottom: 20px;
@@ -109,7 +118,7 @@
 .user-picks {
   background: #f2f2f2;
   margin-bottom: 10px;
-
+}
 
 input[type="number"] {
   width: 20%;
@@ -482,6 +491,7 @@ span {
 }
 
 .signin-button {
+  margin-top: 6px;
   width: 30px;
   height: 30px;
   float: right;
@@ -497,6 +507,7 @@ span {
   transition: 0.2s ease-out;
 }
 
+
 .signin-button:hover {
   background: #00e9ab;
   color: #fff;
@@ -507,8 +518,8 @@ span {
   outline: none;
 }
 .bi-arrow-right-circle {
-  margin-left: -4px;
-  margin-top: -14px;
+  margin-left: -10px;
+  margin-top: -5px;
 }
 
 .profile-picks-table {
@@ -554,3 +565,51 @@ span {
 .league-table-container table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+.statistic {
+  font-size: 15px;
+
+}
+.profile-header {
+  background-color: #2b004a;
+  padding: 20px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.ui.statistic>.value, .ui.statistics .statistic>.value {
+color: #00E9AB!important;
+}
+.ui.statistic>.label, .ui.statistics .statistic>.label {
+  color: white!important;
+}
+
+.user-profile-leagues {
+
+grid-column-start: 2;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+.individual-league {
+  background: #f2f2f2;
+  margin: 5px;
+  border-radius: 2px;
+  color: rgb(202, 166, 202);
+}
+
+.individual-league:hover {
+  background-color:#00E9AB ;
+
+}
+#league-link {
+  color:black
+}
+#league-link:hover {
+    color:white ;
+    text-decoration: none;
+  }

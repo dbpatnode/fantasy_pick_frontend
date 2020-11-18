@@ -49,7 +49,7 @@ class Profile extends React.Component {
       { key: "6", value: "6", flag: "6", text: "6" },
       { key: "7", value: "7", flag: "7", text: "7" },
       { key: "8", value: "8", flag: "8", text: "8" },
-      { key: "9", value: "9", selected : true, flag: "9", text: "9"},
+      { key: "9", value: "9", selected: true, flag: "9", text: "9" },
       { key: "10", value: "10", flag: "10", text: "10" },
       { key: "11", value: "11", flag: "11", text: "11" },
       { key: "12", value: "12", flag: "12", text: "12" },
@@ -87,84 +87,56 @@ class Profile extends React.Component {
 
         <select className="ui-dropdown">{}</select> */}
 
-        
         <div className="league-container">
-          
+          <h5>Logged in as: {username}</h5>
 
-        
-          
-              <h1>Hello {username}</h1>
-                <h1>Your Leagues</h1>
-                
-              
-           
-            
+          <div className="profile-header">
+            <span class="ui statistic">
+              <h1>Fantasy</h1>
+              <span className="value">{this.findUserStats().length}</span>
+              <span class="label">Total Points</span>
+            </span>
+            <div className="user-profile-leagues">
+              <h1>Your Leagues</h1>
+
               {sortByName(userLeagues).map((l) => (
                 <div key={l.id}>
-                  <div>
-                    <Link to={`/leagues/${l.id}`}>{l.league_name}</Link>
+                  <div className="individual-league">
+                    <Link id="league-link" to={`/leagues/${l.id}`}>
+                      {l.league_name}
+                    </Link>
                   </div>
                 </div>
               ))}
-           </div>
-          
-
-
-          
-       
-              
-                <div className="picks-container"><h1>Your Picks</h1>
-                <h3>Matchweek:</h3>
-                <Dropdown
-          placeholder="Week"
-          
-          selection
-          options={weekOptions}
-          onChange={(e) => this.handleDropdownChange(e)}
-        />
-              </div>  
-             
-            
-            <div className="matches-outcome">
-              
+            </div>
+            <div className="picks-container">
+              <h1>Your Picks</h1>
+              <h3>Matchweek:</h3>
+              <Dropdown
+                placeholder="Week"
+                selection
+                options={weekOptions}
+                onChange={(e) => this.handleDropdownChange(e)}
+              />
+            </div>
+           
+          </div>
+        </div>
+        <div id="matches-outcome">
               {sortByPick(userPicks).map((p) => (
                 <div key={p.id}>
-                  <PickRow p={p} matches={matches} matchWeek={this.state.inputValue} />
-                  <div className="profile-table-points">
-
-          <table className="profile-picks-table">
-            <thead>
-              <th>Your Picks</th>
-              <tr>
-                <th>Match</th>
-                <th>Your Winner</th>
-                <th>Status</th>
-                <th>Points</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortByPick(userPicks).map((p) => (
-                <tr key={p.id}>
                   <PickRow
                     p={p}
                     matches={matches}
-                    // matchWeek={this.state.inputValue}
+                    matchWeek={this.state.inputValue}
                   />
-                  <td className="profile-table-points">
-
+                  <div className="profile-table-points">
                     {findWinner(p, matches) ? 1 : null}
                   </div>
-                  </div>
-              
+                </div>
               ))}
-              
-              
-                <div>Total Points {this.findUserStats().length}</div>{" "}
-                
+              <div>Total Points {this.findUserStats().length}</div>{" "}
             </div>
-          
-        
-        
       </div>
     );
   }
