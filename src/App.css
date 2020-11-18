@@ -489,6 +489,31 @@ span {
   right: 0%;
   transition: all 0.5s ease;
 }
+.form {
+  padding: 10px
+}
+#username-input {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+#password-input {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  width: 200px;
+  margin-left: 0px;
+}
+
+#email-input {
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+#password-c-input {
+  margin-bottom: 10px;
+  width: 200px;
+}
 
 .signin-button {
   margin-top: 6px;
