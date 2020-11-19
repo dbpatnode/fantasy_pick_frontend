@@ -7,7 +7,7 @@ import PickRow from "./PickRow";
 class PicksContainer extends Component {
   render() {
     const { matches, picks } = this.props;
-    // console.log(this.props.picks);
+    console.log(this.props.picks);
     return (
       <div className="league-container">
         <div className="leagues-table">
@@ -25,7 +25,7 @@ class PicksContainer extends Component {
               {sortByPick(picks).map((p) => (
                 <tr key={p.id}>
                   <td>{p.user.username} </td>
-                  <PickRow p={p} matches={matches} />
+                  <PickRow p={p} matches={matches} matchWeek="all" />
                   <td>{p.user.wins} </td>
                 </tr>
               ))}
@@ -41,6 +41,7 @@ function mapStateToProps(state) {
   return {
     picks: state.picks,
     matches: state.matches,
+    currentMatchWeek: state.currentMatchWeek,
   };
 }
 

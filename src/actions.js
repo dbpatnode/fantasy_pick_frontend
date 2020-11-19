@@ -24,6 +24,12 @@ export const setLogout = () => {
     payload: {},
   };
 };
+export const setMatchWeek = (week) => {
+  return {
+    type: "SET_CURRENT_WEEK",
+    payload: week,
+  };
+};
 export const addPick = (pick) => {
   return {
     type: "ADD_PICK",

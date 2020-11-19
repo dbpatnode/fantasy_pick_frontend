@@ -10,9 +10,9 @@ import PickRow from "./picks/PickRow";
 import { loss, draw, won } from "../services/svg-icons";
 class Profile extends React.Component {
   state = {
-    inputValue: "",
+    inputValue: this.props.currentMatchWeek,
   };
-  findUserStats = (selected) => {
+  findUserStats = () => {
     let userWins = this.props.userPicks.map((p) =>
       this.props.matches.filter(
         (m) => m.score.winner === p.winner && m.id === p.match.match_id
@@ -31,7 +31,6 @@ class Profile extends React.Component {
   };
 
   handleDropdownChange = (e) => {
-    // debugger;
     let selected = e.target.textContent;
     this.setState({ inputValue: selected });
   };
@@ -116,27 +115,27 @@ class Profile extends React.Component {
                 placeholder="Week"
                 selection
                 options={weekOptions}
+                value={this.state.inputValue}
                 onChange={(e) => this.handleDropdownChange(e)}
               />
+              <div id="matches-outcome">
+                {sortByPick(userPicks).map((p) => (
+                  <div key={p.id}>
+                    <PickRow
+                      p={p}
+                      matches={matches}
+                      matchWeek={this.state.inputValue}
+                    />
+                    <div className="profile-table-points">
+                      {findWinner(p, matches) ? 1 : null}
+                    </div>
+                  </div>
+                ))}
+                <div>Total Points {this.findUserStats().length}</div>{" "}
+              </div>
             </div>
-           
           </div>
         </div>
-        <div id="matches-outcome">
-              {sortByPick(userPicks).map((p) => (
-                <div key={p.id}>
-                  <PickRow
-                    p={p}
-                    matches={matches}
-                    matchWeek={this.state.inputValue}
-                  />
-                  <div className="profile-table-points">
-                    {findWinner(p, matches) ? 1 : null}
-                  </div>
-                </div>
-              ))}
-              <div>Total Points {this.findUserStats().length}</div>{" "}
-            </div>
       </div>
     );
   }
@@ -149,6 +148,7 @@ function mapStateToProps(state) {
     token: state.token,
     userLeagues: state.userLeagues,
     userPicks: state.userPicks,
+    currentMatchWeek: state.currentMatchWeek,
   };
 }
 function mapDispatchToProps(dispatch) {

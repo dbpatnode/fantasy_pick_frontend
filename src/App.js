@@ -7,11 +7,15 @@ import {
   setUser,
   setStandings,
   setMatches,
+  setMatchWeek,
 } from "./actions";
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 import api from "./services/api";
-import { findUsersStats } from "./services/helpers";
+import {
+  findUsersStats,
+  findMatchesForCurrentMatchDay,
+} from "./services/helpers";
 
 import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
@@ -68,6 +72,7 @@ class App extends Component {
     api.matches.fetchMatches().then((data) => {
       if (!data.error) {
         this.props.setMatches(data);
+        this.setMatchWeek();
         this.getUsersStats();
       }
     });
@@ -104,6 +109,11 @@ class App extends Component {
     });
   };
 
+  setMatchWeek = () => {
+    let week = findMatchesForCurrentMatchDay(this.props.matches).matchday;
+    this.props.setMatchWeek(week);
+  };
+
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.token;
@@ -129,7 +139,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-           
         <Desktop>
           <div>
             <div>
@@ -184,7 +193,7 @@ function mapDispatchToProps(dispatch) {
   // actions.js
   return {
     setUser: (user) => dispatch(setUser(user)),
-
+    setMatchWeek: (week) => dispatch(setMatchWeek(week)),
     setPicks: (picks) => dispatch(setPicks(picks)),
     setLeagues: (leagues) => dispatch(setLeagues(leagues)),
     setStandings: (standings) => dispatch(setStandings(standings)),

@@ -1,30 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
+import { findMatchesForCurrentMatchDay } from "../../services/helpers";
 import MatchRow from "./MatchRow";
 
 class MatchesTable extends React.Component {
-
-  matchday = () => {
-    return this.props.picks[0].match.current_matchday + 1
-  }
-  findCurrentMatchDay = () => {
-    var now = new Date();
-    var isoDate = new Date(
-      now.getTime() - now.getTimezoneOffset() * 60000
-    ).toISOString();
-
-    return this.props.matches.find((match) => match.utcDate > isoDate);
-  };
+  // matchday = () => {
+  //   return this.props.picks[0].match.current_matchday;
+  // };
 
   sortCurrentMatches = (data) => {
-    if (this.findCurrentMatchDay()) {
-      let CurrentMatchDay = this.findCurrentMatchDay().matchday;
+    const { matches } = this.props;
+    if (findMatchesForCurrentMatchDay(matches)) {
+      let CurrentMatchDay = findMatchesForCurrentMatchDay(matches).matchday;
+
       if (data === "current") {
-        return this.props.matches
+        return matches
           .filter((match) => match.matchday === CurrentMatchDay)
           .sort((a, b) => (a.matchday - b.matchday ? -1 : 1));
       } else {
-        return this.props.matches
+        return matches
           .filter((match) => match.matchday > CurrentMatchDay)
           .sort((a, b) => (a.matchday - b.matchday ? 1 : -1));
       }
@@ -36,18 +30,18 @@ class MatchesTable extends React.Component {
       (match) =>
         match.homeTeam.name === club ||
         (match.awayTeam.name === club &&
-          match.matchday >= this.findCurrentMatchDay().matchday)
+          match.matchday >=
+            findMatchesForCurrentMatchDay(this.props.matches).matchday)
     );
     // this.props.matches.filter((match) => match.homeTeam.name === "Sheffield United FC" || match.awayTeam.name === "Sheffield United FC")
   };
   render() {
-
     return (
       <div className="page-container">
         <div className="matches-table-container">
           {this.sortCurrentMatches("all") ? (
             <>
-              <h1>Matchweek {this.matchday()} </h1>
+              <h1>Matchweek {this.props.currentMatchWeek} </h1>
               <div className="matches-table">
                 <table>
                   <thead>
@@ -104,8 +98,8 @@ function mapStateToProps(state) {
   return {
     matches: state.matches,
     user: state.user,
-   picks: state.picks
-    // token: state.token,
+    picks: state.picks,
+    currentMatchWeek: state.currentMatchWeek,
   };
 }
 
