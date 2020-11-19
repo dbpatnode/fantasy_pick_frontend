@@ -7,27 +7,28 @@ import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import { sortByName, sortByPick, findWinner } from "../services/helpers";
 import PickRow from "./picks/PickRow";
-import { loss, draw, won } from "../services/svg-icons";
+import { loss, draw, won, user } from "../services/svg-icons";
+import { relativeTimeThreshold } from "moment";
 class Profile extends React.Component {
   state = {
     inputValue: this.props.currentMatchWeek,
   };
   findUserStats = () => {
-    let userWins = this.props.userPicks.map((p) =>
-      this.props.matches.filter(
-        (m) => m.score.winner === p.winner && m.id === p.match.match_id
-      )
-    );
-    let body = {
-      wins: userWins.flat().length,
-      losses: userWins.filter((w) => w.length === 0).length,
-    };
-    if (userWins.length > 0) {
-      api.user
-        .updateStats(this.props.user.id, body)
-        .then((data) => console.log(data));
-    }
-    return userWins.flat();
+    //   let userWins = this.props.userPicks.map((p) =>
+    //     this.props.matches.filter(
+    //       (m) => m.score.winner === p.winner && m.id === p.match.match_id
+    //     )
+    //   );
+    //   let body = {
+    //     wins: userWins.flat().length,
+    //     losses: userWins.filter((w) => w.length === 0).length,
+    //   };
+    //   if (userWins.length > 0) {
+    //     api.user
+    //       .updateStats(this.props.user.id, body)
+    //       .then((data) => console.log(data));
+    //   }
+    //   return userWins.flat();
   };
 
   handleDropdownChange = (e) => {
@@ -36,9 +37,10 @@ class Profile extends React.Component {
   };
 
   render() {
-    const { username } = this.props.user;
+    console.log(this.props.user);
+    const { username, wins } = this.props.user;
     const { userLeagues, userPicks, matches } = this.props;
-    console.log(userPicks);
+    // console.log(matches);
     const weekOptions = [
       { key: "1", value: "1", flag: "1", text: "1" },
       { key: "2", value: "2", flag: "2", text: "2" },
@@ -76,7 +78,6 @@ class Profile extends React.Component {
       { key: "35", value: "35", flag: "35", text: "35" },
       { key: "36", value: "36", flag: "36", text: "36" },
       { key: "37", value: "37", flag: "37", text: "37" },
-      { key: "37", value: "37", flag: "37", text: "37" },
       { key: "38", value: "38", flag: "38", text: "38" },
     ];
 
@@ -92,7 +93,7 @@ class Profile extends React.Component {
           <div className="profile-header">
             <span class="ui statistic">
               <h1>Fantasy</h1>
-              <span className="value">{this.findUserStats().length}</span>
+              <span className="value">{wins}</span>
               <span class="label">Total Points</span>
             </span>
             <div className="user-profile-leagues">
@@ -131,7 +132,7 @@ class Profile extends React.Component {
                     </div>
                   </div>
                 ))}
-                <div>Total Points {this.findUserStats().length}</div>{" "}
+                <div>Total Points {wins}</div>{" "}
               </div>
             </div>
           </div>

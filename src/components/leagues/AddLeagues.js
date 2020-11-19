@@ -19,7 +19,7 @@ class AddLeague extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.props.user.id);
+    // console.log(this.props.user.id);
     let league = {
       league_name: this.state.league,
       user_id: this.props.user.id,

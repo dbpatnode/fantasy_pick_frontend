@@ -11,6 +11,7 @@ import { loss, draw, won } from "../../services/svg-icons";
 class PickRow extends React.Component {
   render() {
     const { p, matchWeek, matches } = this.props;
+    console.log(p);
     return (
       <div className="ui-cards">
         {matchWeek !== "all" ? (
@@ -36,7 +37,7 @@ class PickRow extends React.Component {
                   ) : (
                     <div> No final Score yet </div>
                   )}
-                  {p.homeTeam && p.awayTeam ? (
+                  {p.homeTeam !== null && p.awayTeam !== null ? (
                     <>
                       <span>
                         Score: {p.homeTeam} - {p.awayTeam}

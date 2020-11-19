@@ -24,7 +24,7 @@ class EditLeague extends React.Component {
       if (!data.error) {
         this.setState({ isEdit: false, league_name: "" });
         this.props.updateLeagueName(data);
-        console.log(data);
+        // console.log(data);
       }
     });
   };

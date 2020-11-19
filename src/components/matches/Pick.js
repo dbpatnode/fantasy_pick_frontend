@@ -13,8 +13,18 @@ class Pick extends React.Component {
     homeTeam: 0,
   };
   handleSubmitPick = (match) => {
+    let winner;
+    if (this.state.homeTeam > this.state.awayTeam) {
+      winner = match.homeTeam.name;
+      this.setState({ ...this.state, winner: "HOME_TEAM" });
+    } else if (this.state.awayTeam > this.state.homeTeam) {
+      winner = match.awayTeam.name;
+    } else if (this.state.awayTeam === this.state.homeTeam) {
+      alert("You must pick a winner");
+    }
+
     let pick = {
-      winner: this.state.winner,
+      winner: winner,
       match_id: match.id,
       user_id: this.props.user.id,
       match_day: match.matchday,
@@ -26,30 +36,41 @@ class Pick extends React.Component {
       if (!data.error) {
         this.props.addPick(data);
         this.setState({
-          winner: "",
+          homeTeam: 0,
+          awayTeam: 0,
           showSubmitButton: false,
           hidePick: true,
         });
       } else {
-        console.log(data.error);
         let error = data.error[0].split(" ").slice(1).join(" ");
         alert(error);
       }
     });
   };
   handleChange = (e) => {
-    if (e.target.name !== "winner") {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+
+    if (e.target.value > 0) {
       this.setState({
-        [e.target.name]: e.target.value,
-      });
-    }
-    if (e.target.value !== 0) {
-      this.setState({
-        winner: e.target.value,
         showSubmitButton: true,
       });
     }
   };
+  // handleChange = (e) => {
+  //   if (e.target.name !== "winner") {
+  //     this.setState({
+  //       [e.target.name]: e.target.value,
+  //     });
+  //   }
+  //   if (e.target.value !== 0) {
+  //     this.setState({
+  //       winner: e.target.value,
+  //       showSubmitButton: true,
+  //     });
+  //   }
+  // };
   findWinnerName = (match) => {
     return this.state.winner === "HOME_TEAM"
       ? match.homeTeam.name
@@ -62,28 +83,6 @@ class Pick extends React.Component {
       <>
         {!this.state.hidePick ? (
           <>
-            <select
-              className="label-winner"
-              name="winner"
-              onChange={this.handleChange}
-            >
-              {this.state.showSubmitButton ? null : (
-                <option name="winner" value="0">
-                  Please Choose Winner From List{" "}
-                </option>
-              )}
-              <option
-                name={match.homeTeam.name}
-                value={"HOME_TEAM"}
-                id={match.homeTeam.name}
-              >
-                {match.homeTeam.name}
-              </option>
-              <option name={match.awayTeam.name} value={"AWAY_TEAM"}>
-                {match.awayTeam.name}
-              </option>
-            </select>
-            <br />
             <label className="score-input">{match.homeTeam.name}</label>{" "}
             <input
               name="homeTeam"
@@ -116,12 +115,80 @@ class Pick extends React.Component {
             </button>
           </>
         ) : (
-          `Your pick:
-          ${this.findWinnerName(match)}`
+          `Your Winner:
+          ${this.findWinnerName(match)}, Score: ${this.state.homeTeam} - ${
+            this.state.awayTeam
+          }`
         )}
       </>
     );
   }
+  // render() {
+  //   const { match } = this.props;
+  //   return (
+  //     <>
+  //       {!this.state.hidePick ? (
+  //         <>
+  //           <select
+  //             className="label-winner"
+  //             name="winner"
+  //             onChange={this.handleChange}
+  //           >
+  //             {this.state.showSubmitButton ? null : (
+  //               <option name="winner" value="0">
+  //                 Please Choose Winner From List{" "}
+  //               </option>
+  //             )}
+  //             <option
+  //               name={match.homeTeam.name}
+  //               value={"HOME_TEAM"}
+  //               id={match.homeTeam.name}
+  //             >
+  //               {match.homeTeam.name}
+  //             </option>
+  //             <option name={match.awayTeam.name} value={"AWAY_TEAM"}>
+  //               {match.awayTeam.name}
+  //             </option>
+  //           </select>
+  //           <br />
+  //           <label className="score-input">{match.homeTeam.name}</label>{" "}
+  //           <input
+  //             name="homeTeam"
+  //             min={0}
+  //             value={this.state.homeTeam}
+  //             type="number"
+  //             onChange={this.handleChange}
+  //           />
+  //           <br />
+  //           <label className="score-input">{match.awayTeam.name}</label>{" "}
+  //           <input
+  //             name="awayTeam"
+  //             min={0}
+  //             value={this.state.awayTeam}
+  //             type="number"
+  //             onChange={this.handleChange}
+  //             className="score-input"
+  //           />
+  //           <br />
+  //           {this.state.showSubmitButton ? (
+  //             <button
+  //               className="pick-button"
+  //               onClick={() => this.handleSubmitPick(match)}
+  //             >
+  //               submit
+  //             </button>
+  //           ) : null}
+  //           <button className="back-button" onClick={this.props.handlePick}>
+  //             Back
+  //           </button>
+  //         </>
+  //       ) : (
+  //         `Your pick:
+  //         ${this.findWinnerName(match)}`
+  //       )}
+  //     </>
+  //   );
+  // }
 }
 
 function mapStateToProps(state) {

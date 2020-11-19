@@ -26,7 +26,7 @@ class LeagueShowPage extends React.Component {
       (league) => league.id === this.props.id
     );
 
-    console.log(league.join);
+    // console.log(league.join);
     return (
       <div className="league-table-container">
         <h1 id="league-name">{league.league_name}</h1>
