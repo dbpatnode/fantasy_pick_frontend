@@ -35,7 +35,15 @@ class Profile extends React.Component {
     let selected = e.target.textContent;
     this.setState({ inputValue: selected });
   };
-
+  
+  matchesByWeek= (matchWeek) => {
+   if (matchWeek > 0) {
+     return this.props.userPicks.filter(pick => pick.match.matchday == matchWeek)
+   }
+     return this.props.userPicks
+ 
+   
+  }
   render() {
     console.log(this.props.user);
     const { username, wins } = this.props.user;
@@ -81,6 +89,8 @@ class Profile extends React.Component {
       { key: "38", value: "38", flag: "38", text: "38" },
     ];
 
+
+
     return (
       <div className="page-container">
         {/* <label for="Week">Week:</label>
@@ -96,6 +106,7 @@ class Profile extends React.Component {
               <span className="value">{wins}</span>
               <span class="label">Total Points</span>
             </span>
+            
             <div className="user-profile-leagues">
               <h1>Your Leagues</h1>
 
@@ -119,8 +130,11 @@ class Profile extends React.Component {
                 value={this.state.inputValue}
                 onChange={(e) => this.handleDropdownChange(e)}
               />
+              </div>
               <div id="matches-outcome">
-                {sortByPick(userPicks).map((p) => (
+                {this.matchesByWeek(this.state.inputValue).length > 0 ? 
+                <div>
+                {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
                   <div key={p.id}>
                     <PickRow
                       p={p}
@@ -131,10 +145,10 @@ class Profile extends React.Component {
                       {findWinner(p, matches) ? 1 : null}
                     </div>
                   </div>
-                ))}
+                ))} </div> :<h1>no picks</h1>}
                 <div>Total Points {wins}</div>{" "}
               </div>
-            </div>
+            
           </div>
         </div>
       </div>

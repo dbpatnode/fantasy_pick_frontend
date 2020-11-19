@@ -36,8 +36,6 @@ class Pick extends React.Component {
       if (!data.error) {
         this.props.addPick(data);
         this.setState({
-          homeTeam: 0,
-          awayTeam: 0,
           showSubmitButton: false,
           hidePick: true,
         });

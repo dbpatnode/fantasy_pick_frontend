@@ -16,7 +16,7 @@ class PickRow extends React.Component {
       <div className="ui-cards">
         {matchWeek !== "all" ? (
           <>
-            {p.match.matchday == matchWeek ? (
+            {/* {p.match.matchday == matchWeek ? ( */}
               <div className="card">
                 <div className="content">
                   <b>
@@ -53,7 +53,7 @@ class PickRow extends React.Component {
                   ) : null}
                 </div>
               </div>
-            ) : null}{" "}
+            {/* ) : <h1>No picks for this week</h1>}{" "} */}
           </>
         ) : (
           <div className="card">

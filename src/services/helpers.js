@@ -52,7 +52,7 @@ export const findWinner = (p, matches) => {
     let pickWinner = p.winner;
     return realWinner[0] === pickWinner;
   }
-};
+}; 
 export const findScore = (p, matches) => {
   let match = matches.filter((m) => m.id === p.match.match_id);
   let status = match.map((m) => m.status)[0];

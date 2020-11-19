@@ -83,31 +83,38 @@
 }
 .league-container {
   margin-top: 100px;
+  margin-bottom: 100px;
 
   grid-column-start: 2;
   grid-column-end: 5;
 
   grid-row-start: 1;
+
 }
 .card {
-  width: 450px;
+  width: 330px;
   padding: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
 .picks-container {
   grid-column-start: 2;
-  grid-row-start: 3;
+  grid-row-start: 1;
   margin-top: 0;
+  color: black;
 }
 .profile-header {
   text-align: center;
 }
-.matches-outcome {
-  grid-column-start: 3;
-  height: 500px;
+#matches-outcome {
+  padding: 20px;
+  grid-column-start: 2;
+  max-height: 500px;
   color: #333;
   grid-row-start: 1;
+  overflow: auto;
+  margin-top: 150px;
+  
 }
 .content {
   color: #333;
@@ -594,11 +601,11 @@ span {
   font-size: 15px;
 }
 .profile-header {
-  background-color: #2b004a;
+ 
   padding: 20px;
-  color: white;
+  color: black;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns:  1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
 
@@ -608,11 +615,12 @@ span {
 }
 .ui.statistic > .label,
 .ui.statistics .statistic > .label {
-  color: white !important;
+  color: black !important;
 }
 
 .user-profile-leagues {
-  grid-column-start: 2;
+  grid-column-start: 3;
+  color: black
 }
 
 h5 {
