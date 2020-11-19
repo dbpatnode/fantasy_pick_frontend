@@ -88,9 +88,7 @@ class Profile extends React.Component {
         <select className="ui-dropdown">{}</select> */}
 
         <div className="league-container">
-          <h5>
-            Logged in as: {username} {wins}
-          </h5>
+          <h5>Logged in as: {username}</h5>
 
           <div className="profile-header">
             <span class="ui statistic">

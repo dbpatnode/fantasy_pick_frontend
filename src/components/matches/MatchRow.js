@@ -46,7 +46,7 @@ class MatchRow extends React.Component {
   };
   findPickScore = (match) => {
     let score = this.props.userPicks.find((m) => m.match.match_id === match.id);
-    if (score.homeTeam && score.awayTeam) {
+    if (score.homeTeam !== null && score.awayTeam !== null) {
       return `${score.homeTeam} - ${score.awayTeam}`;
     } else return "No score added to pick";
   };
