@@ -12,10 +12,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { Route, Switch, withRouter } from "react-router-dom";
 import api from "./services/api";
-import {
-  findUsersStats,
-  findMatchesForCurrentMatchDay,
-} from "./services/helpers";
+import { usersIdList, findMatchesForCurrentMatchDay } from "./services/helpers";
 
 import StandingsTable from "./components/standings/StandingsTable";
 import MatchesTable from "./components/matches/MatchesTable";
@@ -79,11 +76,11 @@ class App extends Component {
   }
 
   getUsersStats = () => {
-    let arr = findUsersStats(this.props.picks);
+    let users = usersIdList(this.props.picks);
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < users.length; i++) {
       let userPicks = this.props.picks.filter(
-        (pick) => pick.user.id === arr[i]
+        (pick) => pick.user.id === users[i]
       );
 
       let userWins = userPicks.map((p) =>
@@ -91,15 +88,28 @@ class App extends Component {
           (m) => m.score.winner === p.winner && m.id === p.match.match_id
         )
       );
+
+      let userScores = userPicks.map((p) =>
+        this.props.matches.filter(
+          (m) =>
+            m.score.fullTime.homeTeam === p.homeTeam &&
+            m.score.fullTime.awayTeam === p.awayTeam &&
+            m.id === p.match.match_id &&
+            m.status === "FINISHED"
+        )
+      );
+
+      let wins = userWins.flat().length + userScores.flat().length * 3;
+
       let body = {
-        wins: userWins.flat().length,
+        wins: wins,
         losses: userWins.filter((w) => w.length === 0).length,
       };
-
-      if (userWins.length > 0) {
+      // debugger;
+      if (wins > 0) {
         api.user
-          .updateStats(arr[i], body)
-          .then((data) => console.log(arr[i], data));
+          .updateStats(users[i], body)
+          .then((data) => console.log(users[i], data));
       }
     }
     api.picks.getPicks().then((data) => {

@@ -18,11 +18,11 @@ class Navbar extends Component {
 
   handleLogin = (e, user) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
     api.auth
       .login(user)
       .then((data) => {
-        console.log(data)
+        // console.log(data);
         if (!data.error) {
           this.handleAuthResponse(data);
         } else {
@@ -33,11 +33,11 @@ class Navbar extends Component {
   };
   handleSignUp = (e, user) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
     api.auth
       .signup(user)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (!data.error) {
           this.handleAuthResponse(data);
         } else {
