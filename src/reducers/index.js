@@ -10,6 +10,7 @@ const initialState = {
   leagues: [],
   userLeagues: [],
   userPicks: [],
+  currentMatchWeek: "",
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -35,10 +36,16 @@ export const rootReducer = (state = initialState, action) => {
         userPicks: [],
       };
     }
-    case "START_ADDING_STANDINGS_REQUEST": {
+    // case "START_ADDING_STANDINGS_REQUEST": {
+    //   return {
+    //     ...state,
+    //     fetch: true,
+    //   };
+    // }
+    case "SET_CURRENT_WEEK": {
       return {
         ...state,
-        fetch: true,
+        currentMatchWeek: action.payload,
       };
     }
     case "ADD_STANDINGS": {

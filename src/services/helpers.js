@@ -54,6 +54,15 @@ export const findWinner = (p, matches) => {
     return realWinner[0] === pickWinner;
   }
 };
+export const findScore = (p, matches) => {
+  let match = matches.filter((m) => m.id === p.match.match_id);
+  let status = match.map((m) => m.status)[0];
+  if (status === "FINISHED") {
+    let homeScore = match.map((m) => m.score.fullTime.homeTeam)[0];
+    let awayScore = match.map((m) => m.score.fullTime.awayTeam)[0];
+    return homeScore === p.homeTeam && awayScore === p.awayTeam;
+  }
+};
 
 export const findClub = (p) => {
   if (p.winner === "HOME_TEAM") {
@@ -103,4 +112,15 @@ export const findUsersStats = (picks) => {
     (value, index) => usersPassedPicks.indexOf(value) === index
   );
   return userToUpdate;
+};
+export const findIsoDate = () => {
+  var now = new Date();
+  var isoDate = new Date(
+    now.getTime() - now.getTimezoneOffset() * 60000
+  ).toISOString();
+  return isoDate;
+};
+
+export const findMatchesForCurrentMatchDay = (matches) => {
+  return matches.find((match) => match.utcDate > findIsoDate());
 };
