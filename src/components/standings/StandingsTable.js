@@ -1,6 +1,6 @@
 import { loss, draw, won } from "../../services/svg-icons";
 import pic from "../../pic.png";
-import { Collapse } from "reactstrap";
+// import { Collapse } from "reactstrap";
 
 const StandingsTable = (props) => {
   return (
@@ -36,7 +36,10 @@ const StandingsTable = (props) => {
           <tbody>
             {props.standings
               ? props.standings.map((table) => (
-                  <tr className="standings-row-D">
+                  <tr
+                    className="standings-row-D"
+                    key={`standing${table.position}`}
+                  >
                     <td id="standings-crest-td-D">
                       <span className="standings-position-D">
                         {table.position}
@@ -54,8 +57,8 @@ const StandingsTable = (props) => {
                     <td>{table.lost}</td>
                     <td>{table.points}</td>
                     <td>
-                      {table.form.split(",").map((game) => (
-                        <span>
+                      {table.form.split(",").map((game, index) => (
+                        <span key={`${game}${index}`}>
                           {game === "W" ? (
                             <span className="Won">{won}</span>
                           ) : null}

@@ -68,7 +68,7 @@ export const findScoreReturnValue = (p, matches) => {
   if (status === "FINISHED") {
     let homeScore = match.map((m) => m.score.fullTime.homeTeam)[0];
     let awayScore = match.map((m) => m.score.fullTime.awayTeam)[0];
-    debugger;
+    // debugger;
     return homeScore === p.homeTeam && awayScore === p.awayTeam;
   }
 };
