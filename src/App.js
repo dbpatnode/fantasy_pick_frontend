@@ -20,6 +20,7 @@ import Navbar from "./components/Navbar";
 import LeaguesContainer from "./components/leagues/LeaguesContainer";
 import LeagueShowPage from "./components/leagues/LeagueShowPage";
 import PageNotFound from "./components/PageNotFound";
+import ClubShowPage from "./components/ClubShowPage";
 
 import Profile from "./components/Profile";
 import PicksContainer from "./components/picks/PicksContainer";
@@ -60,6 +61,13 @@ class App extends Component {
         this.props.setLeagues(data);
       }
     });
+    // api.teams.fetchTeams().then((data) => {
+    //   // if (!data.error) {
+    //   //   this.props.setTeams(data);
+    //   console.log(data);
+    //   Gemil;
+    //   // }
+    // });
 
     api.picks.getPicks().then((data) => {
       if (!data.error) {
@@ -107,9 +115,8 @@ class App extends Component {
       };
       // debugger;
       if (wins > 0) {
-        api.user
-          .updateStats(users[i], body)
-          .then((data) => console.log(users[i], data));
+        api.user.updateStats(users[i], body);
+        // .then((data) => console.log(users[i], data));
       }
     }
     api.picks.getPicks().then((data) => {
@@ -145,8 +152,19 @@ class App extends Component {
     );
     return league ? <LeagueShowPage id={league.id} /> : <PageNotFound />;
   };
+  renderClubShowPage = (routerProps) => {
+    let clubName = routerProps.match.params.clubName;
+
+    let club = this.props.standings.filter(
+      (club) => club.team.name === clubName
+    )[0];
+    return club ? <ClubShowPage team={club.team} /> : <PageNotFound />;
+  };
 
   render() {
+    console.log(this.props.standings);
+    let club = this.props.standings.map((club) => club.team.name);
+    console.log(club);
     return (
       <div className="App">
         <Desktop>
@@ -165,6 +183,11 @@ class App extends Component {
                 exact
                 path="/leagues"
                 component={this.renderLeaguesContainer}
+              />
+              <Route
+                exact
+                path="/club/:clubName"
+                render={(routerProps) => this.renderClubShowPage(routerProps)}
               />
               <Route
                 exact

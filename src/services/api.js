@@ -29,6 +29,12 @@ const fetchMatches = () => {
     headersForAPI
   ).then((response) => response.json());
 };
+const fetchTeam = (id) => {
+  return fetch(
+    `https://thingproxy.freeboard.io/fetch/http://api.football-data.org/v2/teams/${id}`,
+    headersForAPI
+  ).then((response) => response.json());
+};
 
 const login = (user) => {
   return fetch(`${API_ROOT}/login`, {
@@ -133,5 +139,8 @@ export default {
   },
   matches: {
     fetchMatches: fetchMatches,
+  },
+  teams: {
+    fetchTeam: fetchTeam,
   },
 };
