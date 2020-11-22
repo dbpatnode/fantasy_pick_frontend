@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setUser } from "../actions";
-import api from "../services/api";
+// import api from "../services/api";
 import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 import { sortByName, sortByPick, findWinner } from "../services/helpers";
 import PickRow from "./picks/PickRow";
-import { loss, draw, won, user } from "../services/svg-icons";
-import { relativeTimeThreshold } from "moment";
+// import { loss, draw, won, user } from "../services/svg-icons";
+// import { relativeTimeThreshold } from "moment";
 class Profile extends React.Component {
   state = {
     inputValue: this.props.currentMatchWeek,
@@ -33,11 +33,14 @@ class Profile extends React.Component {
     return this.props.userPicks;
   };
   render() {
-    console.log(this.props.user);
-
+    // console.log(this.props.user);
+    let matchWeekInput = this.state.inputValue;
+    matchWeekInput === ""
+      ? (matchWeekInput = this.props.currentMatchWeek)
+      : (matchWeekInput = this.state.inputValue);
     const { username, wins } = this.props.user;
     const { userLeagues, userPicks, matches } = this.props;
-    // console.log(matches);
+    // console.log(this.state.inputValue === "" ? "Yes" : "NO");
 
     return (
       <div className="page-container">
@@ -68,9 +71,9 @@ class Profile extends React.Component {
               <h1>Your Picks</h1>
               <h3>Matchweek:</h3>
               <Dropdown
-                placeholder={`Week ${this.state.inputValue}`}
+                placeholder={`Week ${matchWeekInput}`}
                 selection
-                value={this.state.inputValue}
+                value={matchWeekInput}
                 onChange={(e) => this.handleDropdownChange(e)}
               >
                 <Dropdown.Menu>
@@ -87,27 +90,25 @@ class Profile extends React.Component {
               </Dropdown>
             </div>
             <div id="matches-outcome">
-              {this.matchesByWeek(this.state.inputValue).length > 0 ? (
+              {this.matchesByWeek(matchWeekInput).length > 0 ? (
                 <div>
-                  {sortByPick(this.matchesByWeek(this.state.inputValue)).map(
-                    (p) => (
-                      <div key={p.id}>
-                        <PickRow
-                          p={p}
-                          matches={matches}
-                          matchWeek={this.state.inputValue}
-                        />
-                        <div className="profile-table-points">
+                  {sortByPick(this.matchesByWeek(matchWeekInput)).map((p) => (
+                    <div key={p.id}>
+                      <PickRow
+                        p={p}
+                        matches={matches}
+                        matchWeek={matchWeekInput}
+                      />
+                      {/* <div className="profile-table-points">
                           {findWinner(p, matches) ? 1 : null}
-                        </div>
-                      </div>
-                    )
-                  )}{" "}
+                        </div> */}
+                    </div>
+                  ))}{" "}
                 </div>
               ) : (
                 <h1>no picks</h1>
               )}
-              <div>Total Points {wins}</div>{" "}
+              {/* <div>Total Points {wins}</div>{" "} */}
             </div>
           </div>
         </div>
