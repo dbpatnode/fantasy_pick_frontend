@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import Pick from "./Pick";
 import { getTime, removeFC } from "../../services/helpers";
+import { Link } from "react-router-dom";
 
 class MatchRow extends React.Component {
   state = {
@@ -63,16 +64,20 @@ class MatchRow extends React.Component {
     return (
       <>
         <td id="home-team-td">
-          <img src={homeTeam} alt="team crest" width="80px" /> <br />
-          {removeFC(match.homeTeam.name)}{" "}
+          <Link to={`club/${match.homeTeam.name}`}>
+            {" "}
+            <img src={homeTeam} alt="team crest" width="80px" /> <br />
+            {removeFC(match.homeTeam.name)}{" "}
+          </Link>
         </td>
 
         <td className="vs">{this.gameStatus(match.status, match)}</td>
 
         <td id="away-team-td">
-          {" "}
-          <img src={awayTeam} alt="team crest" width="80px" /> <br />
-          {removeFC(match.awayTeam.name)}
+          <Link to={`club/${match.awayTeam.name}`}>
+            <img src={awayTeam} alt="team crest" width="80px" /> <br />
+            {removeFC(match.awayTeam.name)}
+          </Link>
         </td>
         <td>{moment(match.utcDate).format("LLLL")}</td>
         {this.props.user.id &&
