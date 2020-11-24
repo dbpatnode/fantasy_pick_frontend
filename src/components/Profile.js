@@ -134,8 +134,6 @@ class Profile extends React.Component {
             
                 {this.matchesByWeek(this.state.inputValue).length > 0 ? 
                 <div id="matches-outcome">
-                  
-                    <h1>{`Week ${this.state.inputValue}`}</h1>
                 {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
                   <div key={p.id}>
                   
