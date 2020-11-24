@@ -97,15 +97,15 @@ class Profile extends React.Component {
 
         <select className="ui-dropdown">{}</select> */}
 
-        <div className="league-container">
-          <h5>Logged in as: {username}</h5>
+          
+          
+            <div class="ui statistic">
+            <h5>Logged in as: {username}</h5>
 
-          <div className="profile-header">
-            <span class="ui statistic">
               <h1>Fantasy</h1>
               <span className="value">{wins}</span>
               <span class="label">Total Points</span>
-            </span>
+            </div>
             
             <div className="user-profile-leagues">
               <h1>Your Leagues</h1>
@@ -131,11 +131,14 @@ class Profile extends React.Component {
                 onChange={(e) => this.handleDropdownChange(e)}
               />
               </div>
-              <div id="matches-outcome">
+            
                 {this.matchesByWeek(this.state.inputValue).length > 0 ? 
-                <div>
+                <div id="matches-outcome">
+                  
+                    <h1>{`Week ${this.state.inputValue}`}</h1>
                 {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
                   <div key={p.id}>
+                  
                     <PickRow
                       p={p}
                       matches={matches}
@@ -145,13 +148,13 @@ class Profile extends React.Component {
                       {findWinner(p, matches) ? 1 : null}
                     </div>
                   </div>
-                ))} </div> :<h1>no picks</h1>}
-                <div>Total Points {wins}</div>{" "}
-              </div>
+                ))} </div> :<div className="matches-outcome">no picks</div>}
+                {/* <div>Total Points {wins}</div>{" "} */}
+             
             
           </div>
-        </div>
-      </div>
+       
+    
     );
   }
 }

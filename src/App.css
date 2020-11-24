@@ -92,16 +92,18 @@
 
 }
 .card {
-  width: 330px;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
 .picks-container {
-  grid-column-start: 2;
+  grid-column-start: 3;
   grid-row-start: 1;
   margin-top: 0;
   color: black;
+  margin-top: 100px;
+  text-align:center
 }
 .profile-header {
   text-align: center;
@@ -109,11 +111,12 @@
 #matches-outcome {
   padding: 20px;
   grid-column-start: 2;
-  max-height: 500px;
+grid-column-end: 5;
   color: #333;
-  grid-row-start: 1;
-  overflow: auto;
-  margin-top: 150px;
+  grid-row-start: 2;
+  margin-top: 50px;
+ 
+
   
 }
 .content {
@@ -550,7 +553,12 @@ span {
 }
 .bi-arrow-right-circle {
   margin-left: -10px;
-  margin-top: -5px;
+  margin-top: -5px
+}
+.profile-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
 }
 
 .profile-picks-table {
@@ -597,8 +605,12 @@ span {
   background-color: #f2f2f2;
 }
 
-.statistic {
+.ui.statistic {
   font-size: 15px;
+  grid-column-start: 4!important;
+  text-align: center;
+  margin-top: 100px!important;
+  grid-row-start: 1!important;
 }
 .profile-header {
  
@@ -619,8 +631,12 @@ span {
 }
 
 .user-profile-leagues {
-  grid-column-start: 3;
-  color: black
+  grid-column-start: 2;
+  grid-row-start:1;
+  color: black;
+  margin-top: 100px;
+  text-align: center;
+ 
 }
 
 h5 {
