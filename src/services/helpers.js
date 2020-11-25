@@ -111,7 +111,9 @@ export const findMatch = (p, data, matches) => {
 };
 
 export const capitalize = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  if (string !== null) {
+    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
+  }
 };
 
 export const usersIdList = (picks) => {
