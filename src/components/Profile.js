@@ -69,7 +69,7 @@ class Profile extends React.Component {
             </div>
             <div className="picks-container">
               <h1>Your Picks</h1>
-              <h3>Matchweek:</h3>
+              <h3>Matchweek: </h3>
               <Dropdown
                 placeholder={`Week ${matchWeekInput}`}
                 selection
