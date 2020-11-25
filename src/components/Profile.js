@@ -44,15 +44,21 @@ class Profile extends React.Component {
 
     return (
       <div className="page-container">
-        <div className="league-container">
-          <h5>Logged in as: {username}</h5>
 
-          <div className="profile-header">
-            <span className="ui statistic">
+        {/* <label for="Week">Week:</label>
+
+        <select className="ui-dropdown">{}</select> */}
+
+          
+          
+            <div class="ui statistic">
+            <h5>Logged in as: {username}</h5>
+
               <h1>Fantasy</h1>
               <span className="value">{wins}</span>
               <span class="label">Total Points</span>
-            </span>
+            </div>
+            
 
             <div className="user-profile-leagues">
               <h1>Your Leagues</h1>
@@ -75,6 +81,19 @@ class Profile extends React.Component {
                 selection
                 value={matchWeekInput}
                 onChange={(e) => this.handleDropdownChange(e)}
+              />
+              </div>
+            
+                {this.matchesByWeek(this.state.inputValue).length > 0 ? 
+                <div id="matches-outcome">
+                {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
+                  <div key={p.id}>
+                  
+                    <PickRow
+                      p={p}
+                      matches={matches}
+                      matchWeek={this.state.inputValue}
+
               >
                 <Dropdown.Menu>
                   {this.findWeeks().map((week) => (
@@ -103,16 +122,16 @@ class Profile extends React.Component {
                           {findWinner(p, matches) ? 1 : null}
                         </div> */}
                     </div>
-                  ))}{" "}
-                </div>
-              ) : (
-                <h1>no picks</h1>
-              )}
-              {/* <div>Total Points {wins}</div>{" "} */}
-            </div>
+
+                  </div>
+                ))} </div> :<div className="matches-outcome">no picks</div>}
+                {/* <div>Total Points {wins}</div>{" "} */}
+             
+            
+
           </div>
-        </div>
-      </div>
+       
+    
     );
   }
 }
