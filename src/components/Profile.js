@@ -44,94 +44,61 @@ class Profile extends React.Component {
 
     return (
       <div className="page-container">
+        <div class="ui statistic">
+          <h5>Logged in as: {username}</h5>
+          <h1>Fantasy</h1>
+          <span className="value">{wins}</span>
+          <span class="label">Total Points</span>
+        </div>
 
-        {/* <label for="Week">Week:</label>
+        <div className="user-profile-leagues">
+          <h1>Your Leagues</h1>
 
-        <select className="ui-dropdown">{}</select> */}
-
-          
-          
-            <div class="ui statistic">
-            <h5>Logged in as: {username}</h5>
-
-              <h1>Fantasy</h1>
-              <span className="value">{wins}</span>
-              <span class="label">Total Points</span>
-            </div>
-            
-
-            <div className="user-profile-leagues">
-              <h1>Your Leagues</h1>
-
-              {sortByName(userLeagues).map((l) => (
-                <div key={l.id}>
-                  <div className="individual-league">
-                    <Link id="league-link" to={`/leagues/${l.id}`}>
-                      {l.league_name}
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="picks-container">
-              <h1>Your Picks</h1>
-              <h3>Matchweek:</h3>
-              <Dropdown
-                placeholder={`Week ${matchWeekInput}`}
-                selection
-                value={matchWeekInput}
-                onChange={(e) => this.handleDropdownChange(e)}
-              />
+          {sortByName(userLeagues).map((l) => (
+            <div key={l.id}>
+              <div className="individual-league">
+                <Link id="league-link" to={`/leagues/${l.id}`}>
+                  {l.league_name}
+                </Link>
               </div>
-            
-                {this.matchesByWeek(this.state.inputValue).length > 0 ? 
-                <div id="matches-outcome">
-                {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
-                  <div key={p.id}>
-                  
-                    <PickRow
-                      p={p}
-                      matches={matches}
-                      matchWeek={this.state.inputValue}
-
-              >
-                <Dropdown.Menu>
-                  {this.findWeeks().map((week) => (
-                    <Dropdown.Item
-                      key={`week${week}`}
-                      value={week}
-                      flag={week}
-                      text={week}
-                      onClick={(e) => this.handleDropdownChange(e)}
-                    />
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
             </div>
-            <div id="matches-outcome">
-              {this.matchesByWeek(matchWeekInput).length > 0 ? (
-                <div>
-                  {sortByPick(this.matchesByWeek(matchWeekInput)).map((p) => (
-                    <div key={p.id}>
-                      <PickRow
-                        p={p}
-                        matches={matches}
-                        matchWeek={matchWeekInput}
-                      />
-                      {/* <div className="profile-table-points">
-                          {findWinner(p, matches) ? 1 : null}
-                        </div> */}
-                    </div>
+          ))}
+        </div>
+        <div className="picks-container">
+          <h1>Your Picks</h1>
+          <h3>Matchweek:</h3>
+          <Dropdown
+            placeholder={`Week ${matchWeekInput}`}
+            selection
+            value={matchWeekInput}
+            onChange={(e) => this.handleDropdownChange(e)}
+          >
+            <Dropdown.Menu>
+              {this.findWeeks().map((week) => (
+                <Dropdown.Item
+                  key={`week${week}`}
+                  value={week}
+                  flag={week}
+                  text={week}
+                  onClick={(e) => this.handleDropdownChange(e)}
+                />
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
 
-                  </div>
-                ))} </div> :<div className="matches-outcome">no picks</div>}
-                {/* <div>Total Points {wins}</div>{" "} */}
-             
-            
-
-          </div>
-       
-    
+        <div id="matches-outcome">
+          {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
+            <div key={p.id}>
+              <PickRow
+                p={p}
+                matches={matches}
+                matchWeek={this.state.inputValue}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     );
   }
 }

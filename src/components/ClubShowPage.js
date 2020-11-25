@@ -3,11 +3,10 @@ import api from "../services/api";
 import moment from "moment";
 import { capitalize } from "../services/helpers";
 
-
 export default class ClubShowPage extends React.Component {
   state = {
     club: {},
-  };  
+  };
   componentDidMount() {
     api.teams.fetchTeam(this.props.team.id).then((data) => {
       if (!data.error) {
@@ -60,12 +59,12 @@ export default class ClubShowPage extends React.Component {
               {name} website
             </a>
             <h3> Squad</h3>
-
-    // const style = `${this.checkColors(clubColors, "first")}, ${this.checkColors(
+            {/* 
+    const style = `${this.checkColors(clubColors, "first")}, ${this.checkColors(
     //   clubColors,
     //   "second"
     // )}`;
-    // style={{ background: `linear-gradient(${style})` }}
+    // style={{ background: `linear-gradient(${style})` }} */}
 
             <table>
               <tr>
