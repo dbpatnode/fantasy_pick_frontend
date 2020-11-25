@@ -116,9 +116,20 @@ export const capitalize = (string) => {
   }
 };
 
-export const usersIdList = (picks) => {
-  let passedPicks = picks.filter((pick) => pick.match.status === "FINISHED");
-  let usersPassedPicks = passedPicks.map((pick) => pick.user.id);
+export const usersIdList = (picks, matches) => {
+  let matchesIdList = [];
+  let passedPicks = picks.map((pick) => pick.match.match_id);
+  for (let i = 0; i < passedPicks.length; i++) {
+    let match = matches.find((match) => match.id === passedPicks[i]);
+    matchesIdList.push(match);
+  }
+  let finished = matchesIdList.filter((match) => match.status === "FINISHED");
+  let usersPassedPicks = [];
+  for (let i = 0; i < finished.length; i++) {
+    let pick = picks.find((pick) => pick.match.match_id === finished[i].id);
+    usersPassedPicks.push(pick);
+  }
+  usersPassedPicks.map((pick) => pick.user.id);
   return [...new Set(usersPassedPicks)];
 };
 export const findIsoDate = () => {

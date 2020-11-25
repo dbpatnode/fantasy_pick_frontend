@@ -84,7 +84,7 @@ class App extends Component {
   }
 
   getUsersStats = () => {
-    let users = usersIdList(this.props.picks);
+    let users = usersIdList(this.props.picks, this.props.matches);
 
     for (let i = 0; i < users.length; i++) {
       let userPicks = this.props.picks.filter(
