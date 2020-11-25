@@ -89,7 +89,6 @@
   grid-column-end: 5;
 
   grid-row-start: 1;
-
 }
 .card {
   width: 330px;
@@ -114,7 +113,6 @@
   grid-row-start: 1;
   overflow: auto;
   margin-top: 150px;
-  
 }
 .content {
   color: #333;
@@ -579,6 +577,32 @@ span {
 .league-table-container table {
   grid-column-start: 2;
 }
+.club-table-container {
+  margin-top: 50px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+.club-table-container table {
+  grid-column-start: 2;
+  text-align: center;
+  line-height: 2em;
+}
+.club-container-header {
+  grid-column-start: 2;
+  text-align: center;
+}
+
+.club-info {
+  margin-top: 10px;
+  font-weight: bold;
+  grid-column-start: 2;
+  text-align: center;
+}
+.club-container-image {
+  grid-column-start: 2;
+}
 
 #player-name {
   float: left;
@@ -596,16 +620,18 @@ span {
 .league-table-container table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+.club-table-container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 .statistic {
   font-size: 15px;
 }
 .profile-header {
- 
   padding: 20px;
   color: black;
   display: grid;
-  grid-template-columns:  1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
 
@@ -620,7 +646,7 @@ span {
 
 .user-profile-leagues {
   grid-column-start: 3;
-  color: black
+  color: black;
 }
 
 h5 {
