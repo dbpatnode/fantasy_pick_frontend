@@ -54,6 +54,7 @@ const signup = (user) => {
   }).then((res) => res.json());
 };
 const updateStats = (id, user) => {
+
   return fetch(`${API_ROOT}/users/${id}`, {
     method: "PATCH",
     headers: headers,

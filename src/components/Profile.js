@@ -33,7 +33,7 @@ class Profile extends React.Component {
     return this.props.userPicks;
   };
   render() {
-    // console.log(this.props.user);
+    console.log("USERR",this.props.user);
     let matchWeekInput = this.state.inputValue;
     matchWeekInput === ""
       ? (matchWeekInput = this.props.currentMatchWeek)
