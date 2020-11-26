@@ -116,6 +116,7 @@ export const capitalize = (string) => {
   }
 };
 
+
 export const usersIdList = (picks, matches) => {
   let matchesIdList = [];
 
@@ -139,6 +140,8 @@ export const usersIdList = (picks, matches) => {
   let Ids = usersPassedPicks.map((pick) => pick.user.id);
   return [...new Set(Ids)];
 };
+
+
 export const findIsoDate = () => {
   var now = new Date();
   var isoDate = new Date(

@@ -44,73 +44,62 @@ class Profile extends React.Component {
 
     return (
       <div className="page-container">
-        <div className="league-container">
+        <div class="ui statistic">
           <h5>Logged in as: {username}</h5>
+          <h1>Fantasy</h1>
+          <span className="value">{wins}</span>
+          <span class="label">Total Points</span>
+        </div>
 
-          <div className="profile-header">
-            <span className="ui statistic">
-              <h1>Fantasy</h1>
-              <span className="value">{wins}</span>
-              <span class="label">Total Points</span>
-            </span>
+        <div className="user-profile-leagues">
+          <h1>Your Leagues</h1>
 
-            <div className="user-profile-leagues">
-              <h1>Your Leagues</h1>
 
-              {sortByName(userLeagues).map((l) => (
-                <div key={l.id}>
-                  <div className="individual-league">
-                    <Link id="league-link" to={`/leagues/${l.id}`}>
-                      {l.league_name}
-                    </Link>
-                  </div>
-                </div>
+           
+          {sortByName(userLeagues).map((l) => (
+            <div key={l.id}>
+              <div className="individual-league">
+                <Link id="league-link" to={`/leagues/${l.id}`}>
+                  {l.league_name}
+                </Link>
+              </div>
+
+            </div>
+          ))}
+        </div>
+        <div className="picks-container">
+          <h1>Your Picks</h1>
+          <h3>Matchweek:</h3>
+          <Dropdown
+            placeholder={`Week ${matchWeekInput}`}
+            selection
+            value={matchWeekInput}
+            onChange={(e) => this.handleDropdownChange(e)}
+          >
+            <Dropdown.Menu>
+              {this.findWeeks().map((week) => (
+                <Dropdown.Item
+                  key={`week${week}`}
+                  value={week}
+                  flag={week}
+                  text={week}
+                  onClick={(e) => this.handleDropdownChange(e)}
+                />
               ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+
+        <div id="matches-outcome">
+          {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
+            <div key={p.id}>
+              <PickRow
+                p={p}
+                matches={matches}
+                matchWeek={this.state.inputValue}
+              />
             </div>
-            <div className="picks-container">
-              <h1>Your Picks</h1>
-              <h3>Matchweek: </h3>
-              <Dropdown
-                placeholder={`Week ${matchWeekInput}`}
-                selection
-                value={matchWeekInput}
-                onChange={(e) => this.handleDropdownChange(e)}
-              >
-                <Dropdown.Menu>
-                  {this.findWeeks().map((week) => (
-                    <Dropdown.Item
-                      key={`week${week}`}
-                      value={week}
-                      flag={week}
-                      text={week}
-                      onClick={(e) => this.handleDropdownChange(e)}
-                    />
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-            <div id="matches-outcome">
-              {this.matchesByWeek(matchWeekInput).length > 0 ? (
-                <div>
-                  {sortByPick(this.matchesByWeek(matchWeekInput)).map((p) => (
-                    <div key={p.id}>
-                      <PickRow
-                        p={p}
-                        matches={matches}
-                        matchWeek={matchWeekInput}
-                      />
-                      {/* <div className="profile-table-points">
-                          {findWinner(p, matches) ? 1 : null}
-                        </div> */}
-                    </div>
-                  ))}{" "}
-                </div>
-              ) : (
-                <h1>no picks</h1>
-              )}
-              {/* <div>Total Points {wins}</div>{" "} */}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     );
