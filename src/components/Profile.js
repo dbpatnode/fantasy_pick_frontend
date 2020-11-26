@@ -33,7 +33,7 @@ class Profile extends React.Component {
     return this.props.userPicks;
   };
   render() {
-    // console.log(this.props.user);
+    console.log("USERR",this.props.user);
     let matchWeekInput = this.state.inputValue;
     matchWeekInput === ""
       ? (matchWeekInput = this.props.currentMatchWeek)
@@ -54,6 +54,8 @@ class Profile extends React.Component {
         <div className="user-profile-leagues">
           <h1>Your Leagues</h1>
 
+
+           
           {sortByName(userLeagues).map((l) => (
             <div key={l.id}>
               <div className="individual-league">
@@ -61,6 +63,7 @@ class Profile extends React.Component {
                   {l.league_name}
                 </Link>
               </div>
+
             </div>
           ))}
         </div>
