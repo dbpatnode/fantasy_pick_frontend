@@ -27,7 +27,10 @@ class JoinLeague extends React.Component {
     return (
       <>
         {this.state.isJoined ? null : (
-          <button onClick={() => this.handelJoinLeague(this.props.league.id)}>
+          <button
+            className="button-join-league"
+            onClick={() => this.handelJoinLeague(this.props.league.id)}
+          >
             Join {this.props.league.league_name}
           </button>
         )}

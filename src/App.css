@@ -102,7 +102,7 @@
   margin-top: 0;
   color: black;
   margin-top: 100px;
-  text-align:center
+  text-align: center;
 }
 .profile-header {
   text-align: center;
@@ -110,11 +110,11 @@
 #matches-outcome {
   padding: 20px;
   grid-column-start: 2;
-grid-column-end: 5;
+  grid-column-end: 5;
   color: #333;
   grid-row-start: 2;
   margin-top: 50px;
-/*   grid-row-start: 1;
+  /*   grid-row-start: 1;
   overflow: auto;
   margin-top: 150px; */
 }
@@ -486,6 +486,9 @@ span {
   right: 5%;
   transition: all 0.5s ease;
 }
+.buffer {
+  display: block;
+}
 
 .login-hidden {
   /* width: 0px;
@@ -553,12 +556,11 @@ span {
 }
 .bi-arrow-right-circle {
   margin-left: -10px;
-  margin-top: -5px
+  margin-top: -5px;
 }
 .profile-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
 }
 
 .profile-picks-table {
@@ -636,10 +638,17 @@ span {
 
 .ui.statistic {
   font-size: 15px;
-  grid-column-start: 4!important;
+  grid-column-start: 4 !important;
   text-align: center;
-  margin-top: 100px!important;
-  grid-row-start: 1!important;
+  margin-top: 100px !important;
+  grid-row-start: 1 !important;
+}
+.button-join-league {
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 .profile-header {
   padding: 20px;
@@ -660,12 +669,12 @@ span {
 
 .user-profile-leagues {
   grid-column-start: 2;
-  grid-row-start:1;
+  grid-row-start: 1;
   color: black;
   margin-top: 100px;
   text-align: center;
- 
-/*   grid-column-start: 3; */
+
+  /*   grid-column-start: 3; */
 }
 
 h5 {

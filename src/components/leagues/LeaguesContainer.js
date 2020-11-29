@@ -22,7 +22,7 @@ class LeaguesContainer extends React.Component {
     } else {
       let joined = league.join.find((user) => user.user.id === id);
       if (joined) {
-        return "you're already a league member";
+        return "You're Already a League Member";
       }
     }
     return this.renderJoin(league);
@@ -57,11 +57,16 @@ class LeaguesContainer extends React.Component {
                               {league.league_name}
                             </Link>
                           </td>
-                          
-                          <td className="statistic"> {league.join.length} Members</td>
-                          {isUser
-                            ? this.findIfOwnerOrMember(league, user.id)
-                            : null}
+
+                          <td className="statistic">
+                            {" "}
+                            {league.join.length} Members
+                          </td>
+                          <td className="statistic">
+                            {isUser
+                              ? this.findIfOwnerOrMember(league, user.id)
+                              : null}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
