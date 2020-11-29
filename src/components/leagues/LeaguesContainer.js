@@ -62,7 +62,7 @@ class LeaguesContainer extends React.Component {
                             {" "}
                             {league.join.length} Members
                           </td>
-                          <td className="statistic">
+                          <td className="text-join-league">
                             {isUser
                               ? this.findIfOwnerOrMember(league, user.id)
                               : null}
