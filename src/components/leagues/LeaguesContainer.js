@@ -38,42 +38,73 @@ class LeaguesContainer extends React.Component {
         <div className="league-container">
           {isUser ? <AddLeague /> : null}
           <div className="leagues-table">
-            <table className="ui selectable celled table">
-              {leagues ? (
-                <>
-                  <thead>
-                    <tr>
-                      <th>League Name</th>
-                      <th>Members</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  {leagues ? (
-                    <tbody>
-                      {sortByJoins(leagues).map((league) => (
-                        <tr key={league.id}>
-                          <td>
-                            <Link to={`/leagues/${league.id}`}>
-                              {league.league_name}
-                            </Link>
-                          </td>
+            {isUser ? (
+              <table className="ui selectable celled table">
+                {leagues ? (
+                  <>
+                    <thead>
+                      <tr>
+                        <th>League Name</th>
+                        <th>Members</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    {leagues ? (
+                      <tbody>
+                        {sortByJoins(leagues).map((league) => (
+                          <tr key={league.id}>
+                            <td>
+                              <Link to={`/leagues/${league.id}`}>
+                                {league.league_name}
+                              </Link>
+                            </td>
 
-                          <td className="statistic">
-                            {" "}
-                            {league.join.length} Members
-                          </td>
-                          <td className="text-join-league">
-                            {isUser
-                              ? this.findIfOwnerOrMember(league, user.id)
-                              : null}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  ) : null}
-                </>
-              ) : null}
-            </table>
+                            <td className="statistic">
+                              {" "}
+                              {league.join.length} Members
+                            </td>
+                            <td className="text-join-league">
+                              {this.findIfOwnerOrMember(league, user.id)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    ) : null}
+                  </>
+                ) : null}
+              </table>
+            ) : (
+              <table className="ui selectable celled table">
+                {leagues ? (
+                  <>
+                    <thead>
+                      <tr>
+                        <th>League Name</th>
+                        <th>Members</th>
+                      </tr>
+                    </thead>
+                    {leagues ? (
+                      <tbody>
+                        {sortByJoins(leagues).map((league) => (
+                          <tr key={league.id}>
+                            <td>
+                              <Link to={`/leagues/${league.id}`}>
+                                {league.league_name}
+                              </Link>
+                            </td>
+
+                            <td className="statistic">
+                              {" "}
+                              {league.join.length} Members
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    ) : null}
+                  </>
+                ) : null}
+              </table>
+            )}
           </div>
         </div>
       </div>
