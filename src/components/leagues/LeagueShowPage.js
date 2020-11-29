@@ -4,6 +4,12 @@ import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
 import EditLeague from "./EditLeague";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -30,6 +36,24 @@ class LeagueShowPage extends React.Component {
     return (
       <div className="league-table-container">
         <h1 id="league-name">{league.league_name}</h1>
+        {/* <FacebookShareButton
+          url={"http://www.camperstribe.com"}
+          quote={"CampersTribe - World is yours to explore"}
+          hashtag="#camperstribe"
+        >
+          <FacebookIcon size={36} />
+        </FacebookShareButton> */}
+        <EmailShareButton
+          url={`http://localhost:3001/leagues/${league.id}`}
+          subject={`Check out ${league.league_name} on Fantasy Pick`}
+          body={
+            `Hey,
+            Join ${league.league_name} league in this link:` +
+            <a href={`http://localhost:3001/leagues/${league.id}`} />
+          }
+        >
+          <EmailIcon size={40} />
+        </EmailShareButton>
         {this.props.isUser ? this.checkUserJoin(league) : null}
         <table className="ui selectable celled table">
           <thead>

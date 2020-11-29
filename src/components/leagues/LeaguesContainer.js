@@ -36,7 +36,7 @@ class LeaguesContainer extends React.Component {
     return (
       <div className="page-container">
         <div className="league-container">
-          {isUser ? <AddLeague /> : null}
+          {isUser ? <AddLeague /> : <h1> Login to Join a League </h1>}
           <div className="leagues-table">
             {isUser ? (
               <table className="ui selectable celled table">
