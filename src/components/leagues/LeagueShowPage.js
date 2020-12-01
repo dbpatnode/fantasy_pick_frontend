@@ -31,29 +31,32 @@ class LeagueShowPage extends React.Component {
     const league = this.props.leagues.find(
       (league) => league.id === this.props.id
     );
+    const link = `http://localhost:3001/leagues/${league.id}`;
 
     // console.log(league.join);
     return (
       <div className="league-table-container">
-        <h1 id="league-name">{league.league_name}</h1>
-        {/* <FacebookShareButton
-          url={"http://www.camperstribe.com"}
-          quote={"CampersTribe - World is yours to explore"}
-          hashtag="#camperstribe"
-        >
-          <FacebookIcon size={36} />
-        </FacebookShareButton> */}
-        <EmailShareButton
-          url={`http://localhost:3001/leagues/${league.id}`}
-          subject={`Check out ${league.league_name} on Fantasy Pick`}
-          body={
-            `Hey,
-            Join ${league.league_name} league in this link:` +
-            <a href={`http://localhost:3001/leagues/${league.id}`} />
-          }
-        >
-          <EmailIcon size={40} />
-        </EmailShareButton>
+        <div className="league-info">
+          <h1 id="league-name">{league.league_name}</h1>
+        </div>
+        <div className="league-info">
+          <FacebookShareButton
+            url={`http://localhost:3001/leagues/${league.id}`}
+            quote={`Check out ${league.league_name} league on Fantasy Pick`}
+            hashtag="#fantasyPick"
+          >
+            <FacebookIcon size={32} />
+          </FacebookShareButton>
+          <EmailShareButton
+            url={`http://localhost:3001/leagues/${league.id}`}
+            subject={`Check out ${league.league_name} league on Fantasy Pick`}
+            body={`Hey,
+              Join ${league.league_name} league in this link:
+              ${link}`}
+          >
+            <EmailIcon size={32} />
+          </EmailShareButton>
+        </div>
         {this.props.isUser ? this.checkUserJoin(league) : null}
         <table className="ui selectable celled table">
           <thead>
