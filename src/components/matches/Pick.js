@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addPick } from "../../actions";
 import api from "../../services/api";
+import { removeFC } from "../../services/helpers";
 // import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 
 class Pick extends React.Component {
@@ -81,7 +82,9 @@ class Pick extends React.Component {
       <>
         {!this.state.hidePick ? (
           <>
-            <label className="score-input">{match.homeTeam.name}</label>{" "}
+            <label className="score-input">
+              {removeFC(match.homeTeam.name)}
+            </label>{" "}
             <input
               name="homeTeam"
               min={0}
@@ -90,7 +93,9 @@ class Pick extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            <label className="score-input">{match.awayTeam.name}</label>{" "}
+            <label className="score-input">
+              {removeFC(match.awayTeam.name)}
+            </label>{" "}
             <input
               name="awayTeam"
               min={0}

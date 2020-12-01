@@ -22,7 +22,7 @@ class LeaguesContainer extends React.Component {
     } else {
       let joined = league.join.find((user) => user.user.id === id);
       if (joined) {
-        return "you're already a league member";
+        return "You're Already a League Member";
       }
     }
     return this.renderJoin(league);
@@ -36,39 +36,75 @@ class LeaguesContainer extends React.Component {
     return (
       <div className="page-container">
         <div className="league-container">
-          {isUser ? <AddLeague /> : null}
+          {isUser ? <AddLeague /> : <h1> Login to Join a League </h1>}
           <div className="leagues-table">
-            <table className="ui selectable celled table">
-              {leagues ? (
-                <>
-                  <thead>
-                    <tr>
-                      <th>League Name</th>
-                      <th>Members</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  {leagues ? (
-                    <tbody>
-                      {sortByJoins(leagues).map((league) => (
-                        <tr key={league.id}>
-                          <td>
-                            <Link to={`/leagues/${league.id}`}>
-                              {league.league_name}
-                            </Link>
-                          </td>
-                          
-                          <td className="statistic"> {league.join.length} Members</td>
-                          {isUser
-                            ? this.findIfOwnerOrMember(league, user.id)
-                            : null}
-                        </tr>
-                      ))}
-                    </tbody>
-                  ) : null}
-                </>
-              ) : null}
-            </table>
+            {isUser ? (
+              <table className="ui selectable celled table">
+                {leagues ? (
+                  <>
+                    <thead>
+                      <tr>
+                        <th>League Name</th>
+                        <th>Members</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    {leagues ? (
+                      <tbody>
+                        {sortByJoins(leagues).map((league) => (
+                          <tr key={league.id}>
+                            <td>
+                              <Link to={`/leagues/${league.id}`}>
+                                {league.league_name}
+                              </Link>
+                            </td>
+
+                            <td className="statistic">
+                              {" "}
+                              {league.join.length} Members
+                            </td>
+                            <td className="text-join-league">
+                              {this.findIfOwnerOrMember(league, user.id)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    ) : null}
+                  </>
+                ) : null}
+              </table>
+            ) : (
+              <table className="ui selectable celled table">
+                {leagues ? (
+                  <>
+                    <thead>
+                      <tr>
+                        <th>League Name</th>
+                        <th>Members</th>
+                      </tr>
+                    </thead>
+                    {leagues ? (
+                      <tbody>
+                        {sortByJoins(leagues).map((league) => (
+                          <tr key={league.id}>
+                            <td>
+                              <Link to={`/leagues/${league.id}`}>
+                                {league.league_name}
+                              </Link>
+                            </td>
+
+                            <td className="statistic">
+                              {" "}
+                              {league.join.length} Members
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    ) : null}
+                  </>
+                ) : null}
+              </table>
+            )}
           </div>
         </div>
       </div>
