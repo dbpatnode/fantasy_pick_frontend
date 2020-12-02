@@ -43,15 +43,13 @@ class Profile extends React.Component {
     // console.log(this.state.inputValue === "" ? "Yes" : "NO");
 
     return (
-      <div className="page-container">
+      <div className="page-container1">
         <div class="ui statistic">
           <h5>Logged in as: {username}</h5>
           <h1>Fantasy</h1>
           <span className="value">{wins}</span>
           <span class="label">Total Points</span>
-        </div>
-
-        <div className="user-profile-leagues">
+          <div className="user-profile-leagues">
           <h1>Your Leagues</h1>
 
           {sortByName(userLeagues).map((l) => (
@@ -64,6 +62,10 @@ class Profile extends React.Component {
             </div>
           ))}
         </div>
+        </div>
+
+        
+
         <div className="picks-container">
           <h1>Your Picks</h1>
           <h3>Matchweek:</h3>
@@ -85,10 +87,8 @@ class Profile extends React.Component {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-        </div>
-        <div className="buffer"></div>
 
-        <div id="matches-outcome">
+        <div id="matches-outcomee">
           {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
             <div key={p.id}>
               <PickRow
@@ -99,6 +99,9 @@ class Profile extends React.Component {
             </div>
           ))}
         </div>
+        </div>
+        
+
       </div>
     );
   }

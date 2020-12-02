@@ -9,6 +9,22 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
+  background: url('https://i.pinimg.com/originals/88/b0/4e/88b04e07ca32555a2876f22d144bb927.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
+.page-container1 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  background: url('https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 #home-team-td {
   padding-top: 20px;
@@ -96,12 +112,14 @@
   text-align: center;
 }
 .picks-container {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-row-start: 1;
-  margin-top: 0;
+ margin: 20px;
   color: black;
   margin-top: 100px;
   text-align: center;
+  ;
+  
 }
 .profile-header {
   text-align: center;
@@ -109,10 +127,11 @@
 #matches-outcome {
   padding: 20px;
   grid-column-start: 2;
-  grid-column-end: 5;
+  margin-top: 50px;
   color: #333;
   grid-row-start: 2;
-  margin-top: 50px;
+
+  
   /*   grid-row-start: 1;
   overflow: auto;
   margin-top: 150px; */
@@ -643,10 +662,13 @@ span {
 
 .ui.statistic {
   font-size: 15px;
-  grid-column-start: 4 !important;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: white;
+
+  grid-column-start: 1!important;
   text-align: center;
   margin-top: 100px !important;
-  grid-row-start: 1 !important;
+  grid-row-start: 1!important;
 }
 .button-join-league {
   text-align: left;
@@ -679,10 +701,13 @@ span {
 }
 
 .user-profile-leagues {
-  grid-column-start: 2;
-  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-start: 2;
   color: black;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin: 20px;
+  position: relative;
+ 
   text-align: center;
 
   /*   grid-column-start: 3; */
