@@ -30,6 +30,12 @@ export const sortByPoints = (list) => {
     return b.user.wins - a.user.wins;
   });
 };
+
+export const sortByValue = (list) => {
+  return list.sort(function (a, b) {
+    return b - a;
+  });
+};
 export const sortByPick = (list) => {
   return list.sort(function (a, b) {
     let nameA = a.match.id;
@@ -116,31 +122,28 @@ export const capitalize = (string) => {
   }
 };
 
-
 export const usersIdList = (picks, matches) => {
   let matchesIdList = [];
 
   let passedPicks = picks.map((pick) => pick.match.match_id);
-  let fin = [...new Set(passedPicks)]
+  let fin = [...new Set(passedPicks)];
   for (let i = 0; i < fin.length; i++) {
     let match = matches.find((match) => match.id === fin[i]);
     matchesIdList.push(match);
   }
   let finished = matchesIdList.filter((match) => match.status === "FINISHED");
- 
+
   let usersPassedPicks = [];
   for (let i = 0; i < finished.length; i++) {
     let pick = picks.filter((pick) => pick.match.match_id === finished[i].id);
     for (let j = 0; j < pick.length; j++) {
       usersPassedPicks.push(pick[j]);
     }
-   
   }
 
   let Ids = usersPassedPicks.map((pick) => pick.user.id);
   return [...new Set(Ids)];
 };
-
 
 export const findIsoDate = () => {
   var now = new Date();

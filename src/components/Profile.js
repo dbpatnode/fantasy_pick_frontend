@@ -5,7 +5,12 @@ import { setUser } from "../actions";
 // import api from "../services/api";
 import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
-import { sortByName, sortByPick, findWinner } from "../services/helpers";
+import {
+  sortByName,
+  sortByPick,
+  findWinner,
+  sortByValue,
+} from "../services/helpers";
 import PickRow from "./picks/PickRow";
 // import { loss, draw, won, user } from "../services/svg-icons";
 // import { relativeTimeThreshold } from "moment";
@@ -16,7 +21,8 @@ class Profile extends React.Component {
   findWeeks = () => {
     let array = this.props.userPicks.map((pick) => pick.match.matchday);
     let uniq = [...new Set(array)];
-    return uniq;
+    // console.log(uniq);
+    return sortByValue(uniq);
   };
 
   handleDropdownChange = (e) => {
@@ -33,7 +39,7 @@ class Profile extends React.Component {
     return this.props.userPicks;
   };
   render() {
-    console.log("USERR", this.props.user);
+    // console.log("USERR", this.props.user);
     let matchWeekInput = this.state.inputValue;
     matchWeekInput === ""
       ? (matchWeekInput = this.props.currentMatchWeek)
@@ -50,21 +56,19 @@ class Profile extends React.Component {
           <span className="value">{wins}</span>
           <span class="label">Total Points</span>
           <div className="user-profile-leagues">
-          <h1>Your Leagues</h1>
+            <h1>Your Leagues</h1>
 
-          {sortByName(userLeagues).map((l) => (
-            <div key={l.id}>
-              <div className="individual-league">
-                <Link id="league-link" to={`/leagues/${l.id}`}>
-                  {l.league_name}
-                </Link>
+            {sortByName(userLeagues).map((l) => (
+              <div key={l.id}>
+                <div className="individual-league">
+                  <Link id="league-link" to={`/leagues/${l.id}`}>
+                    {l.league_name}
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        </div>
-
-        
 
         <div className="picks-container">
           <h1>Your Picks</h1>
@@ -88,20 +92,18 @@ class Profile extends React.Component {
             </Dropdown.Menu>
           </Dropdown>
 
-        <div id="matches-outcomee">
-          {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
-            <div key={p.id}>
-              <PickRow
-                p={p}
-                matches={matches}
-                matchWeek={this.state.inputValue}
-              />
-            </div>
-          ))}
+          <div id="matches-outcomee">
+            {sortByPick(this.matchesByWeek(this.state.inputValue)).map((p) => (
+              <div key={p.id}>
+                <PickRow
+                  p={p}
+                  matches={matches}
+                  matchWeek={this.state.inputValue}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        </div>
-        
-
       </div>
     );
   }
