@@ -50,11 +50,11 @@ class Profile extends React.Component {
 
     return (
       <div className="page-container1">
-        <div class="ui statistic">
+        <div className="ui statistic">
           <h5>Logged in as: {username}</h5>
           <h1>Fantasy</h1>
           <span className="value">{wins}</span>
-          <span class="label">Total Points</span>
+          <span className="label">Total Points</span>
           <div className="user-profile-leagues">
             <h1>Your Leagues</h1>
 
