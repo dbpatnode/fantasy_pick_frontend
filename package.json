@@ -9,6 +9,7 @@
     "bootstrap": "^4.5.3",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-dropdown-select": "^4.6.1",
     "react-redux": "^7.2.2",
@@ -23,6 +24,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
+    "share": "^0.7.40",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

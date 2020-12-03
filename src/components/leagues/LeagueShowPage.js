@@ -10,6 +10,7 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
+import SideBar from "./SideBar.js";
 
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -36,6 +37,9 @@ class LeagueShowPage extends React.Component {
     // console.log(league.join);
     return (
       <div className="league-table-container">
+        {/* <div className="d-flex" style={{ height: "100vh" }}> */}
+        <SideBar user={this.props.user} />
+        {/* </div> */}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
@@ -64,7 +68,6 @@ class LeagueShowPage extends React.Component {
               <th> Rank</th>
               <th>Name</th>
               <th>Points</th>
-           
             </tr>
           </thead>
           <tbody>
@@ -74,7 +77,6 @@ class LeagueShowPage extends React.Component {
                 <td>{league.join.indexOf(user) + 1}</td>
                 <td>{user.user.username}</td>
                 <td>{user.user.wins ? user.user.wins : 0}</td>
-                
               </tr>
             ))}
           </tbody>
