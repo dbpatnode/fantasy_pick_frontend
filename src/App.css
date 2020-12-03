@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
-  background: url('https://i.pinimg.com/originals/88/b0/4e/88b04e07ca32555a2876f22d144bb927.jpg') no-repeat center center fixed;
+  background: url('./Artboard\ 1@2x.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -234,21 +234,22 @@ select.label-winner {
   text-align: center;
   font-weight: bold;
   font-size: 60px;
+  color: white
   /* color:#2b004a ;
 	background-image: -webkit-linear-gradient(180deg, #2b004a, #00e9ab);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
   -webkit-animation: hue 10s infinite linear; */
-  animation: flow 15s ease-in-out infinite;
+  /* animation: flow 15s ease-in-out infinite;
   background: linear-gradient(-60deg, #2b004a, #00e9ab, #826c92);
   background-size: 300%;
 
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
 }
 
-@keyframes flow {
+/* @keyframes flow {
   0% {
     background-position: 0 50%;
   }
@@ -258,7 +259,7 @@ select.label-winner {
   100% {
     background-position: 0 50%;
   }
-}
+} */
 
 /* profile drop down */
 .dropdown {
@@ -363,7 +364,7 @@ span {
   color: white;
 }
 .nav-links li:nth-child(3) {
-  float: left;
+  float: right;
   color: white;
 }
 
@@ -433,7 +434,7 @@ span {
 #main-menu {
   width: 100vw;
   position: relative;
-  background: #2b004a;
+  
   height: 200px;
 }
 .logo-area {
@@ -605,9 +606,17 @@ span {
 }
 
 .league-table-container {
+ 
   width: 100vw;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  background: url('https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
 .league-table-container table {
@@ -648,6 +657,7 @@ span {
   float: right;
 }
 #league-name {
+  color: white;
   grid-column-start: 2;
   text-align: center;
   margin-top: 100px;

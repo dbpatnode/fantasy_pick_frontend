@@ -61,18 +61,20 @@ class LeagueShowPage extends React.Component {
         <table className="ui selectable celled table">
           <thead>
             <tr>
-              <th id="player-name">Name</th>
-              <th id="player-points">Points</th>
-              <th>Rank</th>
+              <th> Rank</th>
+              <th>Name</th>
+              <th>Points</th>
+           
             </tr>
           </thead>
           <tbody>
             {sortByPoints(league.join).map((user) => (
               <tr key={user.user.id}>
                 {/* {this.rankings(league.join, user)} */}
+                <td>{league.join.indexOf(user) + 1}</td>
                 <td>{user.user.username}</td>
                 <td>{user.user.wins ? user.user.wins : 0}</td>
-                <td>{league.join.indexOf(user) + 1}</td>
+                
               </tr>
             ))}
           </tbody>

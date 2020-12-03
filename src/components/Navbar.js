@@ -89,9 +89,9 @@ class Navbar extends Component {
               <li>
                 <Link to="/leagues">Leagues</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/picks">Picks</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/matches">Matches</Link>
               </li>

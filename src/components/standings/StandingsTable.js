@@ -6,7 +6,7 @@ const StandingsTable = (props) => {
   return (
     <div className="page-container">
       <h1 id="welcome-message">
-        Premier League Pickem'<br></br>
+        Premier League Pick'em<br></br>
         <p className="under-message">Pick Matches. Compete. Win Leagues.</p>
       </h1>
       <iframe
