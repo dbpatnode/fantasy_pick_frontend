@@ -9,18 +9,18 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
-  background: url('./Artboard\ 1@2x.png') no-repeat center center fixed;
+  background: url("./Artboard\ 1@2x.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
 }
 .page-container1 {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
-  background: url('https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg') no-repeat center center fixed;
+  background: url("https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg")
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -114,12 +114,10 @@
 .picks-container {
   grid-column-start: 2;
   grid-row-start: 1;
- margin: 20px;
+  margin: 20px;
   color: black;
   margin-top: 100px;
   text-align: center;
-  ;
-  
 }
 .profile-header {
   text-align: center;
@@ -131,7 +129,6 @@
   color: #333;
   grid-row-start: 2;
 
-  
   /*   grid-row-start: 1;
   overflow: auto;
   margin-top: 150px; */
@@ -234,7 +231,7 @@ select.label-winner {
   text-align: center;
   font-weight: bold;
   font-size: 60px;
-  color: white
+  color: white;
   /* color:#2b004a ;
 	background-image: -webkit-linear-gradient(180deg, #2b004a, #00e9ab);
 	-webkit-background-clip: text;
@@ -434,7 +431,7 @@ span {
 #main-menu {
   width: 100vw;
   position: relative;
-  
+
   height: 200px;
 }
 .logo-area {
@@ -606,17 +603,16 @@ span {
 }
 
 .league-table-container {
- 
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background: url('https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg') no-repeat center center fixed;
+  background: url("https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg")
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .league-table-container table {
@@ -628,7 +624,9 @@ span {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 }
-
+.club-table-container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 .club-table-container table {
   grid-column-start: 2;
   text-align: center;
@@ -666,19 +664,16 @@ span {
 .league-table-container table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-.club-table-container table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
 
 .ui.statistic {
   font-size: 15px;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: white;
 
-  grid-column-start: 1!important;
+  grid-column-start: 1 !important;
   text-align: center;
   margin-top: 100px !important;
-  grid-row-start: 1!important;
+  grid-row-start: 1 !important;
 }
 .button-join-league {
   text-align: left;
@@ -717,7 +712,7 @@ span {
   margin-top: 50px;
   margin: 20px;
   position: relative;
- 
+
   text-align: center;
 
   /*   grid-column-start: 3; */

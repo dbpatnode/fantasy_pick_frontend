@@ -46,54 +46,66 @@ export default class ClubShowPage extends React.Component {
     } = this.state.club;
     console.log(squad);
     return (
-      <div>
-        <h1> {this.props.team.name}</h1>
-        <img src={this.props.team.crestUrl} alt="team crest" />
-        {this.state.club ? (
-          <>
-            <p>Club Colors: {clubColors}</p>
-            <p>Venue: {venue}</p>
-            <p>Founded: {founded}</p>
-            <p>Phone: {phone}</p>
-            <a href={website} target="_blank">
-              {name} website
-            </a>
-            <h3> Squad</h3>
-            {/* 
+      <div className="club-table-container">
+        <div className="club-container-header">
+          <h1> {this.props.team.name}</h1>
+          <img
+            className="club-container-image"
+            src={this.props.team.crestUrl}
+            alt="team crest"
+          />
+          {this.state.club ? (
+            <>
+              <div className="club-info">
+                <p>Club Colors: {clubColors}</p>
+                <p>Venue: {venue}</p>
+                <p>Founded: {founded}</p>
+                <p>Phone: {phone}</p>
+                <a href={website} target="_blank">
+                  {name} website
+                </a>
+              </div>
+              <h3> Squad</h3>
+              {/* 
     const style = `${this.checkColors(clubColors, "first")}, ${this.checkColors(
     //   clubColors,
     //   "second"
     // )}`;
     // style={{ background: `linear-gradient(${style})` }} */}
 
-            <table>
-              <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Shirt No.</th>
-                <th>Role</th>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    {/* <th>Shirt No.</th> */}
+                    <th>Role</th>
 
-                <th>Nationality</th>
-                <th>Country Of Birth</th>
-                <th>Date Of Birth</th>
-              </tr>
-              {squad
-                ? squad.map((s) => (
-                    <tr key={s.id}>
-                      <td>{s.name}</td>
-                      <td>{capitalize(s.position)}</td>
-                      {<td>{s.shirtNumber}</td>}
-                      <td>{capitalize(s.role)}</td>
+                    <th>Nationality</th>
+                    <th>Date Of Birth</th>
+                    <th>Country Of Birth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {squad
+                    ? squad.map((s) => (
+                        <tr key={s.id}>
+                          <td>{s.name}</td>
+                          <td>{capitalize(s.position)}</td>
+                          {/* {<td>{s.shirtNumber}</td>} */}
+                          <td>{capitalize(s.role)}</td>
 
-                      <td>{s.nationality}</td>
-                      <td>{s.countryOfBirth}</td>
-                      <td>{moment(s.dateOfBirth).format("MMM Do YYYY")}</td>
-                    </tr>
-                  ))
-                : null}
-            </table>
-          </>
-        ) : null}
+                          <td>{s.nationality}</td>
+                          <td>{moment(s.dateOfBirth).format("MMM Do YYYY")}</td>
+                          <td>{s.countryOfBirth}</td>
+                        </tr>
+                      ))
+                    : null}
+                </tbody>
+              </table>
+            </>
+          ) : null}
+        </div>
       </div>
     );
   }
