@@ -8,7 +8,7 @@ export default function MessageDashboard({user, league}) {
     const { selectedConversation } = useConversations()
   
     return (
-        <div>
+        <div className="d-flex" style={{ height: "100vh" }}>
              {/* <ConversationsProvider league={league}> */}
           <SideBar user={user} league={league} />
           { selectedConversation && <OpenConversation />}

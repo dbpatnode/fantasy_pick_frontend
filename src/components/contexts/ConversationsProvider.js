@@ -57,8 +57,16 @@ const formattedConversations = conversations.map((conversation, index) => {
     const name = (member && member.username) || recipient
     return { id: recipient, name}
   })
+  const messages = conversation.messages.map(message => {
+    const member = users.find(user => {
+      return user.id === message.sender
+  })
+  const name = (member && member.username) || message.sender
+  const fromMe = user.id === message.sender
+  return {...message, senderName: name, fromMe}
+})
   const selected = index === selectedConversationIndex
-  return { ...conversation, recipients, selected}
+  return { ...conversation, messages, recipients, selected}
 })
 const value = {
   conversations: formattedConversations, 
