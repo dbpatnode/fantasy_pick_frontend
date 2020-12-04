@@ -11,6 +11,7 @@ import {
   EmailIcon,
 } from "react-share";
 import SideBar from "./SideBar.js";
+import { ConversationsProvider } from "../contexts/ConversationsProvider";
 
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -38,7 +39,9 @@ class LeagueShowPage extends React.Component {
     return (
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
-        <SideBar user={this.props.user}  league={league}/>
+        <ConversationsProvider>
+          <SideBar user={this.props.user} league={league} />
+        </ConversationsProvider>
         {/* </div> */}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>

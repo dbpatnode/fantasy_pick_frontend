@@ -34,7 +34,7 @@ export default function SideBar({ user, league }) {
             <Conversations />
           </Tab.Pane>
           <Tab.Pane eventKey={CONTACTS_KEY}>
-            <Contacts league = {league} />
+            <Contacts league={league} />
           </Tab.Pane>
         </Tab.Content>
         <Button onClick={() => setModalOpen(true)} className="rounded-0">
@@ -43,7 +43,7 @@ export default function SideBar({ user, league }) {
       </Tab.Container>
       <Modal show={modalOpen} onHide={closeModal}>
         {conversationsOpen ? (
-          <NewConversationModal closeModal={closeModal} />
+          <NewConversationModal league={league} closeModal={closeModal} />
         ) : (
           <NewContactModal closeModal={closeModal} />
         )}
