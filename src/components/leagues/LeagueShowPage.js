@@ -39,7 +39,7 @@ class LeagueShowPage extends React.Component {
     return (
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
-        <ConversationsProvider>
+        <ConversationsProvider league={league}>
           <SideBar user={this.props.user} league={league} />
         </ConversationsProvider>
         {/* </div> */}

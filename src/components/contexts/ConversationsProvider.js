@@ -7,11 +7,14 @@ export function useConversations() {
   return useContext(ConversationsContext);
 }
 
-export function ConversationsProvider({ children }) {
+export function ConversationsProvider({ children, league }) {
   const [conversations, setConversations] = useLocalStorage(
     "conversations",
     []
   );
+  const users = league.join.map((join) => join.user);
+  
+
 
   function createConversation(recipients) {
     setConversations((prevConversations) => {
@@ -19,9 +22,24 @@ export function ConversationsProvider({ children }) {
     });
   }
 
+const formattedConversations = conversations.map(conversation => {
+  const recipients = conversation.recipients.map(recipient => {
+    const member = users.find(user => {
+      return user.id === recipient
+    })
+    const name = (member && member.username) || recipient
+    return { id: recipient, name}
+  })
+  return { ...conversation, recipients}
+})
+const value = {
+  conversations: formattedConversations, 
+  createConversation 
+}
+
   return (
     <ConversationsContext.Provider
-      value={{ conversations, createConversation }}
+      value={value}
     >
       {children}
     </ConversationsContext.Provider>
