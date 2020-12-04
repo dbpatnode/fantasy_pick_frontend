@@ -79,17 +79,16 @@ class App extends Component {
         this.props.setMatches(data);
         this.setMatchWeek();
         if (this.props.picks.length && this.props.matches > 0)
-        this.getUsersStats();
+          this.getUsersStats();
       }
     });
   }
 
   getUsersStats = () => {
-   
     // if (this.props.picks.length > 0 && this.props.matches.length > 0) {
 
     let users = usersIdList(this.props.picks, this.props.matches);
- 
+
     for (let i = 0; i < users.length; i++) {
       let userPicks = this.props.picks.filter(
         (pick) => pick.user.id === users[i]
@@ -112,17 +111,16 @@ class App extends Component {
       );
 
       let wins = userWins.flat().length + userScores.flat().length * 3;
-// debugger
+      // debugger
       let body = {
         wins: wins,
         losses: userWins.filter((w) => w.length === 0).length,
       };
-     
+
       if (wins > 0) {
-     
-        api.user.updateStats(users[i], body)
-        .then((data) => console.log(users[i], data));
-      
+        api.user
+          .updateStats(users[i], body)
+          .then((data) => console.log(users[i], data));
       }
     }
     api.picks.getPicks().then((data) => {
@@ -132,7 +130,7 @@ class App extends Component {
     });
   };
   // }
-  
+
   setMatchWeek = () => {
     let week = findMatchesForCurrentMatchDay(this.props.matches).matchday;
     this.props.setMatchWeek(week);

@@ -10,7 +10,7 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-import MessageDashboard from "./MessageDashboard"
+import MessageDashboard from "./MessageDashboard";
 import { ConversationsProvider } from "../contexts/ConversationsProvider";
 
 // CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
@@ -35,13 +35,13 @@ class LeagueShowPage extends React.Component {
       (league) => league.id === this.props.id
     );
     const link = `http://localhost:3001/leagues/${league.id}`;
-  
+
     return (
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
         {/* </div> */}
-        <ConversationsProvider user={this.props.user} league={league} >
-        <MessageDashboard league = {league} user={this.props.user}/>
+        <ConversationsProvider user={this.props.user} league={league}>
+          <MessageDashboard league={league} user={this.props.user} />
         </ConversationsProvider>
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
@@ -76,7 +76,6 @@ class LeagueShowPage extends React.Component {
           <tbody>
             {sortByPoints(league.join).map((user) => (
               <tr key={user.user.id}>
-                {/* {this.rankings(league.join, user)} */}
                 <td>{league.join.indexOf(user) + 1}</td>
                 <td>{user.user.username}</td>
                 <td>{user.user.wins ? user.user.wins : 0}</td>
@@ -84,7 +83,6 @@ class LeagueShowPage extends React.Component {
             ))}
           </tbody>
         </table>
-        {/* {this.rankings(league.join)} */}
       </div>
     );
   }
