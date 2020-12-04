@@ -10,9 +10,12 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-import SideBar from "./SideBar.js";
+import MessageDashboard from "./MessageDashboard"
 import { ConversationsProvider } from "../contexts/ConversationsProvider";
-
+// import SideBar from "./SideBar.js";
+// import OpenConversation from './OpenConversation'
+// import { ConversationsProvider } from "../contexts/ConversationsProvider";
+// import { useConversations } from '../contexts/ConversationsProvider'
 
 // CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
 class LeagueShowPage extends React.Component {
@@ -36,15 +39,19 @@ class LeagueShowPage extends React.Component {
       (league) => league.id === this.props.id
     );
     const link = `http://localhost:3001/leagues/${league.id}`;
-
+    // const { selectedConversation } = useConversations()
     // console.log(league.join);
     return (
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
-        <ConversationsProvider league={league}>
+        {/* <ConversationsProvider league={league}>
           <SideBar user={this.props.user} league={league} />
-        </ConversationsProvider>
+          <OpenConversation />
+        </ConversationsProvider> */}
         {/* </div> */}
+        <ConversationsProvider league = {league} >
+        <MessageDashboard league = {league} user={this.props.user}/>
+        </ConversationsProvider>
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>

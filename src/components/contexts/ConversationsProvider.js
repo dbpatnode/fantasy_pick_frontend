@@ -4,6 +4,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const ConversationsContext = React.createContext();
 
 export function useConversations() {
+
   return useContext(ConversationsContext);
 }
 
@@ -36,7 +37,8 @@ const formattedConversations = conversations.map((conversation, index) => {
 const value = {
   conversations: formattedConversations, 
   createConversation,
-  selectedConversationIndex: setSelectedConversationIndex
+  selectedConversationIndex: setSelectedConversationIndex, 
+  selectedConversation: formattedConversations[selectedConversationIndex]
 }
 
   return (
