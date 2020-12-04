@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const ConversationsContext = React.createContext();
@@ -10,8 +10,8 @@ export function useConversations() {
 export function ConversationsProvider({ children, league }) {
   const [conversations, setConversations] = useLocalStorage(
     "conversations",
-    []
-  );
+    []);
+  const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
   const users = league.join.map((join) => join.user);
   
 
@@ -22,7 +22,7 @@ export function ConversationsProvider({ children, league }) {
     });
   }
 
-const formattedConversations = conversations.map(conversation => {
+const formattedConversations = conversations.map((conversation, index) => {
   const recipients = conversation.recipients.map(recipient => {
     const member = users.find(user => {
       return user.id === recipient
@@ -30,11 +30,13 @@ const formattedConversations = conversations.map(conversation => {
     const name = (member && member.username) || recipient
     return { id: recipient, name}
   })
-  return { ...conversation, recipients}
+  const selected = index === selectedConversationIndex
+  return { ...conversation, recipients, selected}
 })
 const value = {
   conversations: formattedConversations, 
-  createConversation 
+  createConversation,
+  selectedConversationIndex: setSelectedConversationIndex
 }
 
   return (

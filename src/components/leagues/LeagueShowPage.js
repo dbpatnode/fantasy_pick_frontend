@@ -13,6 +13,8 @@ import {
 import SideBar from "./SideBar.js";
 import { ConversationsProvider } from "../contexts/ConversationsProvider";
 
+
+// CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
     if (this.props.user.id === league.user.id) {
