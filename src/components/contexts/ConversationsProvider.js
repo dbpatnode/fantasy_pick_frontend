@@ -21,32 +21,37 @@ export function ConversationsProvider({ children, league, user }) {
     });
   }
 
-  function addMessageToConversation({ recipients, text, sender }) {
+  function addMessageToConversation({ recipients, text, sender, league }) {
     setConversations((prevConversations) => {
       let madeChange = false;
-      const newMessage = { sender, text };
+      let leagueId = league.id;
+      const newMessage = { sender, text, leagueId };
       const newConversations = prevConversations.map((conversation) => {
         if (arrayEquality(conversation.recipients, recipients)) {
           madeChange = true;
           return {
             ...conversation,
             messages: [...conversation.messages, newMessage],
+            league: leagueId,
           };
         }
-
         return conversation;
       });
       if (madeChange) {
         return newConversations;
       } else {
+        debugger;
         return [...prevConversations, { recipients, messages: [newMessage] }];
       }
     });
   }
 
   function sendMessage(recipients, text) {
-    // console.log(user);
-    addMessageToConversation({ recipients, text, sender: user.id });
+    addMessageToConversation({
+      recipients,
+      text,
+      sender: user.id,
+    });
   }
 
   const formattedConversations = conversations.map((conversation, index) => {
@@ -79,6 +84,7 @@ export function ConversationsProvider({ children, league, user }) {
   return (
     <ConversationsContext.Provider value={value}>
       {children}
+      "Hello"
     </ConversationsContext.Provider>
   );
 }

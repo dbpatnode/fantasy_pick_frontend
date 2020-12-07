@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { useConversations } from "../contexts/ConversationsProvider";
 
-export default function OpenConversation() {
+export default function OpenConversation({ league }) {
   const [text, setText] = useState("");
   const { sendMessage, selectedConversation } = useConversations();
 
@@ -14,7 +14,6 @@ export default function OpenConversation() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     sendMessage(
       selectedConversation.recipients.map((r) => r.id),
       text
@@ -24,7 +23,7 @@ export default function OpenConversation() {
 
   return (
     <div className="d-flex flex-column flex-grow-1 overflow-auto">
-      <div classname="flex-grow1 overflow-auto">
+      <div className="flex-grow1 overflow-auto">
         <div className="d-flex flex-column align-items-start justify-content-end px-3">
           {selectedConversation.messages.map((message, index) => {
             const lastMessage =
