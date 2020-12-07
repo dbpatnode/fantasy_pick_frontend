@@ -125,14 +125,17 @@ export const rootReducer = (state = initialState, action) => {
         ...state.leagues.filter((league) => league.id !== action.payload.id),
         action.payload,
       ];
+
       let join = action.payload.join.filter(
         (join) => join.user_id === state.user.id
       );
       let joinToUpdate = {
-        id: join[0].id,
+        // id: join[0].id,
+        id: action.payload.id,
         league_name: action.payload.league_name,
         user_id: join[0].user_id,
       };
+
       return {
         ...state,
         userLeagues: [...state.userLeagues, joinToUpdate],
