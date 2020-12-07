@@ -45,7 +45,7 @@ export function ConversationsProvider({ children, league, user }) {
   }
 
   function sendMessage(recipients, text) {
-    console.log(user);
+    // console.log(user);
     addMessageToConversation({ recipients, text, sender: user.id });
   }
 

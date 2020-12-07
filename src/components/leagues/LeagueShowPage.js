@@ -35,12 +35,15 @@ class LeagueShowPage extends React.Component {
       (league) => league.id === this.props.id
     );
     const link = `http://localhost:3001/leagues/${league.id}`;
-
+    const userLeagueMember = league.join.filter(
+      (join) => join.user_id === this.props.user.id
+    );
+    console.log(userLeagueMember);
     return (
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
         {/* </div> */}
-        {this.props.isUser ? (
+        {userLeagueMember.length > 0 ? (
           <ConversationsProvider user={this.props.user} league={league}>
             <MessageDashboard league={league} user={this.props.user} />
           </ConversationsProvider>
