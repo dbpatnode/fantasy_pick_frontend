@@ -38,7 +38,7 @@ export default function SideBar({ user, league }) {
           </Tab.Pane>
         </Tab.Content>
         <Button onClick={() => setModalOpen(true)} className="rounded-0">
-          New {conversationsOpen ? "Conversatoion" : "Contacts"}
+          New {conversationsOpen ? "Conversation22" : "Contacts22"}
         </Button>
       </Tab.Container>
       <Modal show={modalOpen} onHide={closeModal}>

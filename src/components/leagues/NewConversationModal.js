@@ -10,7 +10,7 @@ export default function NewConversationModal({ league, closeModal }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    createConversation(selectedMemberIds);
+    createConversation(selectedMemberIds, league);
     closeModal();
   }
 
