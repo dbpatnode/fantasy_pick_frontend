@@ -40,9 +40,11 @@ class LeagueShowPage extends React.Component {
       <div className="league-table-container">
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
         {/* </div> */}
-        <ConversationsProvider user={this.props.user} league={league}>
-          <MessageDashboard league={league} user={this.props.user} />
-        </ConversationsProvider>
+        {this.props.isUser ? (
+          <ConversationsProvider user={this.props.user} league={league}>
+            <MessageDashboard league={league} user={this.props.user} />
+          </ConversationsProvider>
+        ) : null}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
