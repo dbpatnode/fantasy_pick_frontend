@@ -11,7 +11,6 @@ import { loss, draw, won } from "../../services/svg-icons";
 class PickRow extends React.Component {
   render() {
     const { p, matchWeek, matches } = this.props;
-    console.log(matchWeek);
     return (
       <div className="ui-cards">
         {matchWeek !== "all" ? (

@@ -167,9 +167,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props.standings);
     let club = this.props.standings.map((club) => club.team.name);
-    console.log(club);
     return (
       <div className="App">
         <Desktop>
