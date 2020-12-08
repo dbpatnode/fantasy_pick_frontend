@@ -55,11 +55,16 @@ export function ConversationsProvider({ children, league, user }) {
       sender: user.id,
     });
   }
-  const leagueConversation = conversations.filter(
-    (conversation) => conversation.league === league.id
+  const leagueConversation = conversations.filter((conversation) => {
+    return conversation.league === league.id;
+  });
+
+  const userLeagueConversations = leagueConversation.filter((conversation) =>
+    conversation.recipients.includes(user.id)
   );
 
-  const formattedConversations = leagueConversation.map(
+  const formattedConversations = userLeagueConversations.map(
+    // const formattedConversations = leagueConversation.map(
     (conversation, index) => {
       const recipients = conversation.recipients.map((recipient) => {
         const member = users.find((user) => {

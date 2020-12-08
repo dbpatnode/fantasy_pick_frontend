@@ -43,7 +43,11 @@ export default function SideBar({ user, league }) {
       </Tab.Container>
       <Modal show={modalOpen} onHide={closeModal}>
         {conversationsOpen ? (
-          <NewConversationModal league={league} closeModal={closeModal} />
+          <NewConversationModal
+            league={league}
+            closeModal={closeModal}
+            user={user}
+          />
         ) : (
           <NewContactModal closeModal={closeModal} />
         )}

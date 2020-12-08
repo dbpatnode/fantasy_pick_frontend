@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useConversations } from "../contexts/ConversationsProvider";
 
-export default function NewConversationModal({ league, closeModal }) {
-  const leagueMembers = league.join.map((join) => join.user);
+export default function NewConversationModal({ league, closeModal, user }) {
+  const leagueMembers = league.join
+    .map((join) => join.user)
+    .filter((u) => u.id !== user.id);
 
   const [selectedMemberIds, setSelectedMemberIds] = useState([]);
   const { createConversation } = useConversations();
 
   function handleSubmit(e) {
     e.preventDefault();
+    selectedMemberIds.push(user.id);
+
     createConversation(selectedMemberIds, league);
     closeModal();
   }
