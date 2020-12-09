@@ -1,6 +1,6 @@
 const io = require("socket.io")(5000);
 
-io.on("connectoin", (socket) => {
+io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
 
