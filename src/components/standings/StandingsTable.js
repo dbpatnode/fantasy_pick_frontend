@@ -1,4 +1,5 @@
 import { loss, draw, won } from "../../services/svg-icons";
+import { Link } from "react-router-dom";
 import pic from "../../pic.png";
 // import { Collapse } from "reactstrap";
 
@@ -44,13 +45,21 @@ const StandingsTable = (props) => {
                       <span className="standings-position-D">
                         {table.position}
                       </span>
-                      <img
-                        src={table.team.crestUrl}
-                        alt="team crest"
-                        className="standings-crest-D"
-                      ></img>
+                      <Link to={`club/${table.team.name}`}>
+                        <img
+                          src={table.team.crestUrl}
+                          alt="team crest"
+                          className="standings-crest-D"
+                        ></img>
+                      </Link>
                     </td>
-                    <td id="standings-club-D">{table.team.name}</td>
+
+                    <td id="standings-club-D">
+                      <Link to={`club/${table.team.name}`}>
+                        {table.team.name}
+                      </Link>
+                    </td>
+
                     <td>{table.playedGames}</td>
                     <td>{table.won}</td>
                     <td>{table.draw}</td>
