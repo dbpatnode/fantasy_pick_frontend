@@ -15,15 +15,19 @@ export function ConversationsProvider({ children, league, user }) {
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const users = league.join.map((join) => join.user);
 
-  function createConversation(recipients) {
+  function createConversation(recipients, league) {
     setConversations((prevConversations) => {
-      return [...prevConversations, { recipients, messages: [] }];
+      return [
+        ...prevConversations,
+        { recipients, messages: [], league: league.id },
+      ];
     });
   }
 
-  function addMessageToConversation({ recipients, text, sender }) {
+  function addMessageToConversation({ recipients, text, sender, league }) {
     setConversations((prevConversations) => {
       let madeChange = false;
+
       const newMessage = { sender, text };
       const newConversations = prevConversations.map((conversation) => {
         if (arrayEquality(conversation.recipients, recipients)) {
@@ -33,41 +37,55 @@ export function ConversationsProvider({ children, league, user }) {
             messages: [...conversation.messages, newMessage],
           };
         }
-
         return conversation;
       });
       if (madeChange) {
         return newConversations;
       } else {
+        debugger;
         return [...prevConversations, { recipients, messages: [newMessage] }];
       }
     });
   }
 
   function sendMessage(recipients, text) {
-    // console.log(user);
-    addMessageToConversation({ recipients, text, sender: user.id });
+    addMessageToConversation({
+      recipients,
+      text,
+      sender: user.id,
+    });
   }
-
-  const formattedConversations = conversations.map((conversation, index) => {
-    const recipients = conversation.recipients.map((recipient) => {
-      const member = users.find((user) => {
-        return user.id === recipient;
-      });
-      const name = (member && member.username) || recipient;
-      return { id: recipient, name };
-    });
-    const messages = conversation.messages.map((message) => {
-      const member = users.find((user) => {
-        return user.id === message.sender;
-      });
-      const name = (member && member.username) || message.sender;
-      const fromMe = user.id === message.sender;
-      return { ...message, senderName: name, fromMe };
-    });
-    const selected = index === selectedConversationIndex;
-    return { ...conversation, messages, recipients, selected };
+  const leagueConversation = conversations.filter((conversation) => {
+    return conversation.league === league.id;
   });
+
+  const userLeagueConversations = leagueConversation.filter((conversation) =>
+    conversation.recipients.includes(user.id)
+  );
+
+  const formattedConversations = userLeagueConversations.map(
+    // const formattedConversations = leagueConversation.map(
+    (conversation, index) => {
+      const recipients = conversation.recipients.map((recipient) => {
+        const member = users.find((user) => {
+          return user.id === recipient;
+        });
+        const name = (member && member.username) || recipient;
+        return { id: recipient, name };
+      });
+      const messages = conversation.messages.map((message) => {
+        const member = users.find((user) => {
+          return user.id === message.sender;
+        });
+        const name = (member && member.username) || message.sender;
+        const fromMe = user.id === message.sender;
+        return { ...message, senderName: name, fromMe };
+      });
+      const selected = index === selectedConversationIndex;
+      return { ...conversation, messages, recipients, selected };
+    }
+  );
+
   const value = {
     conversations: formattedConversations,
     createConversation,

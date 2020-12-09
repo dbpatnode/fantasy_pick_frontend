@@ -22,9 +22,9 @@ export default function SideBar({ user, league }) {
       {/* changes state and the active tab back and forth */}
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
         <Nav variant="tabs" className="justify-content center">
-          <Nav.Item>
+          {/* <Nav.Item>
             <Nav.Link eventKey={CONTACTS_KEY}>Contacts</Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <Nav.Link eventKey={CONVERSATIONS_KEY}>Conversations</Nav.Link>
           </Nav.Item>
@@ -33,20 +33,26 @@ export default function SideBar({ user, league }) {
           <Tab.Pane eventKey={CONVERSATIONS_KEY}>
             <Conversations />
           </Tab.Pane>
-          <Tab.Pane eventKey={CONTACTS_KEY}>
+          {/* <Tab.Pane eventKey={CONTACTS_KEY}>
             <Contacts league={league} />
-          </Tab.Pane>
+          </Tab.Pane> */}
         </Tab.Content>
         <Button onClick={() => setModalOpen(true)} className="rounded-0">
-          New {conversationsOpen ? "Conversatoion" : "Contacts"}
+          {/* New {conversationsOpen ? "Conversation" : "Contacts"} */}
+          {/* {conversationsOpen ? "New Conversation22" : null} */}
+          New Conversation
         </Button>
       </Tab.Container>
       <Modal show={modalOpen} onHide={closeModal}>
-        {conversationsOpen ? (
-          <NewConversationModal league={league} closeModal={closeModal} />
-        ) : (
+        {/* {conversationsOpen ? ( */}
+        <NewConversationModal
+          league={league}
+          closeModal={closeModal}
+          user={user}
+        />
+        {/* ) : (
           <NewContactModal closeModal={closeModal} />
-        )}
+        )} */}
       </Modal>
     </div>
   );

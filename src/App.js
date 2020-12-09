@@ -151,9 +151,9 @@ class App extends Component {
   renderLeaguesContainer = () => <LeaguesContainer />;
   renderProfile = () => <Profile />;
   renderLeagueShowPage = (routerProps) => {
-    let leagueID = routerProps.match.params.id;
+    let leagueId = routerProps.match.params.id;
     let league = this.props.leagues.find(
-      (league) => league.id === parseInt(leagueID)
+      (league) => league.id === parseInt(leagueId)
     );
     return league ? <LeagueShowPage id={league.id} /> : <PageNotFound />;
   };
