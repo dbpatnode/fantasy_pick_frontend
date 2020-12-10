@@ -12,7 +12,7 @@ import {
 } from "react-share";
 import MessageDashboard from "./MessageDashboard";
 import { ConversationsProvider } from "../contexts/ConversationsProvider";
-
+import { SocketProvider } from "../contexts/SocketProvider";
 // CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -44,9 +44,19 @@ class LeagueShowPage extends React.Component {
         {/* <div className="d-flex" style={{ height: "100vh" }}> */}
         {/* </div> */}
         {userLeagueMember.length > 0 ? (
-          <ConversationsProvider user={this.props.user} league={league}>
-            <MessageDashboard league={league} user={this.props.user} />
-          </ConversationsProvider>
+          <SocketProvider id={this.props.user.id}>
+            <ConversationsProvider
+              user={this.props.user}
+              id={this.props.user.id}
+              league={league}
+            >
+              <MessageDashboard
+                league={league}
+                user={this.props.user}
+                id={this.props.user.id}
+              />
+            </ConversationsProvider>
+          </SocketProvider>
         ) : null}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
