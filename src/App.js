@@ -170,46 +170,38 @@ class App extends Component {
     let club = this.props.standings.map((club) => club.team.name);
     return (
       <div className="App">
-        <Desktop>
+        {/* <Desktop> */}
+        <div>
+          {/* {this.props.picks.length > 0 && this.props.matches.length > 0 ? this.getUsersStats() : null} */}
           <div>
-            {/* {this.props.picks.length > 0 && this.props.matches.length > 0 ? this.getUsersStats() : null} */}
-            <div>
-              <Navbar />
-            </div>
-
-            <Switch>
-              <Route
-                exact
-                path="/leagues/:id"
-                render={(routerProps) => this.renderLeagueShowPage(routerProps)}
-              />
-              <Route
-                exact
-                path="/leagues"
-                component={this.renderLeaguesContainer}
-              />
-              <Route
-                exact
-                path="/club/:clubName"
-                render={(routerProps) => this.renderClubShowPage(routerProps)}
-              />
-              <Route
-                exact
-                path="/picks"
-                component={this.renderPicksContainer}
-              />
-              <Route
-                exact
-                path="/matches"
-                component={this.renderMatchesTable}
-              />
-              <Route exact path="/profile" component={this.renderProfile} />
-              <Route exact path="/" component={this.renderStandingsTable} />
-            </Switch>
+            <Navbar />
           </div>
-        </Desktop>
+
+          <Switch>
+            <Route
+              exact
+              path="/leagues/:id"
+              render={(routerProps) => this.renderLeagueShowPage(routerProps)}
+            />
+            <Route
+              exact
+              path="/leagues"
+              component={this.renderLeaguesContainer}
+            />
+            <Route
+              exact
+              path="/club/:clubName"
+              render={(routerProps) => this.renderClubShowPage(routerProps)}
+            />
+            <Route exact path="/picks" component={this.renderPicksContainer} />
+            <Route exact path="/matches" component={this.renderMatchesTable} />
+            <Route exact path="/profile" component={this.renderProfile} />
+            <Route exact path="/" component={this.renderStandingsTable} />
+          </Switch>
+        </div>
+        {/* </Desktop>
         <Tablet>Tablet</Tablet>
-        <Mobile>Mobile</Mobile>
+        <Mobile>Mobile</Mobile> */}
       </div>
     );
   }
