@@ -6,6 +6,19 @@ export const getTime = () => {
 
   return isoDate;
 };
+export const sortByUserName = (list) => {
+  return list.sort(function (a, b) {
+    let nameA = a.username.toUpperCase();
+    let nameB = b.username.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+};
 export const sortByName = (list) => {
   return list.sort(function (a, b) {
     let nameA = a.league_name.toUpperCase();

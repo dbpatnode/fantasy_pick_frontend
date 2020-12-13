@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useLocalStorage from "../../hooks/useLocalStorage";
 import { useSocket } from "./SocketProvider";
 
 const ConversationsContext = React.createContext();
@@ -19,6 +19,7 @@ export function ConversationsProvider({ children, league, user }) {
 
   function createConversation(recipients, league) {
     setConversations((prevConversations) => {
+      debugger;
       return [
         ...prevConversations,
         { recipients, messages: [], league: league.id },
