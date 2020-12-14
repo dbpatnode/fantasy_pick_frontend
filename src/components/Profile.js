@@ -12,6 +12,8 @@ import {
   sortByValue,
 } from "../services/helpers";
 import PickRow from "./picks/PickRow";
+import Chat from "../components/chat/Chat";
+
 // import { loss, draw, won, user } from "../services/svg-icons";
 // import { relativeTimeThreshold } from "moment";
 class Profile extends React.Component {
@@ -38,6 +40,8 @@ class Profile extends React.Component {
     }
     return this.props.userPicks;
   };
+
+  renderChat = () => <Chat />;
   render() {
     // console.log("USERR", this.props.user);
     let matchWeekInput = this.state.inputValue;
@@ -104,6 +108,7 @@ class Profile extends React.Component {
             ))}
           </div>
         </div>
+        <div>{this.renderChat()}</div>
       </div>
     );
   }

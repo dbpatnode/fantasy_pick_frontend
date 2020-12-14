@@ -71,7 +71,7 @@ export const user = (
     width="2em"
     height="2em"
     viewBox="0 0 16 16"
-    class="bi bi-person-fill"
+    className="bi bi-person-fill"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -87,7 +87,7 @@ export const password = (
     width="2em"
     height="2em"
     viewBox="0 0 16 16"
-    class="bi bi-lock-fill"
+    className="bi bi-lock-fill"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >

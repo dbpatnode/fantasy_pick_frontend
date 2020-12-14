@@ -10,7 +10,9 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-
+import MessageDashboard from "./MessageDashboard";
+import { ConversationsProvider } from "../contexts/ConversationsProvider";
+import { SocketProvider } from "../contexts/SocketProvider";
 // CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -39,10 +41,26 @@ class LeagueShowPage extends React.Component {
     console.log(userLeagueMember);
     return (
       <div className="league-table-container">
+        {/* <div className="d-flex" style={{ height: "100vh" }}> */}
+        {/* </div> */}
+        {userLeagueMember.length > 0 ? (
+          <SocketProvider id={this.props.user.id}>
+            <ConversationsProvider
+              user={this.props.user}
+              id={this.props.user.id}
+              league={league}
+            >
+              <MessageDashboard
+                league={league}
+                user={this.props.user}
+                id={this.props.user.id}
+              />
+            </ConversationsProvider>
+          </SocketProvider>
+        ) : null}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
-
         <div className="league-info">
           <FacebookShareButton
             url={`http://localhost:3001/leagues/${league.id}`}
@@ -65,7 +83,7 @@ class LeagueShowPage extends React.Component {
         <table className="ui selectable celled table">
           <thead>
             <tr>
-              <th>Rank</th>
+              <th> Rank</th>
               <th>Name</th>
               <th>Points</th>
             </tr>
