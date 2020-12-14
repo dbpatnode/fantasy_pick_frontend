@@ -7,10 +7,9 @@ import { ConversationsProvider } from "../../contexts/ConversationsProvider";
 import { SocketProvider } from "../../contexts/SocketProvider";
 
 function Chat({ user }) {
-  // let id =  user.uuid
-  const [id, setId] = useLocalStorage("id");
-  // debugger;
-  const dashboard = (
+  let id = user.uuid;
+
+  return (
     <SocketProvider id={id}>
       <ContactsProvider>
         <ConversationsProvider id={id}>
@@ -19,8 +18,6 @@ function Chat({ user }) {
       </ContactsProvider>
     </SocketProvider>
   );
-
-  return id ? dashboard : <Login onIdSubmit={setId} />;
 }
 
 export default Chat;
