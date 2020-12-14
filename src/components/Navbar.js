@@ -47,6 +47,7 @@ class Navbar extends Component {
       .catch((err) => console.log(err));
   };
   handleAuthResponse = (data) => {
+    // need to add uuid to setUser
     if (data.user) {
       localStorage.token = data.token;
       this.props.setUser(data);
@@ -58,7 +59,8 @@ class Navbar extends Component {
     }
   };
   handleLogout = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    localStorage.clear();
     this.props.setLogout();
   };
 

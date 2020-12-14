@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
 import EditLeague from "./EditLeague";
+import Chat from "../chat/Chat";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -28,6 +29,8 @@ class LeagueShowPage extends React.Component {
   renderJoinLeague = (league) => <JoinLeague league={league} />;
   renderEditLeague = (league) => <EditLeague league={league} />;
 
+  renderChat = (user) => <Chat user={user} />;
+
   render() {
     const league = this.props.leagues.find(
       (league) => league.id === this.props.id
@@ -42,7 +45,9 @@ class LeagueShowPage extends React.Component {
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
-
+        {this.props.isUser ? (
+          <div>{this.renderChat(this.props.user)}</div>
+        ) : null}
         <div className="league-info">
           <FacebookShareButton
             url={`http://localhost:3001/leagues/${league.id}`}

@@ -6,9 +6,10 @@ import { ContactsProvider } from "../../contexts/ContactsProvider";
 import { ConversationsProvider } from "../../contexts/ConversationsProvider";
 import { SocketProvider } from "../../contexts/SocketProvider";
 
-function Chat() {
+function Chat({ user }) {
+  // let id =  user.uuid
   const [id, setId] = useLocalStorage("id");
-
+  // debugger;
   const dashboard = (
     <SocketProvider id={id}>
       <ContactsProvider>
