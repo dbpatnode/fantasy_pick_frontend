@@ -5,6 +5,7 @@ import { setUser } from "../actions";
 // import api from "../services/api";
 import { Link } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
+
 import {
   sortByName,
   sortByPick,
@@ -12,6 +13,7 @@ import {
   sortByValue,
 } from "../services/helpers";
 import PickRow from "./picks/PickRow";
+
 // import { loss, draw, won, user } from "../services/svg-icons";
 // import { relativeTimeThreshold } from "moment";
 class Profile extends React.Component {
@@ -38,6 +40,7 @@ class Profile extends React.Component {
     }
     return this.props.userPicks;
   };
+
   render() {
     // console.log("USERR", this.props.user);
     let matchWeekInput = this.state.inputValue;

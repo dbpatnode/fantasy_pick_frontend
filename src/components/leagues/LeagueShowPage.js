@@ -4,15 +4,14 @@ import { withRouter } from "react-router-dom";
 import { sortByPoints } from "../../services/helpers";
 import JoinLeague from "./JoinLeague";
 import EditLeague from "./EditLeague";
+import Chat from "../chat/Chat";
 import {
   FacebookShareButton,
   FacebookIcon,
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-import MessageDashboard from "./MessageDashboard";
-import { ConversationsProvider } from "../contexts/ConversationsProvider";
-import { SocketProvider } from "../contexts/SocketProvider";
+
 // CHECK IF USER IS LEAGUE MEMBER OR IF THERE IS USER AT ALL WHEN RENDERING MESSAGES
 class LeagueShowPage extends React.Component {
   checkUserJoin = (league) => {
@@ -30,6 +29,8 @@ class LeagueShowPage extends React.Component {
   renderJoinLeague = (league) => <JoinLeague league={league} />;
   renderEditLeague = (league) => <EditLeague league={league} />;
 
+  renderChat = (user) => <Chat user={user} />;
+
   render() {
     const league = this.props.leagues.find(
       (league) => league.id === this.props.id
@@ -41,26 +42,12 @@ class LeagueShowPage extends React.Component {
     console.log(userLeagueMember);
     return (
       <div className="league-table-container">
-        {/* <div className="d-flex" style={{ height: "100vh" }}> */}
-        {/* </div> */}
-        {userLeagueMember.length > 0 ? (
-          <SocketProvider id={this.props.user.id}>
-            <ConversationsProvider
-              user={this.props.user}
-              id={this.props.user.id}
-              league={league}
-            >
-              <MessageDashboard
-                league={league}
-                user={this.props.user}
-                id={this.props.user.id}
-              />
-            </ConversationsProvider>
-          </SocketProvider>
-        ) : null}
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
+        {this.props.isUser ? (
+          <div>{this.renderChat(this.props.user)}</div>
+        ) : null}
         <div className="league-info">
           <FacebookShareButton
             url={`http://localhost:3001/leagues/${league.id}`}
@@ -83,7 +70,7 @@ class LeagueShowPage extends React.Component {
         <table className="ui selectable celled table">
           <thead>
             <tr>
-              <th> Rank</th>
+              <th>Rank</th>
               <th>Name</th>
               <th>Points</th>
             </tr>

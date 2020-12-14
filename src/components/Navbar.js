@@ -31,13 +31,10 @@ class Navbar extends Component {
       })
       .catch((err) => console.log(err));
   };
-  handleSignUp = (e, user) => {
-    e.preventDefault();
-    // console.log(user);
+  handleSignUp = (user) => {
     api.auth
       .signup(user)
       .then((data) => {
-        // console.log(data);
         if (!data.error) {
           this.handleAuthResponse(data);
         } else {
@@ -49,8 +46,8 @@ class Navbar extends Component {
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.token;
+      localStorage.setItem("whatsapp-clone-id", data.user.uuid);
       this.props.setUser(data);
-
       this.setState({
         loginOpen: false,
         signUpOpen: false,
@@ -59,6 +56,7 @@ class Navbar extends Component {
   };
   handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.clear();
     this.props.setLogout();
   };
 
