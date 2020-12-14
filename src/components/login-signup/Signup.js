@@ -2,6 +2,7 @@ import React from "react";
 import { ModalBody } from "reactstrap";
 import { capitalize } from "../../services/helpers";
 import { send, user, password } from "../../services/svg-icons";
+import { v4 as uuidV4 } from "uuid";
 
 // need to add uuid for user and store on backend and local storage
 
@@ -18,11 +19,25 @@ class Signup extends React.Component {
     this.setState({ [event.target.name]: value });
   };
 
+  createChatID = (e) => {
+    e.preventDefault();
+    let userUuid = uuidV4();
+
+    let user = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      password_confirmation: this.state.password_confirmation,
+      uuid: userUuid,
+    };
+    this.props.handleSignUp(user);
+  };
+
   render() {
     return (
       <>
         <ModalBody>
-          <form onSubmit={(e) => this.props.handleSignUp(e, this.state)}>
+          <form onSubmit={(e) => this.createChatID(e)}>
             <span>{user}</span>
             <input
               className="ui label"
@@ -61,10 +76,7 @@ class Signup extends React.Component {
               value={this.state.password_confirmation}
             />
             <br />
-            <button
-              color="primary"
-              onClick={(e) => this.props.handleSignUp(e, this.state)}
-            >
+            <button color="primary" onClick={(e) => this.createChatID(e)}>
               Create an Account
             </button>{" "}
           </form>

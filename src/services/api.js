@@ -1,4 +1,4 @@
-const API_ROOT = `http://localhost:3000/`;
+const API_ROOT = `http://localhost:3000`;
 
 const token = localStorage.token;
 
@@ -6,6 +6,7 @@ const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
   Authorization: `Bearers ${token}`,
+  "Access-Control-Allow-Origin": "*",
 };
 const headersForAPI = {
   headers: {
@@ -54,7 +55,6 @@ const signup = (user) => {
   }).then((res) => res.json());
 };
 const updateStats = (id, user) => {
-
   return fetch(`${API_ROOT}/users/${id}`, {
     method: "PATCH",
     headers: headers,

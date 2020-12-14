@@ -61,13 +61,6 @@ class App extends Component {
         this.props.setLeagues(data);
       }
     });
-    // api.teams.fetchTeams().then((data) => {
-    //   // if (!data.error) {
-    //   //   this.props.setTeams(data);
-    //   console.log(data);
-    //   Gemil;
-    //   // }
-    // });
 
     api.picks.getPicks().then((data) => {
       if (!data.error) {
