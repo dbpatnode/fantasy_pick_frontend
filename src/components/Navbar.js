@@ -8,6 +8,7 @@ import { Modal, ModalHeader } from "reactstrap";
 
 import Login from "../components/login-signup/Login";
 import Signup from "../components/login-signup/Signup";
+import Chat from "./chat/Chat"
 
 class Navbar extends Component {
   state = {
@@ -72,6 +73,8 @@ class Navbar extends Component {
       loginOpen: false,
     });
   };
+
+ 
 
   render() {
     return (
@@ -142,7 +145,11 @@ class Navbar extends Component {
               )}
             </ul>
           </div>
+          <Link to="/chat">
+              <button className="chat-button">Chat</button>
+          </Link>
         </div>
+       
       </div>
     );
   }

@@ -48,14 +48,26 @@
   background: #2b004a;
   color: white;
   height: 60px;
+  
   /* border-top: 15px solid #2b004a; */
 }
 .modal-title {
   font-size: 25px;
 }
-
+.chat-button {
+  border-radius: 5px;
+  background: #2b004a;
+  color: white;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  width: 150px;
+  margin: 10px;
+  font-weight:  bold;
+  height: 40px
+}
 .box-score {
-  color: rgb(9, 160, 9);
+  color: rgb(23, 68, 23);
   width: 50px;
   background: rgb(226, 225, 225);
   border-radius: 8px;

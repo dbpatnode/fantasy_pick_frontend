@@ -137,7 +137,7 @@ class App extends Component {
   };
 
   renderMatchesTable = () => <MatchesTable />;
-  renderChat = (user) => <Chat user={user} />;
+  renderChat = (user) => this.props.isUser ? <Chat user={user}/> : <PageNotFound />;
   renderPicksContainer = () => <PicksContainer />;
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
@@ -166,11 +166,12 @@ class App extends Component {
       <div className="App">
         {/* <Desktop> */}
         <div>
+          
           {/* {this.props.picks.length > 0 && this.props.matches.length > 0 ? this.getUsersStats() : null} */}
           <div>
             <Navbar />
           </div>
-
+         
           <Switch>
             <Route
               exact
@@ -210,6 +211,7 @@ function mapStateToProps(state) {
     picks: state.picks,
     matches: state.matches,
     user: state.user,
+    isUser: state.isUser
   };
 }
 
