@@ -29,7 +29,7 @@ class LeagueShowPage extends React.Component {
   renderJoinLeague = (league) => <JoinLeague league={league} />;
   renderEditLeague = (league) => <EditLeague league={league} />;
 
-  renderChat = (user) => <Chat user={user} />;
+
 
   render() {
     const league = this.props.leagues.find(
@@ -45,9 +45,6 @@ class LeagueShowPage extends React.Component {
         <div className="league-info">
           <h1 id="league-name">{league.league_name}</h1>
         </div>
-        {this.props.isUser ? (
-          <div>{this.renderChat(this.props.user)}</div>
-        ) : null}
         <div className="league-info">
           <FacebookShareButton
             url={`http://localhost:3001/leagues/${league.id}`}
