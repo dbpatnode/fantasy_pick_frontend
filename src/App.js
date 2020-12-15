@@ -24,7 +24,7 @@ import ClubShowPage from "./components/ClubShowPage";
 
 import Profile from "./components/Profile";
 import PicksContainer from "./components/picks/PicksContainer";
-
+import Chat from "./components/chat/Chat"
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   return isDesktop ? children : null;
@@ -137,6 +137,7 @@ class App extends Component {
   };
 
   renderMatchesTable = () => <MatchesTable />;
+  renderChat = (user) => <Chat user={user} />;
   renderPicksContainer = () => <PicksContainer />;
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
@@ -189,6 +190,7 @@ class App extends Component {
             <Route exact path="/picks" component={this.renderPicksContainer} />
             <Route exact path="/matches" component={this.renderMatchesTable} />
             <Route exact path="/profile" component={this.renderProfile} />
+            <Route exact path="/chat" component={this.renderChat} />
             <Route exact path="/" component={this.renderStandingsTable} />
           </Switch>
         </div>
