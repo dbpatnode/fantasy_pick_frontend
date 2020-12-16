@@ -8,8 +8,8 @@ export const getTime = () => {
 };
 export const sortByUserName = (list) => {
   return list.sort(function (a, b) {
-    let nameA = a.username.toUpperCase();
-    let nameB = b.username.toUpperCase();
+    let nameA = a.toUpperCase();
+    let nameB = b.toUpperCase();
     if (nameA < nameB) {
       return -1;
     }

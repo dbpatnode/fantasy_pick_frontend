@@ -11,7 +11,7 @@ export default function NewConversationModal({ closeModal }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (selectedContactIds.length > 0) {
-      createConversation(selectedContactIds);
+      createConversation(selectedContactIds.sort());
       closeModal();
     } else {
       alert("You must select at least one contact");
