@@ -13,7 +13,6 @@ export function ContactsProvider({ children }) {
   function createContact(id, name) {
     setContacts((prevContacts) => {
       let contact = prevContacts.find((c) => c.id === id);
-
       if (contact) {
         alert(`This Id is already in your contact list as ${contact.name}`);
         return prevContacts;

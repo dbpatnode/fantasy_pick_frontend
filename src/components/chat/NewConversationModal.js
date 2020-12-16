@@ -10,9 +10,12 @@ export default function NewConversationModal({ closeModal }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    createConversation(selectedContactIds);
-    closeModal();
+    if (selectedContactIds.length > 0) {
+      createConversation(selectedContactIds);
+      closeModal();
+    } else {
+      alert("You must select at least one contact");
+    }
   }
 
   function handleCheckboxChange(contactId) {
