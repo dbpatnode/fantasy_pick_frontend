@@ -7,7 +7,7 @@ import { ConversationsProvider } from "../../contexts/ConversationsProvider";
 import { SocketProvider } from "../../contexts/SocketProvider";
 
 function Chat({ user }) {
-  let id = user.uuid;
+  let id = user.username;
 
   // debugger;
   return (

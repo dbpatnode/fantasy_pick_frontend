@@ -47,7 +47,7 @@ class Navbar extends Component {
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.token;
-      localStorage.setItem("whatsapp-clone-id", data.user.uuid);
+      localStorage.setItem("whatsapp-clone-id", data.user.username);
       this.props.setUser(data);
       this.setState({
         loginOpen: false,
