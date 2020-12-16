@@ -19,21 +19,31 @@ export function ConversationsProvider({ id, children }) {
   const socket = useSocket();
 
   function createConversation(recipients) {
+    
     setConversations((prevConversations) => {
-      let isEqual = true;
+      console.log(prevConversations)
+      let isEqual = false;
+      
       prevConversations.map((conversation) => {
-        for (let i = 0; i < conversation.recipients.length; i++) {
-          if (conversation.recipients[i] !== recipients[i]) {
-            isEqual = false;
-          }
-        }
+      
+        if (arrayEquality(conversation.recipients, recipients)) { 
+         
+          isEqual = true
+          // return prevConversations
+        } 
       });
-      debugger;
-      return isEqual
-        ? prevConversations
-        : [...prevConversations, { recipients, messages: [] }];
-    });
-  }
+      if (isEqual) {
+      alert("You already have an existing conversation with this person")
+        return prevConversations 
+      }
+        else {
+          return  [...prevConversations, { recipients, messages: []}] 
+
+        }
+      }
+     
+    )};
+
 
   const addMessageToConversation = useCallback(
     ({ recipients, text, sender }) => {
