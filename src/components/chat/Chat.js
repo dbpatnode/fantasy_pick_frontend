@@ -9,8 +9,8 @@ import { SocketProvider } from "../../contexts/SocketProvider";
 function Chat({ user }) {
   let id = user.uuid;
 
-  
-   return (
+  // debugger;
+  return (
     <SocketProvider id={id}>
       <ContactsProvider>
         <ConversationsProvider id={id}>
@@ -18,7 +18,7 @@ function Chat({ user }) {
         </ConversationsProvider>
       </ContactsProvider>
     </SocketProvider>
-  ); 
+  );
 }
 
 export default Chat;

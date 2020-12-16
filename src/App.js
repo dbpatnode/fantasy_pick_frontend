@@ -24,7 +24,7 @@ import ClubShowPage from "./components/ClubShowPage";
 
 import Profile from "./components/Profile";
 import PicksContainer from "./components/picks/PicksContainer";
-import Chat from "./components/chat/Chat"
+import Chat from "./components/chat/Chat";
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   return isDesktop ? children : null;
@@ -137,7 +137,8 @@ class App extends Component {
   };
 
   renderMatchesTable = () => <MatchesTable />;
-  renderChat = (user) => this.props.isUser ? <Chat user={user}/> : <PageNotFound />;
+  renderChat = () =>
+    this.props.isUser ? <Chat user={this.props.user} /> : <PageNotFound />;
   renderPicksContainer = () => <PicksContainer />;
   renderStandingsTable = () => (
     <StandingsTable standings={this.props.standings} />
@@ -166,12 +167,11 @@ class App extends Component {
       <div className="App">
         {/* <Desktop> */}
         <div>
-          
           {/* {this.props.picks.length > 0 && this.props.matches.length > 0 ? this.getUsersStats() : null} */}
           <div>
             <Navbar />
           </div>
-         
+
           <Switch>
             <Route
               exact
@@ -211,7 +211,7 @@ function mapStateToProps(state) {
     picks: state.picks,
     matches: state.matches,
     user: state.user,
-    isUser: state.isUser
+    isUser: state.isUser,
   };
 }
 
