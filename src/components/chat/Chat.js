@@ -11,6 +11,7 @@ function Chat({ user }) {
 
   // debugger;
   return (
+    
     <SocketProvider id={id}>
       <ContactsProvider>
         <ConversationsProvider id={id}>
@@ -18,6 +19,7 @@ function Chat({ user }) {
         </ConversationsProvider>
       </ContactsProvider>
     </SocketProvider>
+    
   );
 }
 
