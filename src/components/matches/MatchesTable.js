@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { findMatchesForCurrentMatchDay } from "../../services/helpers";
 import MatchRow from "./MatchRow";
+import {Table} from 'reactstrap'
 
 class MatchesTable extends React.Component {
   // matchday = () => {
@@ -43,7 +44,7 @@ class MatchesTable extends React.Component {
             <>
               <h1>Matchweek {this.props.currentMatchWeek} </h1>
               <div className="matches-table">
-                <table>
+                <Table borderless>
                   <thead>
                     <tr className="match-headers">
                       <th>Home Team</th>
@@ -60,11 +61,11 @@ class MatchesTable extends React.Component {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
               <h1> Future Matches</h1>
               <div className="matches-table">
-                <table>
+                <Table>
                   <thead>
                     <tr className="match-headers">
                       <th>Home Team</th>
@@ -81,7 +82,7 @@ class MatchesTable extends React.Component {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
             </>
           ) : (

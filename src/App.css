@@ -19,8 +19,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
-  background: url("https://the-brandidentity.com/app/uploads/2017/08/PremierLeague_3.jpeg")
-    no-repeat center center fixed;
+  background: url("./Artboard\ 1@2x.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -100,7 +99,7 @@
   grid-column-start: 2;
   grid-column-end: 5;
   grid-row-end: 4;
-  height: 690px;
+
   overflow: scroll;
   padding-top: 10px;
 }
@@ -692,11 +691,29 @@ span {
   grid-row-start: 1 !important;
 }
 .button-join-league {
+  color: white;
   text-align: left;
   background: transparent;
   border: none;
   font-weight: bold;
   letter-spacing: 1px;
+  background: #00e9ab;
+  border-radius: 4px;
+  padding: 10px;
+}
+.button-add-league {
+  color: white;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: #00e9ab;
+  border-radius: 4px;
+  padding: 10px;
+  margin-left: 10px;
+  height: 35px;
+
 }
 .text-join-league {
   text-align: left;

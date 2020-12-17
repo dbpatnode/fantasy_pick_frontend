@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import api from "../../services/api";
 import { addJoinToLeague } from "../../actions";
+import {add} from "../../services/svg-icons"
 
 class JoinLeague extends React.Component {
   state = {
@@ -31,7 +32,7 @@ class JoinLeague extends React.Component {
             className="button-join-league"
             onClick={() => this.handelJoinLeague(this.props.league.id)}
           >
-            Join {this.props.league.league_name}
+            {add}Join  
           </button>
         )}
       </>

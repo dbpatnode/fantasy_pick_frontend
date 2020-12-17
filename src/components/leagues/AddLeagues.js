@@ -4,7 +4,7 @@ import { addLeague } from "../../actions";
 import api from "../../services/api";
 import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 import { capitalize } from "../../services/helpers";
-
+import {add} from "../../services/svg-icons"
 class AddLeague extends React.Component {
   state = {
     league: "",
@@ -48,9 +48,9 @@ class AddLeague extends React.Component {
               placeholder="League Name"
               required
             />
-            <InputGroupAddon addonType="append">
-              <button onClick={this.handleSubmit}>Add New League</button>
-            </InputGroupAddon>
+          
+              <button className="button-add-league" onClick={this.handleSubmit}>{add} Add New League</button>
+         
           </InputGroup>
         </form>
       </>
