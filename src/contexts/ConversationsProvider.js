@@ -16,34 +16,28 @@ export function ConversationsProvider({ id, children }) {
   );
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const { contacts } = useContacts();
+  console.log(contacts);
   const socket = useSocket();
 
   function createConversation(recipients) {
-    
     setConversations((prevConversations) => {
-      console.log(prevConversations)
+      console.log(prevConversations);
       let isEqual = false;
-      
+
       prevConversations.map((conversation) => {
-      
-        if (arrayEquality(conversation.recipients, recipients)) { 
-         
-          isEqual = true
+        if (arrayEquality(conversation.recipients, recipients)) {
+          isEqual = true;
           // return prevConversations
-        } 
+        }
       });
       if (isEqual) {
-      alert("You already have an existing conversation with this person")
-        return prevConversations 
+        alert("You already have an existing conversation with this person");
+        return prevConversations;
+      } else {
+        return [...prevConversations, { recipients, messages: [] }];
       }
-        else {
-          return  [...prevConversations, { recipients, messages: []}] 
-
-        }
-      }
-     
-    )};
-
+    });
+  }
 
   const addMessageToConversation = useCallback(
     ({ recipients, text, sender }) => {

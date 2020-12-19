@@ -21,7 +21,8 @@ class Pick extends React.Component {
     } else if (this.state.awayTeam > this.state.homeTeam) {
       winner = match.awayTeam.name;
     } else if (this.state.awayTeam === this.state.homeTeam) {
-      alert("You must pick a winner");
+      // alert("You must pick a winner");
+      winner = null;
     }
 
     let pick = {
@@ -51,29 +52,27 @@ class Pick extends React.Component {
       [e.target.name]: e.target.value,
     });
 
-    if (e.target.value > 0) {
-      this.setState({
-        showSubmitButton: true,
-      });
-    }
+    // if (e.target.value > 0) {
+    //   this.setState({
+    //     showSubmitButton: true,
+    //   });
+    // }
   };
-  // handleChange = (e) => {
-  //   if (e.target.name !== "winner") {
-  //     this.setState({
-  //       [e.target.name]: e.target.value,
-  //     });
-  //   }
-  //   if (e.target.value !== 0) {
-  //     this.setState({
-  //       winner: e.target.value,
-  //       showSubmitButton: true,
-  //     });
-  //   }
-  // };
+
   findWinnerName = (match) => {
-    return this.state.winner === "HOME_TEAM"
-      ? match.homeTeam.name
-      : match.awayTeam.name;
+    let winner = this.state.winner;
+    switch (winner) {
+      case "HOME_TEAM": {
+        return removeFC(match.homeTeam.name);
+      }
+      case "AWAY_TEAM": {
+        return removeFC(match.awayTeam.name);
+      }
+    }
+    return "Draw";
+    // return this.state.winner === "HOME_TEAM"
+    //   ? match.homeTeam.name
+    //   : match.awayTeam.name;
   };
 
   render() {
@@ -105,20 +104,20 @@ class Pick extends React.Component {
               className="score-input"
             />
             <br />
-            {this.state.showSubmitButton ? (
-              <button
-                className="pick-button"
-                onClick={() => this.handleSubmitPick(match)}
-              >
-                submit
-              </button>
-            ) : null}
+            {/* {this.state.showSubmitButton ? ( */}
+            <button
+              className="pick-button"
+              onClick={() => this.handleSubmitPick(match)}
+            >
+              submit
+            </button>
+            {/* ) : null} */}
             <button className="back-button" onClick={this.props.handlePick}>
               Back
             </button>
           </>
         ) : (
-          `Your Winner:
+          `Your Pick:
           ${this.findWinnerName(match)}, Score: ${this.state.homeTeam} - ${
             this.state.awayTeam
           }`
@@ -126,72 +125,6 @@ class Pick extends React.Component {
       </>
     );
   }
-  // render() {
-  //   const { match } = this.props;
-  //   return (
-  //     <>
-  //       {!this.state.hidePick ? (
-  //         <>
-  //           <select
-  //             className="label-winner"
-  //             name="winner"
-  //             onChange={this.handleChange}
-  //           >
-  //             {this.state.showSubmitButton ? null : (
-  //               <option name="winner" value="0">
-  //                 Please Choose Winner From List{" "}
-  //               </option>
-  //             )}
-  //             <option
-  //               name={match.homeTeam.name}
-  //               value={"HOME_TEAM"}
-  //               id={match.homeTeam.name}
-  //             >
-  //               {match.homeTeam.name}
-  //             </option>
-  //             <option name={match.awayTeam.name} value={"AWAY_TEAM"}>
-  //               {match.awayTeam.name}
-  //             </option>
-  //           </select>
-  //           <br />
-  //           <label className="score-input">{match.homeTeam.name}</label>{" "}
-  //           <input
-  //             name="homeTeam"
-  //             min={0}
-  //             value={this.state.homeTeam}
-  //             type="number"
-  //             onChange={this.handleChange}
-  //           />
-  //           <br />
-  //           <label className="score-input">{match.awayTeam.name}</label>{" "}
-  //           <input
-  //             name="awayTeam"
-  //             min={0}
-  //             value={this.state.awayTeam}
-  //             type="number"
-  //             onChange={this.handleChange}
-  //             className="score-input"
-  //           />
-  //           <br />
-  //           {this.state.showSubmitButton ? (
-  //             <button
-  //               className="pick-button"
-  //               onClick={() => this.handleSubmitPick(match)}
-  //             >
-  //               submit
-  //             </button>
-  //           ) : null}
-  //           <button className="back-button" onClick={this.props.handlePick}>
-  //             Back
-  //           </button>
-  //         </>
-  //       ) : (
-  //         `Your pick:
-  //         ${this.findWinnerName(match)}`
-  //       )}
-  //     </>
-  //   );
-  // }
 }
 
 function mapStateToProps(state) {
