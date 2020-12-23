@@ -10,6 +10,7 @@ const StandingsTable = (props) => {
         Premier League Pick'em<br></br>
         <p className="under-message">Pick Matches. Compete. Win Leagues.</p>
       </h1>
+      <div className="video-background">
       <iframe
         src="https://www.youtube.com/embed/pS6AHsNRW5A?autoplay=1&mute=1"
         className="youtube"
@@ -18,7 +19,7 @@ const StandingsTable = (props) => {
         allowFullScreen
         title="video"
       />
-
+  </div>
       <img className="pic" width="600px" src={pic} alt="club-crest"></img>
       <div className="standings-table">
         <table className="standings-D">
