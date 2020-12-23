@@ -55,7 +55,7 @@ const StandingsTable = (props) => {
                     </td>
 
                     <td id="standings-club-D">
-                      <Link to={`club/${table.team.name}`}>
+                      <Link to={`club/${table.team.name}`} className="team-name-link">
                         {table.team.name}
                       </Link>
                     </td>

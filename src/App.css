@@ -184,8 +184,17 @@ select.label-winner {
   grid-column-end: 5;
   grid-row-end: 4;
   height: 690px;
-  overflow: scroll;
+  overflow: auto;
   border-top: 60px solid #2b004a;
+  border-radius: 4px;
+}
+.team-name-link {
+  color: #6a7485;
+  font-weight: bold;
+}
+.team-name-link:hover {
+  color: #00e9ab;
+  font-size: 20px;
 }
 .standings-table1 {
   /* grid-column-start: 2;
@@ -241,12 +250,13 @@ select.label-winner {
 #welcome-message {
   grid-column-start: 2;
   grid-column-end: 5;
-
+  margin-top: 100px;
   padding-top: 50px;
   text-align: center;
   font-weight: bold;
   font-size: 60px;
   color: white;
+  margin-bottom: 150px;
   /* color:#2b004a ;
 	background-image: -webkit-linear-gradient(180deg, #2b004a, #00e9ab);
 	-webkit-background-clip: text;
@@ -295,7 +305,7 @@ select.label-winner {
 .standings-D td {
   padding: 0px 20px;
   /* border: 1px solid black; */
-  /* border-radius: 5px; */
+
 }
 #standings-club-D {
   text-align: left;
@@ -342,9 +352,9 @@ span {
   margin: 0;
   list-style: none;
   text-align: right;
-  padding-top: 66px;
-  padding-left: 100px;
-  padding-right: 100px;
+  margin-top: 30px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 
 .nav-links li {
@@ -446,8 +456,8 @@ span {
 #main-menu {
   width: 100vw;
   position: relative;
-
-  height: 200px;
+background: #1d1338;
+  height: 100px;
 }
 .logo-area {
   width: 250px;
