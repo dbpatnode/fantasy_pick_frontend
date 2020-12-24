@@ -11,6 +11,7 @@ const StandingsTable = (props) => {
         <p className="under-message">Pick Matches. Compete. Win Leagues.</p>
       </h1>
       <div className="video-background">
+        <h1>Every Goal From Last Week</h1>
       <iframe
         src="https://www.youtube.com/embed/pS6AHsNRW5A?autoplay=1&mute=1"
         className="youtube"

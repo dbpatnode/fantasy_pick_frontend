@@ -215,18 +215,20 @@ select.label-winner {
 
 .youtube {
  
-
+margin-bottom: 10px;
   width: 100%;
-  height: 100%;
+  height: 90%;
   
 }
 .video-background {
-  padding: 40px 10px 10px 10px;
+  text-align: center;
+  padding: 5px 10px 10px 10px;
   align-content: center;
   grid-column-start: 1  ;
-  grid-row-start: 2;
+  grid-row-start: 1;
 background: white;
 width: 500px;
+height: 500px;
 border-radius: 3px;
 }
 .standings-crest-D {
