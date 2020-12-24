@@ -221,7 +221,11 @@ margin-bottom: 10px;
   
 }
 .video-background {
+  margin-top: 75px;
+  margin-left: 25px;
+  margin-right: 25px;
   text-align: center;
+  color: #1d1338;
   padding: 5px 10px 10px 10px;
   align-content: center;
   grid-column-start: 1  ;
