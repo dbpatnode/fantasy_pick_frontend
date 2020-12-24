@@ -221,7 +221,7 @@ margin-bottom: 10px;
   
 }
 .video-background {
-  margin-top: 75px;
+  margin-top: 50px;
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
@@ -738,6 +738,24 @@ background: #1d1338;
   margin-left: 10px;
   height: 35px;
 
+}
+.button-add-league1 {
+  color: white;
+  text-align: center;
+ 
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: #00e9ab;
+  border-radius: 4px;
+  padding: 10px;
+  margin-left: 10px;
+  height: 50px;
+  width: 100px;
+  grid-row-start: 2;
+  grid-column-start: 3;
+  
 }
 .text-join-league {
   text-align: left;

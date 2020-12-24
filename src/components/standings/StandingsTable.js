@@ -22,7 +22,9 @@ const StandingsTable = (props) => {
       />
   </div>
       <img className="pic" width="600px" src={pic} alt="club-crest"></img>
+      <button className ="button-add-league1">Join Now</button>
       <div className="standings-table">
+       
         <table className="standings-D">
           <thead>
             <tr className="match-headers">
