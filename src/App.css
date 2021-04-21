@@ -563,13 +563,18 @@ background: #1d1338;
   right: 0%;
   transition: all 0.5s ease;
 }
-.form {
+  form {
   padding: 10px;
+  display:flex;
+  flex-direction: column;
+  height: 200px;
 }
 #username-input {
   margin-right: 20px;
   margin-bottom: 10px;
   width: 200px;
+ 
+  
 }
 
 #password-input {
